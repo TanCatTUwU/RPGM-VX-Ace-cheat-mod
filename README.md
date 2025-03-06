@@ -15,3 +15,7 @@
 - Change text speed
 - Change turn-based battle speed
 - Change volume
+## How to use
+- Clone the repository
+- Copy all file and paste it in any RPG Maker VX Ace game (Game_Cheat.exe must be in the same folder as Game.exe. You can also rename stock Game.exe to Game_Cheat.exe if you don't trust it)
+- Run Game_Cheat.exe
