@@ -2,11 +2,7 @@
 ## Original project from dldb.info/blog/506 (shutdown somewhere at 2020)
 ## I've modified the code and add some more feature
 ## Feature
-- Get Items
-- Get Armors
-- Get Weapons
 - Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
-- Stats (parameters) edit (Change LV as well as Max HP, Max MP,...)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
 - Multiply EXP dropped from battle
@@ -19,4 +15,4 @@
 - Clone the repository
 - Copy all file and paste it in any RPG Maker VX Ace game (Game_Cheat.exe must be in the same folder as Game.exe. You can also rename stock Game.exe to Game_Cheat.exe if you don't trust it)
 - Run Game_Cheat.exe
-- Press F8 to open cheat menu, enable debug mode inside config then press F9 to open switches/variables editor
+- Press F8 to open cheat menu, enable debug mode inside setting then press F9 to open switches/variables editor
