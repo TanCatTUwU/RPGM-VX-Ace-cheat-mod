@@ -6,6 +6,7 @@
 - Get Armors
 - Get Weapons
 - Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
+- Teleport (create a tele.txt file and put value in it, might cause crash so save your game)
 - Stats (parameters) edit (Change LV as well as Max HP, Max MP,...)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
