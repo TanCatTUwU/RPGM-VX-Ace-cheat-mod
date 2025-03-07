@@ -3,6 +3,7 @@
 ## I've modified the code and add some more feature
 ## Feature
 - Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
+- Teleport (create a tele.txt file and put value in it, might cause crash so save your game)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
 - Multiply EXP dropped from battle
