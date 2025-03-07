@@ -1,5 +1,5 @@
 # RPGM VX Ace cheat
-## Original project from dldb.info/blog/506 (shutdown somewhere at 2020)
+## Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
 ## I've modified the code and add some more feature
 ## Feature
 - Get Items
