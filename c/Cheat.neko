@@ -1,3 +1,7 @@
+# Originally from dldb.info/blog/506
+# Modified by me
+
+# Save cheat config function
   class Do_Not_Edit_This_File
     def checking(type)
       case type
@@ -50,6 +54,7 @@
     end
   end
   
+# Load cheat config function
   class Game_Player < Game_Character  
     def checking(type)
       case type
@@ -104,6 +109,7 @@
     end
   end
 
+# Handle for opening cheat menu
   class Scene_Map
     alias update_scene_dime update_scene if !$setting
     def update_scene
@@ -124,6 +130,7 @@
     end
   end
 
+# Create cheat menu window
   class Window_CheatCommand < Window_Command
     def make_command_list
       add_command(NEKO::Items,   :getItems)
@@ -139,7 +146,8 @@
       add_command(NEKO::Size, :screen_change)
     end
   end
-  
+
+# Handle for cheat menu and get items function
   class Scene_Cheat < Scene_MenuBase
     def start
       super
@@ -289,12 +297,14 @@
     end
   end
 
+# Teleport function
   class Window_CheatTel < Window_CheatCommand
     def make_command_list
       add_command("Teleport", :teleport, true, [File.read("tele.txt"),1,1])
     end
   end
 
+# Handle for teleport function
   class Scene_Cheat < Scene_MenuBase
     def neko_tel()
       if @neko_teleport
@@ -313,6 +323,7 @@
     end
   end
 
+# Create parameters menu
   class Window_CheatParameters < Window_CheatCommand
     def make_command_list
       add_command(NEKO::Lv,   :lv_edit, true)
@@ -327,6 +338,7 @@
     end
   end
 
+# Handle for parameters menu
   class Scene_Cheat < Scene_MenuBase
     def edit_parameters
       if @edit_parameters
@@ -350,6 +362,7 @@
     end
   end
 
+# Create MHP menu
   class Window_CheatMHP < Window_CheatCommand
     def make_command_list
       add_command("+1 MHP", :add_mhp, true, 1)
@@ -369,6 +382,7 @@
     end
   end
 
+# Handle for MHP edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_mhp()
       if @neko_mhp
@@ -395,6 +409,7 @@
     end
   end
 
+# Create MMP menu
   class Window_CheatMMP < Window_CheatCommand
     def make_command_list
       add_command("+1 MMP", :add_mmp, true, 1)
@@ -414,6 +429,7 @@
     end
   end
 
+# Handle for MMP edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_mmp()
       if @neko_mmp
@@ -440,6 +456,7 @@
     end
   end
 
+# Create ATK menu
   class Window_CheatATK < Window_CheatCommand
     def make_command_list
       add_command("+1 ATK", :add_atk, true, 1)
@@ -458,7 +475,8 @@
       add_command("-1000 ATK", :add_atk, true, -1000)
     end
   end
-
+  
+# Handle for ATK edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_atk()
       if @neko_atk
@@ -485,6 +503,7 @@
     end
   end
 
+# Create DEF menu
   class Window_CheatDEF < Window_CheatCommand
     def make_command_list
       add_command("+1 DEF", :add_def, true, 1)
@@ -504,6 +523,7 @@
     end
   end
 
+# Handle for DEF edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_def()
       if @neko_def
@@ -530,6 +550,7 @@
     end
   end
 
+# Create MAT menu
   class Window_CheatMAT < Window_CheatCommand
     def make_command_list
       add_command("+1 MAT", :add_mat, true, 1)
@@ -549,6 +570,7 @@
     end
   end
 
+# Handle for MAT edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_mat()
       if @neko_mat
@@ -575,6 +597,7 @@
     end
   end
 
+# Create MDF menu
   class Window_CheatMDF < Window_CheatCommand
     def make_command_list
       add_command("+1 MDF", :add_mdf, true, 1)
@@ -594,6 +617,7 @@
     end
   end
 
+# Handle for MDF edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_mdf()
       if @neko_mdf
@@ -620,6 +644,7 @@
     end
   end
 
+# Create AGI menu
   class Window_CheatAGI < Window_CheatCommand
     def make_command_list
       add_command("+1 AGI", :add_agi, true, 1)
@@ -639,6 +664,7 @@
     end
   end
 
+# Handle for AGI edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_agi()
       if @neko_agi
@@ -665,6 +691,7 @@
     end
   end
 
+# Create LUK menu
   class Window_CheatLUK < Window_CheatCommand
     def make_command_list
       add_command("+1 LUK", :add_luk, true, 1)
@@ -684,6 +711,7 @@
     end
   end
 
+# Handle for LUK edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_luk()
       if @neko_luk
@@ -710,6 +738,7 @@
     end
   end
 
+# Create level menu
   class Window_CheatLv < Window_CheatCommand
     def make_command_list
       add_command("Lv  1", :edit_lv, true, 1)
@@ -726,6 +755,7 @@
     end
   end
 
+# Handle for level edit function
   class Scene_Cheat < Scene_MenuBase
     def neko_lv()
       if @neko_lv
@@ -752,6 +782,7 @@
     end
   end
 
+# Handle for parameter edit function
   class Edit_Interpreter < Game_Interpreter
     def lv_change(i)
       iterate_actor_var(0, 0) do |actor|
@@ -812,6 +843,7 @@
     end
   end
 
+# Handle for creating menu
   class Window_CheatCommand < Window_Command
     def self.init_command_position
       @@last_command_symbol = nil
@@ -831,6 +863,7 @@
     end
   end
 
+# Create config menu
   class Window_CheatSetting < Window_CheatCommand
     def make_command_list
       add_command(NEKO::Move, :edit_move, true, "move")
@@ -849,6 +882,7 @@
     end
   end
 
+# Check if player use config (this session) or config all game session
   class Scene_Cheat < Scene_MenuBase
     def setting1
       @now_setting = $setting
@@ -861,7 +895,8 @@
     def close
       @now_setting = false
     end
-    
+	
+# Handle for setting menu
     def setting
       @setting = Window_CheatSetting.new
       @setting.set_handler(:edit_move, method(:neko_speed))
@@ -882,6 +917,7 @@
     end
   end
 
+# Handle for opening and closing config
   class Window_CheatCommand_Setting < Window_CheatCommand
     alias neko_initialize initialize if !$setting
     def initialize(type,text)
@@ -895,6 +931,7 @@
     end
   end
 
+# Handle for movement speed menu
   class Window_CheatMove < Window_CheatCommand_Setting
     def make_command_list
       imsi = @now_setting.checking(menu_name)
@@ -913,6 +950,7 @@
     end
   end
 
+# Handle for battle speed menu
   class Window_CheatBattle < Window_CheatCommand_Setting
     def make_command_list
       imsi = @now_setting.checking(menu_name)
@@ -930,7 +968,8 @@
       end
     end
   end  
-  
+
+# Handle for Exp multiply menu
   class Window_Exp < Window_CheatCommand_Setting
     def make_command_list
       imsi = @now_setting.checking(menu_name)
@@ -949,6 +988,7 @@
     end
   end
 
+# Handle for random event menu
   class Window_Encount < Window_CheatCommand_Setting
     def make_command_list
        imsi = @now_setting.checking(menu_name)
@@ -968,6 +1008,7 @@
     end
   end
 
+# Handle for battle skip menu
   class Window_Encount2 < Window_CheatCommand_Setting
     def make_command_list
       imsi = @now_setting.checking(menu_name)
@@ -985,6 +1026,7 @@
     end
   end  
 
+# Handle for text speed menu
   class Window_TextView < Window_CheatCommand_Setting
     def make_command_list
        imsi = @now_setting.checking(menu_name)
@@ -1004,6 +1046,7 @@
     end
   end
 
+# Handle for enable default debug mode menu
   class Window_Debug_Neko < Window_CheatCommand_Setting
     def make_command_list
        imsi = @now_setting.checking(menu_name)
@@ -1023,6 +1066,7 @@
     end
   end
 
+# Handle for volume menu
   class Window_Volume < Window_CheatCommand_Setting
     def make_command_list
       imsi = @now_setting.checking(menu_name)
@@ -1042,7 +1086,10 @@
     end
   end
 
+# Handle config function
   class Scene_Cheat < Scene_MenuBase
+  
+# Handle battle speed menu
     def neko_battle
       @neko_battle = Window_CheatBattle.new(@now_setting,@setting.current_ext)
       @neko_battle.set_handler(:change_type, method(:change_type))
@@ -1050,7 +1097,8 @@
       @now_menu = "battle"
       show_setting_window
     end
-
+	
+# Handle movement speed menu
     def neko_speed
       @neko_speed = Window_CheatMove.new(@now_setting,@setting.current_ext)
       @neko_speed.set_handler(:change_type, method(:change_type))
@@ -1058,7 +1106,8 @@
       @now_menu = "speed"
       show_setting_window
     end
-
+	
+# Handle EXP multiply menu
     def neko_exp
       @neko_exp = Window_Exp.new(@now_setting,@setting.current_ext)
       @neko_exp.set_handler(:change_type, method(:change_type))
@@ -1067,6 +1116,7 @@
       show_setting_window
     end
 
+# Handle random event menu
     def neko_encount
       @neko_encount = Window_Encount.new(@now_setting,@setting.current_ext)
       @neko_encount.set_handler(:change_type, method(:change_type))
@@ -1075,6 +1125,7 @@
       show_setting_window
     end
 
+# Handle battle skip menu
     def neko_encount2
       @neko_encount2 = Window_Encount2.new(@now_setting,@setting.current_ext)
       @neko_encount2.set_handler(:change_type, method(:change_type))
@@ -1091,6 +1142,7 @@
       show_setting_window
     end
 
+# Handle debug mode menu
     def neko_debug
       @neko_debug = Window_Debug_Neko.new(@now_setting,@setting.current_ext)
       @neko_debug.set_handler(:change_type, method(:change_type))
@@ -1099,6 +1151,7 @@
       show_setting_window
     end
 
+# Handle volume menu
     def neko_sound
       @neko_sound = Window_Volume.new(@now_setting,@setting.current_ext)
       @neko_sound.set_handler(:change_type, method(:change_type))
@@ -1108,8 +1161,10 @@
     end
   end
 
-
+# Create menu window function
   class Scene_Cheat < Scene_MenuBase
+
+# Define which menu are used
     def find_menu
       case @now_menu
         when "speed"; return @neko_speed
@@ -1131,11 +1186,14 @@
         when "luk"; return @neko_luk
       end
     end
+	
+# Handle close menu
     def setting_cancel
       @now_setting = false
       hide_sub_window(@setting)
     end
-    
+
+# Create option for config function
     def change_type
       now_menu = find_menu
       @now_setting.changing(@setting.current_ext,now_menu.current_ext)
@@ -1145,6 +1203,7 @@
       return_scene
     end
     
+# Create second window
     def show_sub_window(window)
       width_remain = Graphics.width - window.width
       window.x = @cheat_window.width
@@ -1152,7 +1211,8 @@
       @viewport.rect.width = width_remain
       window.show.activate
     end
-    
+
+# Close second window
     def hide_sub_window(window)
       @viewport.rect.x = @viewport.ox = 0
       @viewport.rect.width = Graphics.width
@@ -1161,7 +1221,7 @@
       @cheat_window.activate
     end
     
-    
+# Create third window for config function
     def show_setting_window   
       now_menu = find_menu
       width_remain = Graphics.width - now_menu.width
@@ -1170,7 +1230,8 @@
       @viewport.rect.width = width_remain
       now_menu.show.activate
     end
-    
+
+#Close third window (config)
     def hide_setting_window
       now_menu = find_menu
       @viewport.rect.x = @viewport.ox = 0
@@ -1181,6 +1242,7 @@
       @setting.activate
     end
 
+# Create third window for parameters edit function
     def show_parameter_window
       now_menu = find_menu
       width_remain = Graphics.width - now_menu.width
@@ -1190,6 +1252,7 @@
       now_menu.show.activate
     end
 
+# Close third window (parameters edit)
     def hide_parameter_window
       now_menu = find_menu
       @viewport.rect.x = @viewport.ox = 0
@@ -1201,6 +1264,7 @@
     end
   end
 
+# Handle Full screen, Change window size function
   class Scene_Cheat < Scene_MenuBase
     def screen_full
       Graphics.toggle_fullscreen
@@ -1214,7 +1278,8 @@
     end
   end
   
-
+  # Full screen, change window size function
+  
   # Fullscreen++ v2.2 for VX and VXace by Zeus81
   # Free for non commercial and commercial use
   # Licence : http://creativecommons.org/licenses/by-sa/3.0/
@@ -1426,7 +1491,10 @@
     end
   end
 
+# Function handler
   class Game_Player < Game_Character
+  
+# Count total item (No longer used, will be deleted soon)
     def check_item
       arr = load_data("Data/Items.rvdata2")
       @neko_item_count = arr.size.to_i
@@ -1434,7 +1502,8 @@
     def neko_item_count
       @neko_item_count
     end
-    
+
+# Battle skip handler
     alias neko_update_encounter update_encounter if !$setting
     def update_encounter
       if opening("encount") == 1
@@ -1443,7 +1512,8 @@
         neko_update_encounter
       end
     end
-    
+
+# No clip handler
     alias neko_debug_through? debug_through? if !$setting
     def debug_through?
       if opening("debug") == 1 && Input.press?(:CTRL)
@@ -1456,7 +1526,7 @@
     end
   end
 
-
+# Battle skip handler
   class Game_Interpreter
     alias neko_command_301 command_301 if !$setting
     alias neko_command_601 command_601 if !$setting
@@ -1492,6 +1562,7 @@
     end
   end
 
+# Movement speed handler
   class Game_CharacterBase
     alias neko_real_move_speed real_move_speed if !$setting
     def real_move_speed
@@ -1519,6 +1590,7 @@
     end
   end
 
+# Text speed handler
   class Window_Message < Window_Base
     alias neko_clear_flags clear_flags if !$setting
     def clear_flags
@@ -1541,6 +1613,7 @@
     end
   end
 
+# Volume config handler
   class RPG::BGM < RPG::AudioFile
     alias neko_play play if !$setting
     def play(pos = 0)
@@ -1578,6 +1651,7 @@
     end
   end
 
+# Battle speed handler
   class << Graphics
     def neko_get_speed
       if SceneManager.scene_is?(Scene_Battle)
