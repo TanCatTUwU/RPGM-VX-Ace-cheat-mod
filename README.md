@@ -1,6 +1,8 @@
 # RPGM VX Ace cheat
-## Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
-## I've modified the code and add some more feature
+## Credits
+- Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
+- Joiplay mkxp (i took those get items code from there since the UI are better)
+- Me
 ## Feature
 - Get Items
 - Get Armors
