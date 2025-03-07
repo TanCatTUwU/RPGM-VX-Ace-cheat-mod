@@ -1,5 +1,5 @@
 # RPGM VX Ace cheat
-## Original project from dldb.info/blog/506 (shutdown somewhere at 2020)
+## Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
 ## Feature
 - Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
 - Teleport (create a tele.txt file and put value in it, might cause crash so save your game)
