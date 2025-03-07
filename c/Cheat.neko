@@ -747,7 +747,7 @@
         @edit_lv = Edit_Interpreter.new()
       end
       @edit_lv.lv_change(lv)
-      @edit_lv.text("All character level in party has been set to" + lv.to_s + " lv.")
+      @edit_lv.text("All character level in party has been set to level " + lv.to_s + ".")
       return_scene
     end
   end
