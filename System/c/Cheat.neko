@@ -390,7 +390,7 @@
         @add_mhp = Edit_Interpreter.new()
       end
       @add_mhp.mhp_change(mhp)
-      @add_mhp.text("Added " + mhp.to_s + " MHP to each member in party.")
+      @add_mhp.text(NEKO::Added + mhp.to_s + NEKO::MHP_Text)
       return_scene
     end
   end
@@ -435,7 +435,7 @@
         @add_mmp = Edit_Interpreter.new()
       end
       @add_mmp.mmp_change(mmp)
-      @add_mmp.text("Added " + mmp.to_s + " MMP to each member in party.")
+      @add_mmp.text(NEKO::Added + mmp.to_s + NEKO::MMP_Text)
       return_scene
     end
   end
@@ -480,7 +480,7 @@
         @add_atk = Edit_Interpreter.new()
       end
       @add_atk.atk_change(atk)
-      @add_atk.text("Added " + atk.to_s + " ATK to each member in party.")
+      @add_atk.text(NEKO::Added + atk.to_s + NEKO::ATK_Text)
       return_scene
     end
   end
@@ -525,7 +525,7 @@
         @add_def = Edit_Interpreter.new()
       end
       @add_def.def_change(mdef)
-      @add_def.text("Added " + mdef.to_s + " DEF to each member in party.")
+      @add_def.text(NEKO::Added + mdef.to_s + NEKO::DEF_Text)
       return_scene
     end
   end
@@ -570,7 +570,7 @@
         @add_mat = Edit_Interpreter.new()
       end
       @add_mat.mat_change(mat)
-      @add_mat.text("Added " + mat.to_s + " MAT to each member in party.")
+      @add_mat.text(NEKO::Added + mat.to_s + NEKO::MAT_Text)
       return_scene
     end
   end
@@ -615,7 +615,7 @@
         @add_mdf = Edit_Interpreter.new()
       end
       @add_mdf.mdf_change(mdf)
-      @add_mdf.text("Added " + mdf.to_s + " MDF to each member in party.")
+      @add_mdf.text(NEKO::Added + mdf.to_s + NEKO::MDF_Text)
       return_scene
     end
   end
@@ -660,7 +660,7 @@
         @add_agi = Edit_Interpreter.new()
       end
       @add_agi.agi_change(agi)
-      @add_agi.text("Added " + agi.to_s + " AGI to each member in party.")
+      @add_agi.text(NEKO::Added + agi.to_s + NEKO::AGI_Text)
       return_scene
     end
   end
@@ -705,7 +705,7 @@
         @add_luk = Edit_Interpreter.new()
       end
       @add_luk.luk_change(luk)
-      @add_luk.text("Added " + luk.to_s + " LUK to each member in party.")
+      @add_luk.text(NEKO::Added + luk.to_s + NEKO::LUK_Text)
       return_scene
     end
   end
@@ -747,7 +747,7 @@
         @edit_lv = Edit_Interpreter.new()
       end
       @edit_lv.lv_change(lv)
-      @edit_lv.text("All character level in party has been set to level " + lv.to_s + ".")
+      @edit_lv.text(NEKO::LV_Text_1 + lv.to_s + NEKO::LV_Text_2)
       return_scene
     end
   end
