@@ -8,8 +8,8 @@
 - Get Armors
 - Get Weapons
 - Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
-- Teleport (create a tele.txt file and put value in it, might cause crash so save your game)
-- Stats (parameters) edit (Change LV as well as Max HP, Max MP,...)
+- Teleport (save and load current position, you can teleport to other location by edit and load an position file inside tele folder)
+- Stats (parameters) edit (Change Gold, Level as well as Max HP, Max MP,...)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
 - Multiply EXP dropped from battle
