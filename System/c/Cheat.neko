@@ -109,18 +109,18 @@
     end
   end
 
-# Handle for opening cheat menu
+# Key event handler
   class Scene_Map
     alias update_scene_dime update_scene if !$setting
     def update_scene
       update_scene_dime
       update_opening unless scene_changing?
     end
-
+	
     def update_opening
       opening if Input.trigger?(:F8) && !$game_player.moving?
       SceneManager.call(Scene_Debug) if Input.press?(:F9) && $game_player.opening("debug") == 1 && !$game_player.moving? && !$TEST
-      @openinging = false
+      @opened = false
     end
     
     def opening
@@ -137,7 +137,7 @@
       add_command(NEKO::Weapons,   :getWeapons)
       add_command(NEKO::Armors,   :getArmors)
       add_command(NEKO::Parameters,   :parameters_edit)
-      if FileTest.exist?("tele.txt")
+      if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko")
         add_command(NEKO::Tel,   :tel)
       end
       add_command(NEKO::Setting1,   :setting_edit1)
@@ -222,6 +222,7 @@
     end
   end
 
+# Create get items menu
   class Window_GetItem < Window_Selectable
     def initialize(x, y, height,type)
       super(x, y, window_width, height)
@@ -300,7 +301,18 @@
 # Teleport function
   class Window_CheatTel < Window_CheatCommand
     def make_command_list
-      add_command("Teleport", :teleport, true, [File.read("tele.txt"),1,1])
+	  add_command(NEKO::SavePos + "1", :save_pos_1, true, "tele/pos_1.neko")
+      add_command(NEKO::LoadPos + "1", :tele_pos_1, true, File.read("tele/pos_1.neko").split)
+	  add_command(NEKO::SavePos + "2", :save_pos_2, true, "tele/pos_2.neko")
+      add_command(NEKO::LoadPos + "2", :tele_pos_2, true, File.read("tele/pos_2.neko").split)
+	  add_command(NEKO::SavePos + "3", :save_pos_3, true, "tele/pos_3.neko")
+      add_command(NEKO::LoadPos + "3", :tele_pos_3, true, File.read("tele/pos_3.neko").split)
+	  add_command(NEKO::SavePos + "4", :save_pos_4, true, "tele/pos_4.neko")
+      add_command(NEKO::LoadPos + "4", :tele_pos_4, true, File.read("tele/pos_4.neko").split)
+	  add_command(NEKO::SavePos + "5", :save_pos_5, true, "tele/pos_5.neko")
+      add_command(NEKO::LoadPos + "5", :tele_pos_5, true, File.read("tele/pos_5.neko").split)
+	  add_command(NEKO::SavePos + "6", :save_pos_6, true, "tele/pos_6.neko")
+      add_command(NEKO::LoadPos + "6", :tele_pos_6, true, File.read("tele/pos_6.neko").split)
     end
   end
 
@@ -310,15 +322,38 @@
       if @neko_teleport
       else
         @neko_teleport = Window_CheatTel.new
-        @neko_teleport.set_handler(:teleport, method(:tel))
-        @neko_teleport.set_handler(:cancel, method(:hide_sub_window))
+        @neko_teleport.set_handler(:save_pos_1, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_1, method(:tel))
+        @neko_teleport.set_handler(:save_pos_2, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_2, method(:tel))
+        @neko_teleport.set_handler(:save_pos_3, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_3, method(:tel))
+        @neko_teleport.set_handler(:save_pos_4, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_4, method(:tel))
+        @neko_teleport.set_handler(:save_pos_5, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_5, method(:tel))
+        @neko_teleport.set_handler(:save_pos_6, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_6, method(:tel))
+        @neko_teleport.set_handler(:cancel, method(:hide_tel))
       end
       show_sub_window(@neko_teleport)
     end
+	
+	def hide_tel
+	  hide_sub_window(@neko_teleport)
+	end
+	
+	def save_pos
+	  pos_file = @neko_teleport.current_ext
+	  File.open(pos_file, "w") { |f| f.write $game_map.map_id.to_s + ", " + $game_player.x.to_s + ", " + $game_player.y.to_s}
+	  return_scene
+	end
 
     def tel
-      place = @neko_teleport.current_ext
-      $game_player.reserve_transfer(place[0], place[1], place[2])
+      pos_1_map = @neko_teleport.current_ext[0]
+	  pos_1_x = @neko_teleport.current_ext[1]
+	  pos_1_y = @neko_teleport.current_ext[2]
+      $game_player.reserve_transfer(pos_1_map.to_i, pos_1_x.to_i, pos_1_y.to_i, 0)
       SceneManager.goto(Scene_Map)
     end
   end
@@ -326,15 +361,16 @@
 # Create parameters menu
   class Window_CheatParameters < Window_CheatCommand
     def make_command_list
+      add_command(NEKO::Gold,   :gold_edit, true)
       add_command(NEKO::Lv,   :lv_edit, true)
-      add_command(NEKO::AddMHP,   :mhp_edit, true)
-      add_command(NEKO::AddMMP,   :mmp_edit, true)
-      add_command(NEKO::AddATK,   :atk_edit, true)
-      add_command(NEKO::AddDEF,   :def_edit, true)
-      add_command(NEKO::AddMAT,   :mat_edit, true)
-      add_command(NEKO::AddMDF,   :mdf_edit, true)
-      add_command(NEKO::AddAGI,   :agi_edit, true)
-      add_command(NEKO::AddLUK,   :luk_edit, true)
+      add_command(NEKO::Edit_Parameter + "MHP",   :mhp_edit, true)
+      add_command(NEKO::Edit_Parameter + "MMP",   :mmp_edit, true)
+      add_command(NEKO::Edit_Parameter + "ATK",   :atk_edit, true)
+      add_command(NEKO::Edit_Parameter + "DEF",   :def_edit, true)
+      add_command(NEKO::Edit_Parameter + "MAT",   :mat_edit, true)
+      add_command(NEKO::Edit_Parameter + "MDF",   :mdf_edit, true)
+      add_command(NEKO::Edit_Parameter + "AGI",   :agi_edit, true)
+      add_command(NEKO::Edit_Parameter + "LUK",   :luk_edit, true)
     end
   end
 
@@ -344,6 +380,7 @@
       if @edit_parameters
       else
         @edit_parameters = Window_CheatParameters.new
+        @edit_parameters.set_handler(:gold_edit,      method(:neko_gold))
         @edit_parameters.set_handler(:lv_edit,      method(:neko_lv))
         @edit_parameters.set_handler(:mhp_edit,      method(:neko_mhp))
         @edit_parameters.set_handler(:mmp_edit,      method(:neko_mmp))
@@ -404,7 +441,7 @@
         @add_mhp = Edit_Interpreter.new()
       end
       @add_mhp.mhp_change(mhp)
-      @add_mhp.text(NEKO::Added + mhp.to_s + NEKO::MHP_Text)
+      @add_mhp.text(NEKO::Added + mhp.to_s + " MHP" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -451,7 +488,7 @@
         @add_mmp = Edit_Interpreter.new()
       end
       @add_mmp.mmp_change(mmp)
-      @add_mmp.text(NEKO::Added + mmp.to_s + NEKO::MMP_Text)
+      @add_mmp.text(NEKO::Added + mmp.to_s + " MMP" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -498,7 +535,7 @@
         @add_atk = Edit_Interpreter.new()
       end
       @add_atk.atk_change(atk)
-      @add_atk.text(NEKO::Added + atk.to_s + NEKO::ATK_Text)
+      @add_atk.text(NEKO::Added + atk.to_s + " ATK" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -545,7 +582,7 @@
         @add_def = Edit_Interpreter.new()
       end
       @add_def.def_change(mdef)
-      @add_def.text(NEKO::Added + mdef.to_s + NEKO::DEF_Text)
+      @add_def.text(NEKO::Added + mdef.to_s + " DEF" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -592,7 +629,7 @@
         @add_mat = Edit_Interpreter.new()
       end
       @add_mat.mat_change(mat)
-      @add_mat.text(NEKO::Added + mat.to_s + NEKO::MAT_Text)
+      @add_mat.text(NEKO::Added + mat.to_s + " MAT" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -639,7 +676,7 @@
         @add_mdf = Edit_Interpreter.new()
       end
       @add_mdf.mdf_change(mdf)
-      @add_mdf.text(NEKO::Added + mdf.to_s + NEKO::MDF_Text)
+      @add_mdf.text(NEKO::Added + mdf.to_s + " MDF" + Added_Parameters)
       return_scene
     end
   end
@@ -686,7 +723,7 @@
         @add_agi = Edit_Interpreter.new()
       end
       @add_agi.agi_change(agi)
-      @add_agi.text(NEKO::Added + agi.to_s + NEKO::AGI_Text)
+      @add_agi.text(NEKO::Added + agi.to_s + " AGI" + Added_Parameters)
       return_scene
     end
   end
@@ -733,7 +770,7 @@
         @add_luk = Edit_Interpreter.new()
       end
       @add_luk.luk_change(luk)
-      @add_luk.text(NEKO::Added + luk.to_s + NEKO::LUK_Text)
+      @add_luk.text(NEKO::Added + luk.to_s + " LUK" + Added_Parameters)
       return_scene
     end
   end
@@ -778,6 +815,48 @@
       end
       @edit_lv.lv_change(lv)
       @edit_lv.text(NEKO::LV_Text_1 + lv.to_s + NEKO::LV_Text_2)
+      return_scene
+    end
+  end
+
+# Create gold menu
+  class Window_CheatGold < Window_CheatCommand
+    def make_command_list
+      add_command("+1000 G", :edit_gold, true, 1000)
+      add_command("+5000 G", :edit_gold, true, 5000)
+      add_command("+10000 G", :edit_gold, true, 10000)
+      add_command("+50000 G", :edit_gold, true, 50000)
+      add_command("+100000 G", :edit_gold, true, 100000)
+      add_command("+500000 G", :edit_gold, true, 500000)
+      add_command("+1000000 G", :edit_gold, true, 1000000)
+      add_command("+5000000 G", :edit_gold, true, 5000000)
+      add_command("+9999999 G", :edit_gold, true, 9999999)
+    end
+  end
+
+# Handle for gold edit function
+  class Scene_Cheat < Scene_MenuBase
+    def neko_gold()
+      if @neko_gold
+      else
+        @neko_gold = Window_CheatGold.new
+        @neko_gold.set_handler(:edit_gold, method(:edit_gold))
+        @neko_gold.set_handler(:cancel, method(:hide_gold))
+      end
+      @now_menu = "gold"
+      show_parameter_window
+    end
+    def hide_gold
+      hide_parameter_window
+    end
+    def edit_gold
+      gold_value = @neko_gold.current_ext
+      if @edit_gold
+      else
+        @edit_gold = Edit_Interpreter.new()
+      end
+      @edit_gold.gold_change(gold_value)
+      @edit_gold.text(NEKO::Added + gold_value.to_s + NEKO::Gold_Text)
       return_scene
     end
   end
@@ -836,6 +915,10 @@
       iterate_actor_var(0, 0) do |actor|
         actor.add_param(7, i)
       end
+    end
+	
+   def gold_change(i)
+     $game_party.gain_gold(i)
     end
 
     def text(i)
@@ -1184,6 +1267,7 @@
         when "mdf"; return @neko_mdf
         when "agi"; return @neko_agi
         when "luk"; return @neko_luk
+		when "gold"; return @neko_gold
       end
     end
 	
@@ -1193,7 +1277,7 @@
       hide_sub_window(@setting)
     end
 
-# Create option for config function
+# Create option for config function, save config
     def change_type
       now_menu = find_menu
       @now_setting.changing(@setting.current_ext,now_menu.current_ext)
