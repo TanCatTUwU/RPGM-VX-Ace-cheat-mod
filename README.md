@@ -7,7 +7,7 @@
 - Get Items
 - Get Armors
 - Get Weapons
-- Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
+- Suicide item, Insta-kill all enemies (item) (these item only work if the game battle are turn based, otherwise with example like nobihazard it won't work)
 - Teleport (save and load current position, you can teleport to other location by edit and load an position file inside tele folder)
 - Stats (parameters) edit (Change Gold, Level as well as Max HP, Max MP,...)
 - Debug mode (switches/variable editor, no clip)
