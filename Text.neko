@@ -1,0 +1,85 @@
+# Originally from dldb.info/blog/506
+# Modified by me
+
+# Load data
+alias load_data_base load_data
+def load_data(file)
+    base_file = file
+    cheat_file = file.sub("Data/") { "c/" }
+    jpn_file = file.sub("Data/") { "Data_Jpn/" }
+    if FileTest.exist?(cheat_file) == true
+	arr = load_data_base(cheat_file);
+	return arr;
+    end
+    if FileTest.exist?(jpn_file) == true
+	arr = load_data_base(jpn_file);
+	return arr;
+    end
+    return load_data_base(file);
+end
+
+# Check item count
+  class Game_Player < Game_Character
+    def check_item
+      arr = load_data("Data/Items.rvdata2")
+      @neko_item_count = arr.size.to_i
+    end
+  end
+
+# Save and load config
+$setting = Do_Not_Edit_This_File.new
+if FileTest.exist?("Made_by_Hifumi") == false
+  $setting.cheat_save 
+else
+  $setting = load_data("Made_by_Hifumi")
+end
+
+# Text handler
+module NEKO
+  Items = "Get Items"
+  Weapons = "Get Weapons"
+  Armors = "Get Armors"
+  Tel = "Teleport"
+  Lv = "Change LV"
+  Parameters = "Edit Parameters"
+  Edit_Parameter = "Edit "
+  Setting1 = "Config"
+  Setting2 = "Config (this session)"
+  Sound = "Sound"
+  Move = "Move Speed"
+  Dash = "Dash Speed"
+  Exp = "Exp"
+  Encount = "Event (Random)"
+  Encount2 = "Fight Event"
+  Text = "Text Speed"
+  Fullsize = "Full Screen"
+  Size = "Screen Size"
+  Debug = "Debug Mode"
+  Bgm = "BGM"
+  Bgs = "BGS"
+  Me = "ME"
+  Se = "SE"
+  Base = "Base"
+  Battle = "Battle Speed"
+  NoBattle = "Game Speed"
+  On = "On"
+  Off = "Off"
+  Now = " (Now)"
+  Replay_Load = "Replay"
+  Save = "Save"
+  Win = "Win"
+  Lose = "Lose"
+  Escape = "Escape"
+  Not = "None"
+  LV_Text_1 = "All character level in party has been set to "
+  LV_Text_2 = " level."
+  Added = "Added "
+  Added_Parameters = " to each member in party."
+  Gold_Text = " Gold."
+  Gold = "Get gold"
+  SavePos = "Save pos "
+  LoadPos = "Load pos "
+end
+
+# Load fullscreen setting
+Graphics.load_fullscreen_settings
