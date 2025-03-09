@@ -301,18 +301,30 @@
 # Teleport function
   class Window_CheatTel < Window_CheatCommand
     def make_command_list
-	  add_command(NEKO::SavePos + "1", :save_pos_1, true, "tele/pos_1.neko")
-      add_command(NEKO::LoadPos + "1", :tele_pos_1, true, File.read("tele/pos_1.neko").split)
-	  add_command(NEKO::SavePos + "2", :save_pos_2, true, "tele/pos_2.neko")
-      add_command(NEKO::LoadPos + "2", :tele_pos_2, true, File.read("tele/pos_2.neko").split)
-	  add_command(NEKO::SavePos + "3", :save_pos_3, true, "tele/pos_3.neko")
-      add_command(NEKO::LoadPos + "3", :tele_pos_3, true, File.read("tele/pos_3.neko").split)
-	  add_command(NEKO::SavePos + "4", :save_pos_4, true, "tele/pos_4.neko")
-      add_command(NEKO::LoadPos + "4", :tele_pos_4, true, File.read("tele/pos_4.neko").split)
-	  add_command(NEKO::SavePos + "5", :save_pos_5, true, "tele/pos_5.neko")
-      add_command(NEKO::LoadPos + "5", :tele_pos_5, true, File.read("tele/pos_5.neko").split)
-	  add_command(NEKO::SavePos + "6", :save_pos_6, true, "tele/pos_6.neko")
-      add_command(NEKO::LoadPos + "6", :tele_pos_6, true, File.read("tele/pos_6.neko").split)
+      if FileTest.exist?("tele/pos_1.neko")
+	add_command(NEKO::SavePos + "1", :save_pos_1, true, "tele/pos_1.neko")
+        add_command(NEKO::LoadPos + "1", :tele_pos_1, true, File.read("tele/pos_1.neko").split)
+      end
+      if FileTest.exist?("tele/pos_2.neko")
+	add_command(NEKO::SavePos + "2", :save_pos_2, true, "tele/pos_2.neko")
+        add_command(NEKO::LoadPos + "2", :tele_pos_2, true, File.read("tele/pos_2.neko").split)
+      end
+      if FileTest.exist?("tele/pos_3.neko")
+	add_command(NEKO::SavePos + "3", :save_pos_3, true, "tele/pos_3.neko")
+        add_command(NEKO::LoadPos + "3", :tele_pos_3, true, File.read("tele/pos_3.neko").split)
+      end
+      if FileTest.exist?("tele/pos_4.neko")
+	add_command(NEKO::SavePos + "4", :save_pos_4, true, "tele/pos_4.neko")
+        add_command(NEKO::LoadPos + "4", :tele_pos_4, true, File.read("tele/pos_4.neko").split)
+      end
+      if FileTest.exist?("tele/pos_5.neko")
+        add_command(NEKO::SavePos + "5", :save_pos_5, true, "tele/pos_5.neko")
+        add_command(NEKO::LoadPos + "5", :tele_pos_5, true, File.read("tele/pos_5.neko").split)
+      end
+      if FileTest.exist?("tele/pos_6.neko")
+	add_command(NEKO::SavePos + "6", :save_pos_6, true, "tele/pos_6.neko")
+        add_command(NEKO::LoadPos + "6", :tele_pos_6, true, File.read("tele/pos_6.neko").split)
+      end
     end
   end
 
