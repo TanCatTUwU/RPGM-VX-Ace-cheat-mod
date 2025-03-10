@@ -28,10 +28,10 @@ end
 
 # Save and load config
 $setting = Do_Not_Edit_This_File.new
-if FileTest.exist?("Made_by_Hifumi") == false
+if FileTest.exist?("Save.neko") == false
   $setting.cheat_save 
 else
-  $setting = load_data("Made_by_Hifumi")
+  $setting = load_data("Save.neko")
 end
 
 # Text handler
