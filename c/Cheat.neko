@@ -50,7 +50,7 @@
     end
     
     def cheat_save
-      save_data($setting,"Made_by_Hifumi")
+      save_data($setting,"Save.neko")
     end
   end
   
@@ -688,7 +688,7 @@
         @add_mdf = Edit_Interpreter.new()
       end
       @add_mdf.mdf_change(mdf)
-      @add_mdf.text(NEKO::Added + mdf.to_s + " MDF" + Added_Parameters)
+      @add_mdf.text(NEKO::Added + mdf.to_s + " MDF" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -735,7 +735,7 @@
         @add_agi = Edit_Interpreter.new()
       end
       @add_agi.agi_change(agi)
-      @add_agi.text(NEKO::Added + agi.to_s + " AGI" + Added_Parameters)
+      @add_agi.text(NEKO::Added + agi.to_s + " AGI" + NEKO::Added_Parameters)
       return_scene
     end
   end
@@ -782,7 +782,7 @@
         @add_luk = Edit_Interpreter.new()
       end
       @add_luk.luk_change(luk)
-      @add_luk.text(NEKO::Added + luk.to_s + " LUK" + Added_Parameters)
+      @add_luk.text(NEKO::Added + luk.to_s + " LUK" + NEKO::Added_Parameters)
       return_scene
     end
   end
