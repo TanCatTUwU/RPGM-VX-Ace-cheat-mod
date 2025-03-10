@@ -1,4 +1,5 @@
 # RPGM VX Ace cheat
+Bug report are more than welcomed
 ## Credits
 - Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
 - Joiplay mkxp (i took those get items code from there since the UI are better)
