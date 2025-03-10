@@ -137,7 +137,7 @@
       add_command(NEKO::Weapons,   :getWeapons)
       add_command(NEKO::Armors,   :getArmors)
       add_command(NEKO::Parameters,   :parameters_edit)
-      if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko")
+      if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko" || "tele/pos_7.neko" || "tele/pos_8.neko")
         add_command(NEKO::Tel,   :tel)
       end
       add_command(NEKO::Setting1,   :setting_edit1)
@@ -325,6 +325,14 @@
 	add_command(NEKO::SavePos + "6", :save_pos_6, true, "tele/pos_6.neko")
         add_command(NEKO::LoadPos + "6", :tele_pos_6, true, File.read("tele/pos_6.neko").split)
       end
+      if FileTest.exist?("tele/pos_7.neko")
+	add_command(NEKO::SavePos + "7", :save_pos_7, true, "tele/pos_7.neko")
+        add_command(NEKO::LoadPos + "7", :tele_pos_7, true, File.read("tele/pos_7.neko").split)
+      end
+      if FileTest.exist?("tele/pos_8.neko")
+	add_command(NEKO::SavePos + "8", :save_pos_8, true, "tele/pos_8.neko")
+        add_command(NEKO::LoadPos + "8", :tele_pos_8, true, File.read("tele/pos_8.neko").split)
+      end
     end
   end
 
@@ -346,6 +354,10 @@
         @neko_teleport.set_handler(:tele_pos_5, method(:tel))
         @neko_teleport.set_handler(:save_pos_6, method(:save_pos))
         @neko_teleport.set_handler(:tele_pos_6, method(:tel))
+        @neko_teleport.set_handler(:save_pos_7, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_7, method(:tel))
+        @neko_teleport.set_handler(:save_pos_8, method(:save_pos))
+        @neko_teleport.set_handler(:tele_pos_8, method(:tel))
         @neko_teleport.set_handler(:cancel, method(:hide_tel))
       end
       show_sub_window(@neko_teleport)
@@ -421,6 +433,8 @@
       add_command("+100 MHP", :add_mhp, true, 100)
       add_command("+500 MHP", :add_mhp, true, 500)
       add_command("+1000 MHP", :add_mhp, true, 1000)
+	  add_command("+5000 MHP", :add_mhp, true, 5000)
+	  add_command("+10000 MHP", :add_mhp, true, 10000)
       add_command("-1 MHP", :add_mhp, true, -1)
       add_command("-5 MHP", :add_mhp, true, -5)
       add_command("-10 MHP", :add_mhp, true, -10)
@@ -428,6 +442,8 @@
       add_command("-100 MHP", :add_mhp, true, -100)
       add_command("-500 MHP", :add_mhp, true, -500)
       add_command("-1000 MHP", :add_mhp, true, -1000)
+	  add_command("-5000 MHP", :add_mhp, true, -5000)
+	  add_command("-10000 MHP", :add_mhp, true, -10000)
     end
   end
 
@@ -468,6 +484,8 @@
       add_command("+100 MMP", :add_mmp, true, 100)
       add_command("+500 MMP", :add_mmp, true, 500)
       add_command("+1000 MMP", :add_mmp, true, 1000)
+      add_command("+5000 MMP", :add_mmp, true, 5000)
+      add_command("+10000 MMP", :add_mmp, true, 10000)
       add_command("-1 MMP", :add_mmp, true, -1)
       add_command("-5 MMP", :add_mmp, true, -5)
       add_command("-10 MMP", :add_mmp, true, -10)
@@ -475,6 +493,8 @@
       add_command("-100 MMP", :add_mmp, true, -100)
       add_command("-500 MMP", :add_mmp, true, -500)
       add_command("-1000 MMP", :add_mmp, true, -1000)
+      add_command("-5000 MMP", :add_mmp, true, -5000)
+      add_command("-10000 MMP", :add_mmp, true, -10000)
     end
   end
 
@@ -515,6 +535,8 @@
       add_command("+100 ATK", :add_atk, true, 100)
       add_command("+500 ATK", :add_atk, true, 500)
       add_command("+1000 ATK", :add_atk, true, 1000)
+      add_command("+5000 ATK", :add_atk, true, 5000)
+      add_command("+10000 ATK", :add_atk, true, 10000)
       add_command("-1 ATK", :add_atk, true, -1)
       add_command("-5 ATK", :add_atk, true, -5)
       add_command("-10 ATK", :add_atk, true, -10)
@@ -522,6 +544,8 @@
       add_command("-100 ATK", :add_atk, true, -100)
       add_command("-500 ATK", :add_atk, true, -500)
       add_command("-1000 ATK", :add_atk, true, -1000)
+      add_command("-5000 ATK", :add_atk, true, -5000)
+      add_command("-10000 ATK", :add_atk, true, -10000)
     end
   end
   
@@ -562,6 +586,8 @@
       add_command("+100 DEF", :add_def, true, 100)
       add_command("+500 DEF", :add_def, true, 500)
       add_command("+1000 DEF", :add_def, true, 1000)
+      add_command("+5000 DEF", :add_def, true, 5000)
+      add_command("+10000 DEF", :add_def, true, 10000)
       add_command("-1 DEF", :add_def, true, -1)
       add_command("-5 DEF", :add_def, true, -5)
       add_command("-10 DEF", :add_def, true, -10)
@@ -569,6 +595,8 @@
       add_command("-100 DEF", :add_def, true, -100)
       add_command("-500 DEF", :add_def, true, -500)
       add_command("-1000 DEF", :add_def, true, -1000)
+      add_command("-5000 DEF", :add_def, true, -5000)
+      add_command("-10000 DEF", :add_def, true, -10000)
     end
   end
 
@@ -609,6 +637,8 @@
       add_command("+100 MAT", :add_mat, true, 100)
       add_command("+500 MAT", :add_mat, true, 500)
       add_command("+1000 MAT", :add_mat, true, 1000)
+      add_command("+5000 MAT", :add_mat, true, 5000)
+      add_command("+10000 MAT", :add_mat, true, 10000)
       add_command("-1 MAT", :add_mat, true, -1)
       add_command("-5 MAT", :add_mat, true, -5)
       add_command("-10 MAT", :add_mat, true, -10)
@@ -616,6 +646,8 @@
       add_command("-100 MAT", :add_mat, true, -100)
       add_command("-500 MAT", :add_mat, true, -500)
       add_command("-1000 MAT", :add_mat, true, -1000)
+      add_command("-5000 MAT", :add_mat, true, -5000)
+      add_command("-10000 MAT", :add_mat, true, -10000)
     end
   end
 
@@ -656,6 +688,8 @@
       add_command("+100 MDF", :add_mdf, true, 100)
       add_command("+500 MDF", :add_mdf, true, 500)
       add_command("+1000 MDF", :add_mdf, true, 1000)
+      add_command("+5000 MDF", :add_mdf, true, 5000)
+      add_command("+10000 MDF", :add_mdf, true, 10000)
       add_command("-1 MDF", :add_mdf, true, -1)
       add_command("-5 MDF", :add_mdf, true, -5)
       add_command("-10 MDF", :add_mdf, true, -10)
@@ -663,6 +697,8 @@
       add_command("-100 MDF", :add_mdf, true, -100)
       add_command("-500 MDF", :add_mdf, true, -500)
       add_command("-1000 MDF", :add_mdf, true, -1000)
+      add_command("-5000 MDF", :add_mdf, true, -5000)
+      add_command("-10000 MDF", :add_mdf, true, -10000)
     end
   end
 
@@ -703,6 +739,8 @@
       add_command("+100 AGI", :add_agi, true, 100)
       add_command("+500 AGI", :add_agi, true, 500)
       add_command("+1000 AGI", :add_agi, true, 1000)
+      add_command("+5000 AGI", :add_agi, true, 5000)
+      add_command("+10000 AGI", :add_agi, true, 10000)
       add_command("-1 AGI", :add_agi, true, -1)
       add_command("-5 AGI", :add_agi, true, -5)
       add_command("-10 AGI", :add_agi, true, -10)
@@ -710,6 +748,8 @@
       add_command("-100 AGI", :add_agi, true, -100)
       add_command("-500 AGI", :add_agi, true, -500)
       add_command("-1000 AGI", :add_agi, true, -1000)
+      add_command("-5000 AGI", :add_agi, true, -5000)
+      add_command("-10000 AGI", :add_agi, true, -10000)
     end
   end
 
@@ -750,6 +790,8 @@
       add_command("+100 LUK", :add_luk, true, 100)
       add_command("+500 LUK", :add_luk, true, 500)
       add_command("+1000 LUK", :add_luk, true, 1000)
+      add_command("+5000 LUK", :add_luk, true, 5000)
+      add_command("+10000 LUK", :add_luk, true, 10000)
       add_command("-1 LUK", :add_luk, true, -1)
       add_command("-5 LUK", :add_luk, true, -5)
       add_command("-10 LUK", :add_luk, true, -10)
@@ -757,6 +799,8 @@
       add_command("-100 LUK", :add_luk, true, -100)
       add_command("-500 LUK", :add_luk, true, -500)
       add_command("-1000 LUK", :add_luk, true, -1000)
+      add_command("-5000 LUK", :add_luk, true, -5000)
+      add_command("-10000 LUK", :add_luk, true, -10000)
     end
   end
 
@@ -801,6 +845,7 @@
       add_command("Lv 80", :edit_lv, true, 80)
       add_command("Lv 90", :edit_lv, true, 90)
       add_command("Lv 99", :edit_lv, true, 99)
+      add_command("Lv 999 (if supported)", :edit_lv, true, 999)
     end
   end
 
@@ -842,7 +887,9 @@
       add_command("+500000 G", :edit_gold, true, 500000)
       add_command("+1000000 G", :edit_gold, true, 1000000)
       add_command("+5000000 G", :edit_gold, true, 5000000)
-      add_command("+9999999 G", :edit_gold, true, 9999999)
+      add_command("+10000000 G", :edit_gold, true, 10000000)
+      add_command("+50000000 G", :edit_gold, true, 10000000)
+      add_command("+99999999 G", :edit_gold, true, 99999999)
     end
   end
 
