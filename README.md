@@ -1,4 +1,5 @@
 # RPGM VX Ace cheat
+Hopefully there are no bug since im too lazy to check, but i will fix it if you find any
 ## Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
 ## Feature
 - Suicide item, Insta-kill all enemies (item), Gold item (sell for cash)
