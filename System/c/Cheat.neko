@@ -167,17 +167,17 @@
       @cheat_window.set_handler(:screen_change, method(:screen_change))
       @cheat_window.set_handler(:cancel,    method(:return_scene))
     end
-  def cheat_getItem(type)
-      @cheat_window.close
-      @item_window = Window_GetItem.new(0,0,320,type)
-      @item_window.set_handler(:ok,     method(:on_buy_ok))
-      @item_window.set_handler(:cancel, method(:on_buy_cancel))
-      @item_window.show.activate
-      @number_window = Window_ShopNumber.new(0, 304, 120)
-      @number_window.hide
-      @number_window.set_handler(:ok,     method(:on_number_ok))
-      @number_window.set_handler(:cancel, method(:on_number_cancel))
-    end
+    def cheat_getItem(type)
+        @cheat_window.close
+        @cheat_item_window = Window_GetItem.new(0,0,320,type)
+        @cheat_item_window.set_handler(:ok,     method(:on_buy_ok))
+        @cheat_item_window.set_handler(:cancel, method(:cheat_buy_cancel))
+        @cheat_item_window.show.activate
+        @number_window = Window_ShopNumber.new(0, 304, 120)
+        @number_window.hide
+        @number_window.set_handler(:ok,     method(:on_number_ok))
+        @number_window.set_handler(:cancel, method(:on_number_cancel))
+      end
   
     def cheat_items
       cheat_getItem(0)
@@ -192,33 +192,33 @@
     end
 
     def on_buy_ok
-      @item = @item_window.item
-      @item_window.hide
-      @number_window.set(@item, max_buy, buying_price, "G")
+      @cheat_item = @cheat_item_window.item
+      @cheat_item_window.hide
+      @number_window.set(@cheat_item, max_buy, buying_price, "G")
       @number_window.show.activate
     end
-    def on_buy_cancel
-      @item_window.close
+    def cheat_buy_cancel
+      @cheat_item_window.close
       return_scene
     end
     def on_number_ok
       do_buy(@number_window.number)
       @number_window.hide
-      @item_window.show.activate
+      @cheat_item_window.show.activate
     end
     def on_number_cancel
       @number_window.hide
-      @item_window.show.activate
+      @cheat_item_window.show.activate
     end
     def do_buy(number)
-      $game_party.gain_item(@item, number)
+      $game_party.gain_item(@cheat_item, number)
     end
     def max_buy
-      max = $game_party.max_item_number(@item) - $game_party.item_number(@item)
+      max = $game_party.max_item_number(@cheat_item) - $game_party.item_number(@cheat_item)
       buying_price == 0 ? max : [max, money / buying_price].min
     end
     def buying_price
-      @item_window.price(@item)
+      @cheat_item_window.price(@cheat_item)
     end
   end
 
@@ -244,20 +244,20 @@
       return 304
     end
     def item_max
-      @data ? @data.size : 1
+      @cheat_data ? @cheat_data.size : 1
     end
     def item
-      @data[index]
+      @cheat_data[index]
     end
     def money=(money)
       @money = money
       refresh
     end
     def current_item_enabled?
-      enable?(@data[index])
+      enable?(@cheat_data[index])
     end
     def price(item)
-      @price[item]
+      @cheat_price[item]
     end
     def enable?(item)
       item && !$game_party.item_max?(item)
@@ -268,17 +268,17 @@
       draw_all_items
     end
     def make_item_list
-      @data = []
-      @price = {}
+      @cheat_data = []
+      @cheat_price = {}
       @shop_goods.each do |good|
         if good && good.name != ""
-          @data.push(good)
-          @price[good] = 0
+          @cheat_data.push(good)
+          @cheat_price[good] = 0
         end
       end
     end
     def draw_item(index)
-      item = @data[index]
+      item = @cheat_data[index]
       rect = item_rect(index)
       draw_item_name(item, rect.x, rect.y, enable?(item))
       rect.width -= 4
@@ -435,6 +435,7 @@
       add_command("+1000 MHP", :add_mhp, true, 1000)
 	  add_command("+5000 MHP", :add_mhp, true, 5000)
 	  add_command("+10000 MHP", :add_mhp, true, 10000)
+	  add_command("+999999 MHP", :add_mhp, true, 999999)
       add_command("-1 MHP", :add_mhp, true, -1)
       add_command("-5 MHP", :add_mhp, true, -5)
       add_command("-10 MHP", :add_mhp, true, -10)
@@ -444,6 +445,7 @@
       add_command("-1000 MHP", :add_mhp, true, -1000)
 	  add_command("-5000 MHP", :add_mhp, true, -5000)
 	  add_command("-10000 MHP", :add_mhp, true, -10000)
+	  add_command("-999999 MHP", :add_mhp, true, -999999)
     end
   end
 
@@ -486,6 +488,7 @@
       add_command("+1000 MMP", :add_mmp, true, 1000)
       add_command("+5000 MMP", :add_mmp, true, 5000)
       add_command("+10000 MMP", :add_mmp, true, 10000)
+      add_command("+999999 MMP", :add_mmp, true, 999999)
       add_command("-1 MMP", :add_mmp, true, -1)
       add_command("-5 MMP", :add_mmp, true, -5)
       add_command("-10 MMP", :add_mmp, true, -10)
@@ -495,6 +498,7 @@
       add_command("-1000 MMP", :add_mmp, true, -1000)
       add_command("-5000 MMP", :add_mmp, true, -5000)
       add_command("-10000 MMP", :add_mmp, true, -10000)
+      add_command("-999999 MMP", :add_mmp, true, -999999)
     end
   end
 
@@ -537,6 +541,7 @@
       add_command("+1000 ATK", :add_atk, true, 1000)
       add_command("+5000 ATK", :add_atk, true, 5000)
       add_command("+10000 ATK", :add_atk, true, 10000)
+      add_command("+999999 ATK", :add_atk, true, 999999)
       add_command("-1 ATK", :add_atk, true, -1)
       add_command("-5 ATK", :add_atk, true, -5)
       add_command("-10 ATK", :add_atk, true, -10)
@@ -546,6 +551,7 @@
       add_command("-1000 ATK", :add_atk, true, -1000)
       add_command("-5000 ATK", :add_atk, true, -5000)
       add_command("-10000 ATK", :add_atk, true, -10000)
+      add_command("-999999 ATK", :add_atk, true, -999999)
     end
   end
   
@@ -588,6 +594,7 @@
       add_command("+1000 DEF", :add_def, true, 1000)
       add_command("+5000 DEF", :add_def, true, 5000)
       add_command("+10000 DEF", :add_def, true, 10000)
+      add_command("+999999 DEF", :add_def, true, 999999)
       add_command("-1 DEF", :add_def, true, -1)
       add_command("-5 DEF", :add_def, true, -5)
       add_command("-10 DEF", :add_def, true, -10)
@@ -596,7 +603,7 @@
       add_command("-500 DEF", :add_def, true, -500)
       add_command("-1000 DEF", :add_def, true, -1000)
       add_command("-5000 DEF", :add_def, true, -5000)
-      add_command("-10000 DEF", :add_def, true, -10000)
+      add_command("-999999 DEF", :add_def, true, -999999)
     end
   end
 
@@ -639,6 +646,7 @@
       add_command("+1000 MAT", :add_mat, true, 1000)
       add_command("+5000 MAT", :add_mat, true, 5000)
       add_command("+10000 MAT", :add_mat, true, 10000)
+      add_command("+999999 MAT", :add_mat, true, 999999)
       add_command("-1 MAT", :add_mat, true, -1)
       add_command("-5 MAT", :add_mat, true, -5)
       add_command("-10 MAT", :add_mat, true, -10)
@@ -648,6 +656,7 @@
       add_command("-1000 MAT", :add_mat, true, -1000)
       add_command("-5000 MAT", :add_mat, true, -5000)
       add_command("-10000 MAT", :add_mat, true, -10000)
+      add_command("-999999 MAT", :add_mat, true, -999999)
     end
   end
 
@@ -690,6 +699,7 @@
       add_command("+1000 MDF", :add_mdf, true, 1000)
       add_command("+5000 MDF", :add_mdf, true, 5000)
       add_command("+10000 MDF", :add_mdf, true, 10000)
+      add_command("+999999 MDF", :add_mdf, true, 999999)
       add_command("-1 MDF", :add_mdf, true, -1)
       add_command("-5 MDF", :add_mdf, true, -5)
       add_command("-10 MDF", :add_mdf, true, -10)
@@ -699,6 +709,7 @@
       add_command("-1000 MDF", :add_mdf, true, -1000)
       add_command("-5000 MDF", :add_mdf, true, -5000)
       add_command("-10000 MDF", :add_mdf, true, -10000)
+      add_command("-999999 MDF", :add_mdf, true, -999999)
     end
   end
 
@@ -741,6 +752,7 @@
       add_command("+1000 AGI", :add_agi, true, 1000)
       add_command("+5000 AGI", :add_agi, true, 5000)
       add_command("+10000 AGI", :add_agi, true, 10000)
+      add_command("+999999 AGI", :add_agi, true, 999999)
       add_command("-1 AGI", :add_agi, true, -1)
       add_command("-5 AGI", :add_agi, true, -5)
       add_command("-10 AGI", :add_agi, true, -10)
@@ -749,7 +761,7 @@
       add_command("-500 AGI", :add_agi, true, -500)
       add_command("-1000 AGI", :add_agi, true, -1000)
       add_command("-5000 AGI", :add_agi, true, -5000)
-      add_command("-10000 AGI", :add_agi, true, -10000)
+      add_command("-999999 AGI", :add_agi, true, -999999)
     end
   end
 
@@ -791,7 +803,7 @@
       add_command("+500 LUK", :add_luk, true, 500)
       add_command("+1000 LUK", :add_luk, true, 1000)
       add_command("+5000 LUK", :add_luk, true, 5000)
-      add_command("+10000 LUK", :add_luk, true, 10000)
+      add_command("+999999 LUK", :add_luk, true, 999999)
       add_command("-1 LUK", :add_luk, true, -1)
       add_command("-5 LUK", :add_luk, true, -5)
       add_command("-10 LUK", :add_luk, true, -10)
@@ -800,7 +812,7 @@
       add_command("-500 LUK", :add_luk, true, -500)
       add_command("-1000 LUK", :add_luk, true, -1000)
       add_command("-5000 LUK", :add_luk, true, -5000)
-      add_command("-10000 LUK", :add_luk, true, -10000)
+      add_command("-999999 LUK", :add_luk, true, -999999)
     end
   end
 
