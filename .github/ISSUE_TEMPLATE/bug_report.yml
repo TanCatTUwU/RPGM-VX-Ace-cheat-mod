@@ -7,42 +7,42 @@ body:
   - type: textarea
     attributes:
       label: Describe the bug
-      description: A clear and concise description of what the bug is.
+      description: "A clear and concise description of what the bug is."
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: To Reproduce
-      description: Describe how the bug was reproduced.
+      description: "Describe how the bug was reproduced."
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: Expected behavior
-      description: A clear and concise description of what you expected to happen.
+      description: "A clear and concise description of what you expected to happen."
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: Screenshots
-      description: If applicable, add screenshots to help explain your problem.
+      description: "If applicable, add screenshots to help explain your problem."
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: Happened in what game?
-      description: Include an accessible way to reproduce the bug
+      description: "Include an accessible way to reproduce the bug"
     validations:
       required: true
 
   - type: checkboxes
     attributes:
       label: Additional context
-      description: Fill out all the boxes that match
+      description: "Fill out all the boxes that match."
       options:
         - label: Used Joiplay
         - label: Used Wine
