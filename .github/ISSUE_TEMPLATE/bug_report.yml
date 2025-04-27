@@ -1,4 +1,4 @@
-name: Bug report
+name: "🐛 Bug report"
 description: Unexpected error/bug/crash while using this script
 labels: 
   - "bug"
