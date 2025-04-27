@@ -1,6 +1,5 @@
 name: Bug report
 description: Unexpected error/bug/crash while using this script
-type: "Bug"
 labels: 
   - "bug"
 body:
