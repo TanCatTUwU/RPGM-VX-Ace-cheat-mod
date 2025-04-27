@@ -49,9 +49,10 @@ body:
       label: Other game interpreter if used
       description: "Fill out all the boxes that match."
       options:
-        - label: Used Joiplay
-        - label: Used Wine
-        - label: Used MKXP
+        - Used Joiplay
+        - Used Wine
+        - Used MKXP
+        - None (default Game.exe started with Windows)
 
   - type: textarea
     attributes:
