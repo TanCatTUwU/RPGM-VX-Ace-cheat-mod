@@ -53,6 +53,8 @@ body:
         - Used Wine
         - Used MKXP
         - None (default Game.exe started with Windows)
+    validations:
+      required: true
 
   - type: textarea
     attributes:
