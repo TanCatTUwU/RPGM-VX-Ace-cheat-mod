@@ -14,6 +14,12 @@ body:
     attributes:
       label: To Reproduce
       description: "Describe how the bug was reproduced."
+      value: |
+        1.
+        2.
+        3.
+        ...
+      render: bash
     validations:
       required: true
 
@@ -34,15 +40,22 @@ body:
   - type: textarea
     attributes:
       label: Happened in what game?
-      description: "Include an accessible way to reproduce the bug"
+      description: "Include an accessible way so i can reproduce this bug"
     validations:
       required: true
 
-  - type: checkboxes
+  - type: dropdown
     attributes:
-      label: Additional context
+      label: Other game interpreter if used
       description: "Fill out all the boxes that match."
       options:
         - label: Used Joiplay
         - label: Used Wine
         - label: Used MKXP
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: "Please include helpful information if possible."
+    validations:
+      required: true
