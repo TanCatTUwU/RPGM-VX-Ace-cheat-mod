@@ -133,17 +133,18 @@
 # Create cheat menu window
   class Window_CheatCommand < Window_Command
     def make_command_list
-      add_command(NEKO::Items,   :getItems)
-      add_command(NEKO::Weapons,   :getWeapons)
-      add_command(NEKO::Armors,   :getArmors)
+      add_command(NEKO::Items,        :getItems)
+      add_command(NEKO::Weapons,      :getWeapons)
+      add_command(NEKO::Armors,       :getArmors)
       add_command(NEKO::Parameters,   :parameters_edit)
       if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko" || "tele/pos_7.neko" || "tele/pos_8.neko")
-        add_command(NEKO::Tel,   :tel)
+        add_command(NEKO::Tel,        :tel)
       end
-      add_command(NEKO::Setting1,   :setting_edit1)
-      add_command(NEKO::Setting2,   :setting_edit2)
-      add_command(NEKO::Fullsize, :screen_full)
-      add_command(NEKO::Size, :screen_change)
+	  add_command(Vocab::save,        :save_game)
+      add_command(NEKO::Setting1,     :setting_edit1)
+      add_command(NEKO::Setting2,     :setting_edit2)
+      add_command(NEKO::Fullsize,     :screen_full)
+      add_command(NEKO::Size,         :screen_change)
     end
   end
 
@@ -156,17 +157,24 @@
 
     def create_command_window
       @cheat_window = Window_CheatCommand.new
-      @cheat_window.set_handler(:getItems, method(:cheat_items))
-      @cheat_window.set_handler(:getWeapons, method(:cheat_weapons))
-      @cheat_window.set_handler(:getArmors, method(:cheat_armors))
-      @cheat_window.set_handler(:tel,      method(:neko_tel))
+      @cheat_window.set_handler(:getItems,             method(:cheat_items))
+      @cheat_window.set_handler(:getWeapons,           method(:cheat_weapons))
+      @cheat_window.set_handler(:getArmors,            method(:cheat_armors))
+      @cheat_window.set_handler(:tel,                  method(:neko_tel))
       @cheat_window.set_handler(:parameters_edit,      method(:edit_parameters))
-      @cheat_window.set_handler(:setting_edit1,      method(:setting1))
-      @cheat_window.set_handler(:setting_edit2,      method(:setting2))
-      @cheat_window.set_handler(:screen_full, method(:screen_full))
-      @cheat_window.set_handler(:screen_change, method(:screen_change))
-      @cheat_window.set_handler(:cancel,    method(:return_scene))
+      @cheat_window.set_handler(:save_game,            method(:command_save_game))
+      @cheat_window.set_handler(:setting_edit1,        method(:setting1))
+      @cheat_window.set_handler(:setting_edit2,        method(:setting2))
+      @cheat_window.set_handler(:screen_full,          method(:screen_full))
+      @cheat_window.set_handler(:screen_change,        method(:screen_change))
+      @cheat_window.set_handler(:cancel,               method(:return_scene))
     end
+	
+	def command_save_game
+		return_scene
+		SceneManager.call(Scene_Save)
+	end
+	
     def cheat_getItem(type)
         @cheat_window.close
         @cheat_item_window = Window_GetItem.new(0,0,320,type)
@@ -405,16 +413,16 @@
       else
         @edit_parameters = Window_CheatParameters.new
         @edit_parameters.set_handler(:gold_edit,      method(:neko_gold))
-        @edit_parameters.set_handler(:lv_edit,      method(:neko_lv))
-        @edit_parameters.set_handler(:mhp_edit,      method(:neko_mhp))
-        @edit_parameters.set_handler(:mmp_edit,      method(:neko_mmp))
-        @edit_parameters.set_handler(:atk_edit,      method(:neko_atk))
-        @edit_parameters.set_handler(:def_edit,      method(:neko_def))
-        @edit_parameters.set_handler(:mat_edit,      method(:neko_mat))
-        @edit_parameters.set_handler(:mdf_edit,      method(:neko_mdf))
-        @edit_parameters.set_handler(:agi_edit,      method(:neko_agi))
-        @edit_parameters.set_handler(:luk_edit,      method(:neko_luk))
-        @edit_parameters.set_handler(:cancel, method(:hide_parameters))
+        @edit_parameters.set_handler(:lv_edit,        method(:neko_lv))
+        @edit_parameters.set_handler(:mhp_edit,       method(:neko_mhp))
+        @edit_parameters.set_handler(:mmp_edit,       method(:neko_mmp))
+        @edit_parameters.set_handler(:atk_edit,       method(:neko_atk))
+        @edit_parameters.set_handler(:def_edit,       method(:neko_def))
+        @edit_parameters.set_handler(:mat_edit,       method(:neko_mat))
+        @edit_parameters.set_handler(:mdf_edit,       method(:neko_mdf))
+        @edit_parameters.set_handler(:agi_edit,       method(:neko_agi))
+        @edit_parameters.set_handler(:luk_edit,       method(:neko_luk))
+        @edit_parameters.set_handler(:cancel,         method(:hide_parameters))
       end
       show_sub_window(@edit_parameters)
     end
