@@ -2,7 +2,7 @@
 Bug report are more than welcomed (dm @hifumi_chan on discord for faster response)
 ## Credits
 - Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
-- Joiplay mkxp (i took those get items code from there since the UI are better)
+- Joiplay mkxp (i took those get items code from there since t̶h̶e̶ ̶U̶I̶ ̶a̶r̶e̶ ̶b̶e̶t̶t̶e̶r̶  im lazy to code)
 - Me
 ## Feature
 - Get Items
@@ -13,6 +13,7 @@ Bug report are more than welcomed (dm @hifumi_chan on discord for faster respons
 - Stats (parameters) edit (Change Gold, Level as well as Max HP, Max MP,...)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
+- A save button from cheat menu for game with disabled save function on game menu
 - Multiply EXP dropped from battle
 - Turn off/on random event
 - Skip turn-based battle
