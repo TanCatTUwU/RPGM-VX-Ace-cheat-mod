@@ -2,7 +2,7 @@
 Bug report are more than welcomed (dm @hifumi_chan on discord for faster response)
 ## Credits
 - Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
-- Joiplay mkxp (i took those get items code from there since t̶h̶e̶ ̶U̶I̶ ̶a̶r̶e̶ ̶b̶e̶t̶t̶e̶r̶  im lazy to code)
+- Joiplay mkxp (i took those get items code from there since ~~the UI are better~~ im lazy to code)
 - Me
 ## Feature
 - Get Items
