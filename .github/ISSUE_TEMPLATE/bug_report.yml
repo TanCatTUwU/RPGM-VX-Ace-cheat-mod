@@ -35,11 +35,11 @@ body:
       label: Screenshots
       description: "If applicable, add screenshots to help explain your problem."
     validations:
-      required: true
+      required: false
 
   - type: textarea
     attributes:
-      label: Happened in what game?
+      label: Happened in which game?
       description: "Include an accessible way so i can reproduce this bug"
     validations:
       required: true
@@ -49,10 +49,10 @@ body:
       label: Other game interpreter if used
       description: "Fill out all the boxes that match."
       options:
-        - Used Joiplay
+        - None (Default Game_Cheat.exe started with windows)
         - Used Wine
         - Used MKXP
-        - None (default Game.exe started with Windows)
+        - Android Joiplay
     validations:
       required: true
 
@@ -61,4 +61,4 @@ body:
       label: Additional context
       description: "Please include helpful information if possible."
     validations:
-      required: true
+      required: false
