@@ -10,8 +10,10 @@ Bug report are more than welcomed (dm @hifumi_chan on discord for faster respons
 - Get Armors
 - Get Weapons
 - Suicide item, Insta-kill all enemies (item) (these item only work if the game battle are turn based, otherwise with example like nobihazard it won't work)
-- Teleport (save and load up to 8 position, you can also teleport to other location by edit and load an position file inside tele folder)
+- Save & Load up to 8 position
+- Map based teleport function
 - Stats (parameters) edit (Change Gold, Level as well as Max HP, Max MP,...)
+- State (effect) edit (ts on todo list lol, pls wait)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
 - A save button from cheat menu for game with disabled save function on game menu
