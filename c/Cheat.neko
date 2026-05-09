@@ -140,6 +140,7 @@
 			if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko" || "tele/pos_7.neko" || "tele/pos_8.neko")
 				add_command(NEKO::Tel,        :tel)
 			end
+			add_command(NEKO::Map,          :map_tel)
 			add_command(Vocab::save,        :save_game)
 			add_command(NEKO::Setting1,     :setting_edit1)
 			add_command(NEKO::Setting2,     :setting_edit2)
@@ -161,6 +162,7 @@
 			@cheat_window.set_handler(:getWeapons,           method(:cheat_weapons))
 			@cheat_window.set_handler(:getArmors,            method(:cheat_armors))
 			@cheat_window.set_handler(:tel,                  method(:neko_tel))
+			@cheat_window.set_handler(:map_tel,                  method(:neko_map_tel))
 			@cheat_window.set_handler(:parameters_edit,      method(:edit_parameters))
 			@cheat_window.set_handler(:save_game,            method(:command_save_game))
 			@cheat_window.set_handler(:setting_edit1,        method(:setting1))
@@ -309,8 +311,57 @@
 			SceneManager.scene.prepare(goods, false)
 		end
 	end
-
+	
 # Teleport function
+	class Window_Cheat_MapTel < Window_CheatCommand
+		def initialize
+			@map_lists = []
+			setup_teleport_data
+			super
+		end
+		
+		def window_width
+			return 240
+		end
+		
+		def window_height
+			return fitting_height(10)
+		end
+		
+		def setup_teleport_data
+			total_maps = load_data("Data/MapInfos.rvdata2").size
+			@map_lists = (1..total_maps).to_a
+		end
+		
+		def make_command_list
+			@map_lists.each do |map_id|
+				map_info = $data_mapinfos[map_id]
+				next if map_info.nil?
+				
+				name = sprintf("%03d: %s", map_id, map_info.name)
+				add_command(name, :teleport, true, map_id)
+			end
+		end
+	end
+	
+	class Scene_Cheat < Scene_MenuBase
+		def neko_map_tel()
+			if @neko_map_teleport
+			else
+				@neko_map_teleport = Window_Cheat_MapTel.new
+				@neko_map_teleport.viewport = @viewport
+				@neko_map_teleport.set_handler(:teleport, method(:map_teleport))
+			end
+		end
+		
+		def map_teleport
+			map_id = @neko_map_teleport.current_ext
+			$game_player.reserve_transfer(map_id, 1, 1, 0)
+			SceneManager.goto(Scene_Map)
+		end
+	end
+	
+# Save/Load Pos function
 	class Window_CheatTel < Window_CheatCommand
 		def make_command_list
 			if FileTest.exist?("tele/pos_1.neko")
@@ -348,7 +399,6 @@
 		end
 	end
 
-# Handle for teleport function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_tel()
 			if @neko_teleport
@@ -386,10 +436,10 @@
 	end
 
 		def tel
-			pos_1_map = @neko_teleport.current_ext[0]
-			pos_1_x   = @neko_teleport.current_ext[1]
-			pos_1_y   = @neko_teleport.current_ext[2]
-			$game_player.reserve_transfer(pos_1_map.to_i, pos_1_x.to_i, pos_1_y.to_i, 0)
+			pos_map = @neko_teleport.current_ext[0]
+			pos_x   = @neko_teleport.current_ext[1]
+			pos_y   = @neko_teleport.current_ext[2]
+			$game_player.reserve_transfer(pos_map.to_i, pos_x.to_i, pos_y.to_i, 0)
 			SceneManager.goto(Scene_Map)
 		end
 	end
@@ -410,7 +460,6 @@
 		end
 	end
 
-# Handle for parameters menu
 	class Scene_Cheat < Scene_MenuBase
 		def edit_parameters
 			if @edit_parameters
@@ -461,7 +510,6 @@
 		end
 	end
 
-# Handle for MHP edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mhp()
 			if @neko_mhp
@@ -514,7 +562,6 @@
 		end
 	end
 
-# Handle for MMP edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mmp()
 			if @neko_mmp
@@ -567,7 +614,6 @@
 		end
 	end
 	
-# Handle for ATK edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_atk()
 			if @neko_atk
@@ -619,7 +665,6 @@
 		end
 	end
 
-# Handle for DEF edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_def()
 			if @neko_def
@@ -672,7 +717,6 @@
 		end
 	end
 
-# Handle for MAT edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mat()
 			if @neko_mat
@@ -725,7 +769,6 @@
 		end
 	end
 
-# Handle for MDF edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mdf()
 			if @neko_mdf
@@ -777,7 +820,6 @@
 		end
 	end
 
-# Handle for AGI edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_agi()
 			if @neko_agi
@@ -828,7 +870,6 @@
 		end
 	end
 
-# Handle for LUK edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_luk()
 			if @neko_luk
@@ -873,7 +914,6 @@
 		end
 	end
 
-# Handle for level edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_lv()
 			if @neko_lv
@@ -917,7 +957,6 @@
 		end
 	end
 
-# Handle for gold edit function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_gold()
 			if @neko_gold
@@ -1431,7 +1470,7 @@
 			@edit_parameters.activate
 		end
 	end
-
+	
 # Handle Full screen, Change window size function
 	class Scene_Cheat < Scene_MenuBase
 		def screen_full
