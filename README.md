@@ -1,5 +1,6 @@
 # RPGM VX Ace cheat
 Bug report are more than welcomed (dm @hifumi_chan on discord for faster response)
+## This mod does not work on other RPGM engine like XP, VX, MV, MZ,... only VX Ace. Please remember
 ## Credits
 - Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
 - Joiplay mkxp (i took those get items code from there since ~~the UI are better~~ im lazy to code)
