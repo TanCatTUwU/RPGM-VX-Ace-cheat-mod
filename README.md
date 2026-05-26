@@ -14,6 +14,7 @@ Bug report are more than welcomed (dm @hifumi_chan on discord for faster respons
 - Map based teleport function
 - Stats (parameters) edit (Change Gold, Level as well as Max HP, Max MP,...)
 - State (effect) edit (ts on todo list lol, pls wait)
+- God Mode (auto heal HP, MP)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
 - A save button from cheat menu for game with disabled save function on game menu
