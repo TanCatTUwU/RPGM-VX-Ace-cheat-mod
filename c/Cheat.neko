@@ -5,39 +5,41 @@
 	class Do_Not_Edit_This_File
 		def checking(type)
 			case type
-				when "move"; @move
-				when "dash"; @dash
-				when "bgm"; @bgm
-				when "bgs"; @bgs
-				when "me"; @me
-				when "se"; @se
-				when "txt"; @text
-				when "exp"; @neko_exp
-				when "encount"; @encount
+				when "move";     @move
+				when "dash";     @dash
+				when "bgm";      @bgm
+				when "bgs";      @bgs
+				when "me";       @me
+				when "se";       @se
+				when "txt";      @text
+				when "exp";      @neko_exp
+				when "encount";  @encount
 				when "encount2"; @encount2
-				when "cheat"; @cheat
-				when "debug" ; @debug 
-				when "type"; @type
-				when "battle"; @battle
+				when "cheat";    @cheat
+				when "debug";    @debug 
+				when "type";     @type
+				when "battle";   @battle
 				when "nobattle"; @nobattle
+				when "godmode";  @godmode
 			end
 		end
 		def changing(type,text)
 			case type
-				when "move"; @move = text
-				when "dash"; @dash = text
-				when "bgm"; @bgm = text
-				when "bgs"; @bgs = text
-				when "me"; @me = text
-				when "se"; @se = text
-				when "txt"; @text = text
-				when "exp"; @neko_exp = text
-				when "encount"; @encount = text
+				when "move";     @move = text
+				when "dash";     @dash = text
+				when "bgm";      @bgm = text
+				when "bgs";      @bgs = text
+				when "me";       @me = text
+				when "se";       @se = text
+				when "txt";      @text = text
+				when "exp";      @neko_exp = text
+				when "encount";  @encount = text
 				when "encount2"; @encount2 = text
-				when "debug" ; @debug = text
-				when "battle"; @battle = text
+				when "debug" ;   @debug = text
+				when "battle";   @battle = text
 				when "nobattle"; @nobattle = text
-				when "cheat"; @cheat = text
+				when "godmode";  @godmode = text
+				when "cheat";    @cheat = text
 			end
 		end
 		def opening(type)
@@ -58,40 +60,42 @@
 	class Game_Player < Game_Character	
 		def checking(type)
 			case type
-				when "move"; @move
-				when "dash"; @dash
-				when "bgm"; @bgm
-				when "bgs"; @bgs
-				when "me"; @me
-				when "se"; @se
-				when "txt"; @text
-				when "exp"; @neko_exp
-				when "battle"; @battle
+				when "move";     @move
+				when "dash";     @dash
+				when "bgm";      @bgm
+				when "bgs";      @bgs
+				when "me";       @me
+				when "se";       @se
+				when "txt";      @text
+				when "exp";      @neko_exp
+				when "battle";   @battle
 				when "nobattle"; @nobattle
-				when "encount"; @encount
+				when "encount";  @encount
 				when "encount2"; @encount2
-				when "cheat"; @cheat
-				when "debug" ; @debug 
-				when "type"; @type
+				when "godmode";  @godmode
+				when "cheat";    @cheat
+				when "debug" ;   @debug 
+				when "type";     @type
 			end
 		end
 		
 		def changing(type,text)
 			case type
-				when "move"; @move = text
-				when "dash"; @dash = text
-				when "bgm"; @bgm = text
-				when "bgs"; @bgs = text
-				when "me"; @me = text
-				when "se"; @se = text
-				when "txt"; @text = text
-				when "exp"; @neko_exp = text
-				when "battle"; @battle = text
+				when "move";     @move = text
+				when "dash";     @dash = text
+				when "bgm";      @bgm = text
+				when "bgs";      @bgs = text
+				when "me";       @me = text
+				when "se";       @se = text
+				when "txt";      @text = text
+				when "exp";      @neko_exp = text
+				when "battle";   @battle = text
 				when "nobattle"; @nobattle = text
-				when "encount"; @encount = text
+				when "encount";  @encount = text
 				when "encount2"; @encount2 = text
-				when "debug" ; @debug = text
-				when "cheat"; @cheat = text
+				when "godmode";  @godmode = text
+				when "debug" ;   @debug = text
+				when "cheat";    @cheat = text
 			end
 		end
 		
@@ -138,7 +142,7 @@
 			add_command(NEKO::Armors,       :getArmors)
 			add_command(NEKO::Parameters,   :parameters_edit)
 			if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko" || "tele/pos_7.neko" || "tele/pos_8.neko")
-				add_command(NEKO::Tel,        :tel)
+				add_command(NEKO::Tel,      :tel)
 			end
 			add_command(NEKO::Map,          :map_tel)
 			add_command(Vocab::save,        :save_game)
@@ -149,7 +153,7 @@
 		end
 	end
 
-# Handle for cheat menu and get items function
+# Cheat menu placeholder, Get Items method handler
 	class Scene_Cheat < Scene_MenuBase
 		def start
 			super
@@ -162,7 +166,7 @@
 			@cheat_window.set_handler(:getWeapons,           method(:cheat_weapons))
 			@cheat_window.set_handler(:getArmors,            method(:cheat_armors))
 			@cheat_window.set_handler(:tel,                  method(:neko_tel))
-			@cheat_window.set_handler(:map_tel,                  method(:neko_map_tel))
+			@cheat_window.set_handler(:map_tel,              method(:neko_map_tel))
 			@cheat_window.set_handler(:parameters_edit,      method(:edit_parameters))
 			@cheat_window.set_handler(:save_game,            method(:command_save_game))
 			@cheat_window.set_handler(:setting_edit1,        method(:setting1))
@@ -236,7 +240,7 @@
 		end
 	end
 
-# Create get items menu
+# Get Item menu main function
 	class Window_GetItem < Window_Selectable
 		def initialize(x, y, height,type)
 			super(x, y, window_width, height)
@@ -312,7 +316,7 @@
 		end
 	end
 	
-# Teleport function
+# Teleport placeholder + main function
 	class Window_Cheat_MapTel < Window_CheatCommand
 		def initialize
 			@map_lists = []
@@ -343,7 +347,8 @@
 			end
 		end
 	end
-	
+
+# Teleport placeholder
 	class Scene_Cheat < Scene_MenuBase
 		def neko_map_tel()
 			if @neko_map_teleport
@@ -351,7 +356,12 @@
 				@neko_map_teleport = Window_Cheat_MapTel.new
 				@neko_map_teleport.viewport = @viewport
 				@neko_map_teleport.set_handler(:teleport, method(:map_teleport))
+				@neko_map_teleport.set_handler(:cancel, method(:hide_tel))
 			end
+		end
+		
+		def hide_tel
+			hide_sub_window(@neko_map_teleport)
 		end
 		
 		def map_teleport
@@ -361,7 +371,7 @@
 		end
 	end
 	
-# Save/Load Pos function
+# Save/Load Pos placeholder
 	class Window_CheatTel < Window_CheatCommand
 		def make_command_list
 			if FileTest.exist?("tele/pos_1.neko")
@@ -399,6 +409,7 @@
 		end
 	end
 
+# Teleport placeholder + main function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_tel()
 			if @neko_teleport
@@ -444,19 +455,19 @@
 		end
 	end
 
-# Create parameters menu
+# Parameters menu placeholder
 	class Window_CheatParameters < Window_CheatCommand
 		def make_command_list
 			add_command(NEKO::Gold,                     :gold_edit, true)
-			add_command(NEKO::Lv,                       :lv_edit, true)
-			add_command(NEKO::Edit_Parameter + "MHP",   :mhp_edit, true)
-			add_command(NEKO::Edit_Parameter + "MMP",   :mmp_edit, true)
-			add_command(NEKO::Edit_Parameter + "ATK",   :atk_edit, true)
-			add_command(NEKO::Edit_Parameter + "DEF",   :def_edit, true)
-			add_command(NEKO::Edit_Parameter + "MAT",   :mat_edit, true)
-			add_command(NEKO::Edit_Parameter + "MDF",   :mdf_edit, true)
-			add_command(NEKO::Edit_Parameter + "AGI",   :agi_edit, true)
-			add_command(NEKO::Edit_Parameter + "LUK",   :luk_edit, true)
+			add_command(NEKO::Lv,                       :lv_edit,   true)
+			add_command(NEKO::Edit_Parameter + "MHP",   :mhp_edit,  true)
+			add_command(NEKO::Edit_Parameter + "MMP",   :mmp_edit,  true)
+			add_command(NEKO::Edit_Parameter + "ATK",   :atk_edit,  true)
+			add_command(NEKO::Edit_Parameter + "DEF",   :def_edit,  true)
+			add_command(NEKO::Edit_Parameter + "MAT",   :mat_edit,  true)
+			add_command(NEKO::Edit_Parameter + "MDF",   :mdf_edit,  true)
+			add_command(NEKO::Edit_Parameter + "AGI",   :agi_edit,  true)
+			add_command(NEKO::Edit_Parameter + "LUK",   :luk_edit,  true)
 		end
 	end
 
@@ -484,28 +495,28 @@
 		end
 	end
 
-# Create MHP menu
+# MHP menu main function
 	class Window_CheatMHP < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MHP",              :add_mhp, true, 1)
-			add_command("+5 MHP",              :add_mhp, true, 5)
-			add_command("+10 MHP",             :add_mhp, true, 10)
-			add_command("+50 MHP",             :add_mhp, true, 50)
-			add_command("+100 MHP",            :add_mhp, true, 100)
-			add_command("+500 MHP",            :add_mhp, true, 500)
-			add_command("+1000 MHP",           :add_mhp, true, 1000)
-			add_command("+5000 MHP",           :add_mhp, true, 5000)
-			add_command("+10000 MHP",          :add_mhp, true, 10000)
-			add_command("+999999 MHP",         :add_mhp, true, 999999)
-			add_command("-1 MHP",              :add_mhp, true, -1)
-			add_command("-5 MHP",              :add_mhp, true, -5)
-			add_command("-10 MHP",             :add_mhp, true, -10)
-			add_command("-50 MHP",             :add_mhp, true, -50)
-			add_command("-100 MHP",            :add_mhp, true, -100)
-			add_command("-500 MHP",            :add_mhp, true, -500)
-			add_command("-1000 MHP",           :add_mhp, true, -1000)
-			add_command("-5000 MHP",           :add_mhp, true, -5000)
-			add_command("-10000 MHP",          :add_mhp, true, -10000)
+			add_command("+1 MHP",              :add_mhp, true, 1      )
+			add_command("+5 MHP",              :add_mhp, true, 5      )
+			add_command("+10 MHP",             :add_mhp, true, 10     )
+			add_command("+50 MHP",             :add_mhp, true, 50     )
+			add_command("+100 MHP",            :add_mhp, true, 100    )
+			add_command("+500 MHP",            :add_mhp, true, 500    )
+			add_command("+1000 MHP",           :add_mhp, true, 1000   )
+			add_command("+5000 MHP",           :add_mhp, true, 5000   )
+			add_command("+10000 MHP",          :add_mhp, true, 10000  )
+			add_command("+999999 MHP",         :add_mhp, true, 999999 )
+			add_command("-1 MHP",              :add_mhp, true, -1     )
+			add_command("-5 MHP",              :add_mhp, true, -5     )
+			add_command("-10 MHP",             :add_mhp, true, -10    )
+			add_command("-50 MHP",             :add_mhp, true, -50    )
+			add_command("-100 MHP",            :add_mhp, true, -100   )
+			add_command("-500 MHP",            :add_mhp, true, -500   )
+			add_command("-1000 MHP",           :add_mhp, true, -1000  )
+			add_command("-5000 MHP",           :add_mhp, true, -5000  )
+			add_command("-10000 MHP",          :add_mhp, true, -10000 )
 			add_command("-999999 MHP",         :add_mhp, true, -999999)
 		end
 	end
@@ -530,34 +541,34 @@
 			else
 				@add_mhp = Edit_Interpreter.new()
 			end
-			@add_mhp.mhp_change(mhp)
+			@add_mhp.parameters_change(mhp, 0)
 			@add_mhp.text(NEKO::Added + mhp.to_s + " MHP" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create MMP menu
+# MMP menu main function
 	class Window_CheatMMP < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MMP",              :add_mmp, true, 1)
-			add_command("+5 MMP",              :add_mmp, true, 5)
-			add_command("+10 MMP",             :add_mmp, true, 10)
-			add_command("+50 MMP",             :add_mmp, true, 50)
-			add_command("+100 MMP",            :add_mmp, true, 100)
-			add_command("+500 MMP",            :add_mmp, true, 500)
-			add_command("+1000 MMP",           :add_mmp, true, 1000)
-			add_command("+5000 MMP",           :add_mmp, true, 5000)
-			add_command("+10000 MMP",          :add_mmp, true, 10000)
-			add_command("+999999 MMP",         :add_mmp, true, 999999)
-			add_command("-1 MMP",              :add_mmp, true, -1)
-			add_command("-5 MMP",              :add_mmp, true, -5)
-			add_command("-10 MMP",             :add_mmp, true, -10)
-			add_command("-50 MMP",             :add_mmp, true, -50)
-			add_command("-100 MMP",            :add_mmp, true, -100)
-			add_command("-500 MMP",            :add_mmp, true, -500)
-			add_command("-1000 MMP",           :add_mmp, true, -1000)
-			add_command("-5000 MMP",           :add_mmp, true, -5000)
-			add_command("-10000 MMP",          :add_mmp, true, -10000)
+			add_command("+1 MMP",              :add_mmp, true, 1      )
+			add_command("+5 MMP",              :add_mmp, true, 5      )
+			add_command("+10 MMP",             :add_mmp, true, 10     )
+			add_command("+50 MMP",             :add_mmp, true, 50     )
+			add_command("+100 MMP",            :add_mmp, true, 100    )
+			add_command("+500 MMP",            :add_mmp, true, 500    )
+			add_command("+1000 MMP",           :add_mmp, true, 1000   )
+			add_command("+5000 MMP",           :add_mmp, true, 5000   )
+			add_command("+10000 MMP",          :add_mmp, true, 10000  )
+			add_command("+999999 MMP",         :add_mmp, true, 999999 )
+			add_command("-1 MMP",              :add_mmp, true, -1     )
+			add_command("-5 MMP",              :add_mmp, true, -5     )
+			add_command("-10 MMP",             :add_mmp, true, -10    )
+			add_command("-50 MMP",             :add_mmp, true, -50    )
+			add_command("-100 MMP",            :add_mmp, true, -100   )
+			add_command("-500 MMP",            :add_mmp, true, -500   )
+			add_command("-1000 MMP",           :add_mmp, true, -1000  )
+			add_command("-5000 MMP",           :add_mmp, true, -5000  )
+			add_command("-10000 MMP",          :add_mmp, true, -10000 )
 			add_command("-999999 MMP",         :add_mmp, true, -999999)
 		end
 	end
@@ -582,34 +593,34 @@
 			else
 				@add_mmp = Edit_Interpreter.new()
 			end
-			@add_mmp.mmp_change(mmp)
+			@add_mmp.parameters_change(mmp, 1)
 			@add_mmp.text(NEKO::Added + mmp.to_s + " MMP" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create ATK menu
+# ATK menu main function
 	class Window_CheatATK < Window_CheatCommand
 		def make_command_list
-			add_command("+1 ATK",              :add_atk, true, 1)
-			add_command("+5 ATK",              :add_atk, true, 5)
-			add_command("+10 ATK",             :add_atk, true, 10)
-			add_command("+50 ATK",             :add_atk, true, 50)
-			add_command("+100 ATK",            :add_atk, true, 100)
-			add_command("+500 ATK",            :add_atk, true, 500)
-			add_command("+1000 ATK",           :add_atk, true, 1000)
-			add_command("+5000 ATK",           :add_atk, true, 5000)
-			add_command("+10000 ATK",          :add_atk, true, 10000)
-			add_command("+999999 ATK",         :add_atk, true, 999999)
-			add_command("-1 ATK",              :add_atk, true, -1)
-			add_command("-5 ATK",              :add_atk, true, -5)
-			add_command("-10 ATK",             :add_atk, true, -10)
-			add_command("-50 ATK",             :add_atk, true, -50)
-			add_command("-100 ATK",            :add_atk, true, -100)
-			add_command("-500 ATK",            :add_atk, true, -500)
-			add_command("-1000 ATK",           :add_atk, true, -1000)
-			add_command("-5000 ATK",           :add_atk, true, -5000)
-			add_command("-10000 ATK",          :add_atk, true, -10000)
+			add_command("+1 ATK",              :add_atk, true, 1      )
+			add_command("+5 ATK",              :add_atk, true, 5      )
+			add_command("+10 ATK",             :add_atk, true, 10     )
+			add_command("+50 ATK",             :add_atk, true, 50     )
+			add_command("+100 ATK",            :add_atk, true, 100    )
+			add_command("+500 ATK",            :add_atk, true, 500    )
+			add_command("+1000 ATK",           :add_atk, true, 1000   )
+			add_command("+5000 ATK",           :add_atk, true, 5000   )
+			add_command("+10000 ATK",          :add_atk, true, 10000  )
+			add_command("+999999 ATK",         :add_atk, true, 999999 )
+			add_command("-1 ATK",              :add_atk, true, -1     )
+			add_command("-5 ATK",              :add_atk, true, -5     )
+			add_command("-10 ATK",             :add_atk, true, -10    )
+			add_command("-50 ATK",             :add_atk, true, -50    )
+			add_command("-100 ATK",            :add_atk, true, -100   )
+			add_command("-500 ATK",            :add_atk, true, -500   )
+			add_command("-1000 ATK",           :add_atk, true, -1000  )
+			add_command("-5000 ATK",           :add_atk, true, -5000  )
+			add_command("-10000 ATK",          :add_atk, true, -10000 )
 			add_command("-999999 ATK",         :add_atk, true, -999999)
 		end
 	end
@@ -634,13 +645,13 @@
 			else
 				@add_atk = Edit_Interpreter.new()
 			end
-			@add_atk.atk_change(atk)
+			@add_atk.parameters_change(atk, 2)
 			@add_atk.text(NEKO::Added + atk.to_s + " ATK" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create DEF menu
+# DEF menu main function
 	class Window_CheatDEF < Window_CheatCommand
 		def make_command_list
 			add_command("+1 DEF",              :add_def, true, 1)
@@ -685,13 +696,13 @@
 			else
 				@add_def = Edit_Interpreter.new()
 			end
-			@add_def.def_change(mdef)
+			@add_def.parameters_change(mdef, 3)
 			@add_def.text(NEKO::Added + mdef.to_s + " DEF" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create MAT menu
+# MAT menu main function
 	class Window_CheatMAT < Window_CheatCommand
 		def make_command_list
 			add_command("+1 MAT",              :add_mat, true, 1)
@@ -737,13 +748,13 @@
 			else
 				@add_mat = Edit_Interpreter.new()
 			end
-			@add_mat.mat_change(mat)
+			@add_mat.parameters_change(mat, 4)
 			@add_mat.text(NEKO::Added + mat.to_s + " MAT" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create MDF menu
+# MDF menu main function
 	class Window_CheatMDF < Window_CheatCommand
 		def make_command_list
 			add_command("+1 MDF",              :add_mdf, true, 1)
@@ -789,13 +800,13 @@
 			else
 				@add_mdf = Edit_Interpreter.new()
 			end
-			@add_mdf.mdf_change(mdf)
+			@add_mdf.parameters_change(mdf, 5)
 			@add_mdf.text(NEKO::Added + mdf.to_s + " MDF" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create AGI menu
+# AGI menu main function
 	class Window_CheatAGI < Window_CheatCommand
 		def make_command_list
 			add_command("+1 AGI",              :add_agi, true, 1)
@@ -840,13 +851,13 @@
 			else
 				@add_agi = Edit_Interpreter.new()
 			end
-			@add_agi.agi_change(agi)
+			@add_agi.parameters_change(agi, 6)
 			@add_agi.text(NEKO::Added + agi.to_s + " AGI" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create LUK menu
+# LUK menu main function
 	class Window_CheatLUK < Window_CheatCommand
 		def make_command_list
 			add_command("+1 LUK",              :add_luk, true, 1)
@@ -890,13 +901,13 @@
 			else
 				@add_luk = Edit_Interpreter.new()
 			end
-			@add_luk.luk_change(luk)
+			@add_luk.parameters_change(luk, 7)
 			@add_luk.text(NEKO::Added + luk.to_s + " LUK" + NEKO::Added_Parameters)
 			return_scene
 		end
 	end
 
-# Create level menu
+# Level menu main function
 	class Window_CheatLv < Window_CheatCommand
 		def make_command_list
 			add_command("Lv	1",                  :edit_lv, true, 1)
@@ -940,20 +951,20 @@
 		end
 	end
 
-# Create gold menu
+# Gold menu main function
 	class Window_CheatGold < Window_CheatCommand
 		def make_command_list
-			add_command("+1000 G",      :edit_gold, true, 1000)
-			add_command("+5000 G",      :edit_gold, true, 5000)
-			add_command("+10000 G",     :edit_gold, true, 10000)
-			add_command("+50000 G",     :edit_gold, true, 50000)
-			add_command("+100000 G",    :edit_gold, true, 100000)
-			add_command("+500000 G",    :edit_gold, true, 500000)
-			add_command("+1000000 G",   :edit_gold, true, 1000000)
-			add_command("+5000000 G",   :edit_gold, true, 5000000)
-			add_command("+10000000 G",  :edit_gold, true, 10000000)
-			add_command("+50000000 G",  :edit_gold, true, 10000000)
-			add_command("+99999999 G",  :edit_gold, true, 99999999)
+			add_command("+1000 G",      :edit_gold, true, 1000     )
+			add_command("+5000 G",      :edit_gold, true, 5000     )
+			add_command("+10000 G",     :edit_gold, true, 10000    )
+			add_command("+50000 G",     :edit_gold, true, 50000    )
+			add_command("+100000 G",    :edit_gold, true, 100000   )
+			add_command("+500000 G",    :edit_gold, true, 500000   )
+			add_command("+1000000 G",   :edit_gold, true, 1000000  )
+			add_command("+5000000 G",   :edit_gold, true, 5000000  )
+			add_command("+10000000 G",  :edit_gold, true, 10000000 )
+			add_command("+50000000 G",  :edit_gold, true, 10000000 )
+			add_command("+99999999 G",  :edit_gold, true, 99999999 )
 		end
 	end
 
@@ -983,64 +994,22 @@
 		end
 	end
 
-# Create function for above parameters edit
+# Create parameters edit function for above menu
 	class Edit_Interpreter < Game_Interpreter
 		def lv_change(i)
 			iterate_actor_var(0, 0) do |actor|
 				actor.change_level(i, false)
 			end
 		end
-
-	 def mhp_change(i)
+		
+		def parameters_change(i, prmt)
 			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(0, i)
+				actor.add_param(prmt, i)
 			end
 		end
-
-	 def mmp_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(1, i)
-			end
-		end
-
-	 def atk_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(2, i)
-			end
-		end
-
-	 def def_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(3, i)
-			end
-		end
-
-	 def mat_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(4, i)
-			end
-		end
-
-	 def mdf_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(5, i)
-			end
-		end
-
-	 def agi_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(6, i)
-			end
-		end
-
-	 def luk_change(i)
-			iterate_actor_var(0, 0) do |actor|
-				actor.add_param(7, i)
-			end
-		end
-	
-	 def gold_change(i)
-		 $game_party.gain_gold(i)
+		
+		def gold_change(i)
+			$game_party.gain_gold(i)
 		end
 
 		def text(i)
@@ -1048,7 +1017,7 @@
 		end
 	end
 
-# Handle for creating menu
+# Cheat menu function
 	class Window_CheatCommand < Window_Command
 		def self.init_command_position
 			@@last_command_symbol = nil
@@ -1068,22 +1037,23 @@
 		end
 	end
 
-# Create config menu
+# Config menu placeholder
 	class Window_CheatSetting < Window_CheatCommand
 		def make_command_list
-			add_command(NEKO::Move,       :edit_move,       true, "move")
-			add_command(NEKO::Dash,       :edit_dash,       true, "dash")
-			add_command(NEKO::Exp,        :edit_exp,        true, "exp")
-			add_command(NEKO::Encount,    :edit_encount,    true, "encount")
-			add_command(NEKO::Encount2,   :edit_encount2,   true, "encount2")
-			add_command(NEKO::Text,       :edit_text,       true, "txt")
-			add_command(NEKO::Battle,     :edit_battle,     true, "battle")
-			add_command(NEKO::NoBattle,   :edit_nobattle,   true, "nobattle")
-			add_command(NEKO::Debug,      :edit_debug,      true, "debug")
-			add_command(NEKO::Bgm,        :edit_bgm,        true, "bgm")
-			add_command(NEKO::Bgs,        :edit_bgs,        true, "bgs")
-			add_command(NEKO::Me,         :edit_me,         true, "me")
-			add_command(NEKO::Se,         :edit_se,         true, "se")
+			add_command(NEKO::GodMode,    :edit_godmode,    true, "godmode"  )
+			add_command(NEKO::Move,       :edit_move,       true, "move"     )
+			add_command(NEKO::Dash,       :edit_dash,       true, "dash"     )
+			add_command(NEKO::Exp,        :edit_exp,        true, "exp"      )
+			add_command(NEKO::Encount,    :edit_encount,    true, "encount"  )
+			add_command(NEKO::Encount2,   :edit_encount2,   true, "encount2" )
+			add_command(NEKO::Text,       :edit_text,       true, "txt"      )
+			add_command(NEKO::Battle,     :edit_battle,     true, "battle"   )
+			add_command(NEKO::NoBattle,   :edit_nobattle,   true, "nobattle" )
+			add_command(NEKO::Debug,      :edit_debug,      true, "debug"    )
+			add_command(NEKO::Bgm,        :edit_bgm,        true, "bgm"      )
+			add_command(NEKO::Bgs,        :edit_bgs,        true, "bgs"      )
+			add_command(NEKO::Me,         :edit_me,         true, "me"       )
+			add_command(NEKO::Se,         :edit_se,         true, "se"       )
 		end
 	end
 
@@ -1101,23 +1071,24 @@
 			@now_setting = false
 		end
 	
-# Handle for setting menu
+# Config menu placeholder
 		def setting
 			@setting = Window_CheatSetting.new
-			@setting.set_handler(:edit_move,       method(:neko_speed))
-			@setting.set_handler(:edit_dash,       method(:neko_speed))
-			@setting.set_handler(:edit_exp,        method(:neko_exp))
-			@setting.set_handler(:edit_text,       method(:neko_text))
-			@setting.set_handler(:edit_debug,      method(:neko_debug))
-			@setting.set_handler(:edit_encount,    method(:neko_encount))
-			@setting.set_handler(:edit_encount2,   method(:neko_encount2))
-			@setting.set_handler(:edit_battle,     method(:neko_battle))
-			@setting.set_handler(:edit_nobattle,   method(:neko_battle))
-			@setting.set_handler(:edit_bgm,        method(:neko_sound))
-			@setting.set_handler(:edit_bgs,        method(:neko_sound))
-			@setting.set_handler(:edit_me,         method(:neko_sound))
-			@setting.set_handler(:edit_se,         method(:neko_sound))
-			@setting.set_handler(:cancel,          method(:setting_cancel))
+			@setting.set_handler(:edit_godmode,    method(:neko_godmode   ))
+			@setting.set_handler(:edit_move,       method(:neko_speed     ))
+			@setting.set_handler(:edit_dash,       method(:neko_speed     ))
+			@setting.set_handler(:edit_exp,        method(:neko_exp       ))
+			@setting.set_handler(:edit_text,       method(:neko_text      ))
+			@setting.set_handler(:edit_debug,      method(:neko_debug     ))
+			@setting.set_handler(:edit_encount,    method(:neko_encount   ))
+			@setting.set_handler(:edit_encount2,   method(:neko_encount2  ))
+			@setting.set_handler(:edit_battle,     method(:neko_battle    ))
+			@setting.set_handler(:edit_nobattle,   method(:neko_battle    ))
+			@setting.set_handler(:edit_bgm,        method(:neko_sound     ))
+			@setting.set_handler(:edit_bgs,        method(:neko_sound     ))
+			@setting.set_handler(:edit_me,         method(:neko_sound     ))
+			@setting.set_handler(:edit_se,         method(:neko_sound     ))
+			@setting.set_handler(:cancel,          method(:setting_cancel ))
 			show_sub_window(@setting)
 		end
 	end
@@ -1136,7 +1107,7 @@
 		end
 	end
 
-# Create movement speed menu
+# Movement speed menu placeholder
 	class Window_CheatMove < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
@@ -1155,7 +1126,7 @@
 		end
 	end
 
-# Create battle speed menu
+# Battle speed menu placeholder
 	class Window_CheatBattle < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
@@ -1174,7 +1145,7 @@
 		end
 	end	
 
-# Create Exp multiply menu
+# Exp multiply menu placeholder
 	class Window_Exp < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
@@ -1193,7 +1164,7 @@
 		end
 	end
 
-# Create random event menu
+# Random event menu placeholder
 	class Window_Encount < Window_CheatCommand_Setting
 		def make_command_list
 			 imsi = @now_setting.checking(menu_name)
@@ -1213,7 +1184,7 @@
 		end
 	end
 
-# Create battle skip menu
+# Battle skip menu placeholder
 	class Window_Encount2 < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
@@ -1231,7 +1202,7 @@
 		end
 	end	
 
-# Create text speed menu
+# Text speed menu placeholder
 	class Window_TextView < Window_CheatCommand_Setting
 		def make_command_list
 			 imsi = @now_setting.checking(menu_name)
@@ -1251,10 +1222,10 @@
 		end
 	end
 
-# Create enable default debug mode menu
+# Enable default debug mode placeholder
 	class Window_Debug_Neko < Window_CheatCommand_Setting
 		def make_command_list
-			 imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now, :change_type, true, 1)
 				add_command(NEKO::Off,  :change_type, true, 2)
@@ -1271,7 +1242,7 @@
 		end
 	end
 
-# Create volume menu
+# Volume menu placeholder
 	class Window_Volume < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
@@ -1290,11 +1261,31 @@
 			end
 		end
 	end
+	
+# Godmode menu placeholder
+	class Window_Godmode < Window_CheatCommand_Setting
+		def make_command_list
+			imsi = @now_setting.checking(menu_name)
+			if imsi == 1
+				add_command(NEKO::On + NEKO::Now, :change_type, true, 1)
+				add_command(NEKO::Off,  :change_type, true, 2)
+				add_command(NEKO::Base, :change_type, true, false)
+			elsif imsi == 2
+				add_command(NEKO::On,   :change_type, true, 1)
+				add_command(NEKO::Off + NEKO::Now, :change_type, true, 2)
+				add_command(NEKO::Base, :change_type, true, false)
+			else imsi == false || imsi == nil
+				add_command(NEKO::On,  :change_type, true, 1)
+				add_command(NEKO::Off, :change_type, true, 2)
+				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
+			end
+		end
+	end
 
 # Define which config menu will open function
 	class Scene_Cheat < Scene_MenuBase
 	
-# Handle battle speed menu
+# Another placeholder
 		def neko_battle
 			@neko_battle = Window_CheatBattle.new(@now_setting,@setting.current_ext)
 			@neko_battle.set_handler(:change_type, method(:change_type))
@@ -1303,7 +1294,6 @@
 			show_setting_window
 		end
 	
-# Handle movement speed menu
 		def neko_speed
 			@neko_speed = Window_CheatMove.new(@now_setting,@setting.current_ext)
 			@neko_speed.set_handler(:change_type, method(:change_type))
@@ -1312,7 +1302,6 @@
 			show_setting_window
 		end
 	
-# Handle EXP multiply menu
 		def neko_exp
 			@neko_exp = Window_Exp.new(@now_setting,@setting.current_ext)
 			@neko_exp.set_handler(:change_type, method(:change_type))
@@ -1321,7 +1310,6 @@
 			show_setting_window
 		end
 
-# Handle random event menu
 		def neko_encount
 			@neko_encount = Window_Encount.new(@now_setting,@setting.current_ext)
 			@neko_encount.set_handler(:change_type, method(:change_type))
@@ -1330,7 +1318,6 @@
 			show_setting_window
 		end
 
-# Handle battle skip menu
 		def neko_encount2
 			@neko_encount2 = Window_Encount2.new(@now_setting,@setting.current_ext)
 			@neko_encount2.set_handler(:change_type, method(:change_type))
@@ -1339,7 +1326,6 @@
 			show_setting_window
 		end
 		
-# Handle text speed menu
 		def neko_text
 			@neko_text = Window_TextView.new(@now_setting,@setting.current_ext)
 			@neko_text.set_handler(:change_type, method(:change_type))
@@ -1348,7 +1334,6 @@
 			show_setting_window
 		end
 
-# Handle debug mode menu
 		def neko_debug
 			@neko_debug = Window_Debug_Neko.new(@now_setting,@setting.current_ext)
 			@neko_debug.set_handler(:change_type, method(:change_type))
@@ -1357,12 +1342,19 @@
 			show_setting_window
 		end
 
-# Handle volume menu
 		def neko_sound
 			@neko_sound = Window_Volume.new(@now_setting,@setting.current_ext)
 			@neko_sound.set_handler(:change_type, method(:change_type))
 			@neko_sound.set_handler(:cancel, method(:hide_setting_window))
 			@now_menu = "sound"
+			show_setting_window
+		end
+		
+		def neko_godmode
+			@neko_godmode = Window_Godmode.new(@now_setting, @setting.current_ext)
+			@neko_godmode.set_handler(:change_type, method(:change_type))
+			@neko_godmode.set_handler(:cancel, method(:hide_setting_window))
+			@now_menu = "godmode"
 			show_setting_window
 		end
 	end
@@ -1373,6 +1365,7 @@
 # Find which menu was chosed from above
 		def find_menu
 			case @now_menu
+				when "godmode";   return     @neko_godmode
 				when "speed";     return     @neko_speed
 				when "sound";     return     @neko_sound
 				when "exp";       return     @neko_exp
@@ -1698,9 +1691,10 @@
 		end
 	end
 
-# Function handler
+# Config feature function
 	class Game_Player < Game_Character
-# Battle skip handler
+	
+# Battle skip function
 		alias neko_update_encounter update_encounter if !$setting
 		def update_encounter
 			if opening("encount") == 1
@@ -1710,7 +1704,7 @@
 			end
 		end
 
-# No clip handler
+# No clip function
 		alias neko_debug_through? debug_through? if !$setting
 		def debug_through?
 			if opening("debug") == 1 && Input.press?(:CTRL)
@@ -1723,7 +1717,7 @@
 		end
 	end
 
-# Battle skip handler
+# Battle skip function
 	class Game_Interpreter
 		alias neko_command_301 command_301 if !$setting
 		alias neko_command_601 command_601 if !$setting
@@ -1759,7 +1753,7 @@
 		end
 	end
 
-# Movement speed handler
+# Movement speed function
 	class Game_CharacterBase
 		alias neko_real_move_speed real_move_speed if !$setting
 		def real_move_speed
@@ -1787,7 +1781,7 @@
 		end
 	end
 
-# Text speed handler
+# Text speed function
 	class Window_Message < Window_Base
 		alias neko_clear_flags clear_flags if !$setting
 		def clear_flags
@@ -1796,9 +1790,9 @@
 				@show_fast = true 
 			end
 		end
-	end # Window_Message
+	end 
 
-
+# Exp multiply function
 	class Game_Troop < Game_Unit
 		alias neko_exp_total exp_total if !$setting
 		def exp_total
@@ -1810,7 +1804,7 @@
 		end
 	end
 
-# Volume config handler
+# Volume config function
 	class RPG::BGM < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play(pos = 0)
@@ -1848,7 +1842,7 @@
 		end
 	end
 
-# Battle speed handler
+# Battle speed function
 	class << Graphics
 		def neko_get_speed
 			if SceneManager.scene_is?(Scene_Battle)
@@ -1897,5 +1891,25 @@
 		def transition(duration = 10, filename = "", vague = 40)
 			duration /= neko_get_speed
 			neko_transition_spd(duration, filename, vague)
+		end
+	end
+	
+# God mode function
+	class Scene_Base
+		alias gm_scene_update update
+		def update
+			gm_scene_update
+			if $game_player.opening("godmode") == 1
+				$game_party.heal_entire_party
+			end
+		end
+	end
+	
+	class Game_Party < Game_Unit
+		def heal_entire_party
+			all_members.each do |actor|
+				actor.hp = actor.mhp if actor.hp < actor.mhp
+				actor.mp = actor.mmp if actor.mp < actor.mmp
+			end
 		end
 	end

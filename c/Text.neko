@@ -80,6 +80,7 @@ module NEKO
   Gold = "Get gold"
   SavePos = "Save pos "
   LoadPos = "Load pos "
+  GodMode = "God Mode"
 end
 
 # Load fullscreen setting
