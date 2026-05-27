@@ -81,6 +81,7 @@ module NEKO
   SavePos = "Save pos "
   LoadPos = "Load pos "
   GodMode = "God Mode"
+  Effects = "Edit States"
 end
 
 # Load fullscreen setting

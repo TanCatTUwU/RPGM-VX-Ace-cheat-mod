@@ -25,21 +25,21 @@
 		end
 		def changing(type,text)
 			case type
-				when "move";     @move = text
-				when "dash";     @dash = text
-				when "bgm";      @bgm = text
-				when "bgs";      @bgs = text
-				when "me";       @me = text
-				when "se";       @se = text
-				when "txt";      @text = text
+				when "move";     @move     = text
+				when "dash";     @dash     = text
+				when "bgm";      @bgm      = text
+				when "bgs";      @bgs      = text
+				when "me";       @me       = text
+				when "se";       @se       = text
+				when "txt";      @text     = text
 				when "exp";      @neko_exp = text
-				when "encount";  @encount = text
+				when "encount";  @encount  = text
 				when "encount2"; @encount2 = text
-				when "debug" ;   @debug = text
-				when "battle";   @battle = text
+				when "debug" ;   @debug    = text
+				when "battle";   @battle   = text
 				when "nobattle"; @nobattle = text
-				when "godmode";  @godmode = text
-				when "cheat";    @cheat = text
+				when "godmode";  @godmode  = text
+				when "cheat";    @cheat    = text
 			end
 		end
 		def opening(type)
@@ -81,21 +81,21 @@
 		
 		def changing(type,text)
 			case type
-				when "move";     @move = text
-				when "dash";     @dash = text
-				when "bgm";      @bgm = text
-				when "bgs";      @bgs = text
-				when "me";       @me = text
-				when "se";       @se = text
-				when "txt";      @text = text
+				when "move";     @move     = text
+				when "dash";     @dash     = text
+				when "bgm";      @bgm      = text
+				when "bgs";      @bgs      = text
+				when "me";       @me       = text
+				when "se";       @se       = text
+				when "txt";      @text     = text
 				when "exp";      @neko_exp = text
-				when "battle";   @battle = text
+				when "battle";   @battle   = text
 				when "nobattle"; @nobattle = text
-				when "encount";  @encount = text
+				when "encount";  @encount  = text
 				when "encount2"; @encount2 = text
-				when "godmode";  @godmode = text
-				when "debug" ;   @debug = text
-				when "cheat";    @cheat = text
+				when "godmode";  @godmode  = text
+				when "debug" ;   @debug    = text
+				when "cheat";    @cheat    = text
 			end
 		end
 		
@@ -137,19 +137,20 @@
 # Create cheat menu window
 	class Window_CheatCommand < Window_Command
 		def make_command_list
-			add_command(NEKO::Items,        :getItems)
-			add_command(NEKO::Weapons,      :getWeapons)
-			add_command(NEKO::Armors,       :getArmors)
+			add_command(NEKO::Items,        :getItems       )
+			add_command(NEKO::Weapons,      :getWeapons     )
+			add_command(NEKO::Armors,       :getArmors      )
 			add_command(NEKO::Parameters,   :parameters_edit)
+			add_command(NEKO::Effects,      :effects_edit   )
 			if FileTest.exist?("tele/pos_1.neko" || "tele/pos_2.neko" || "tele/pos_3.neko" || "tele/pos_4.neko" || "tele/pos_5.neko" || "tele/pos_6.neko" || "tele/pos_7.neko" || "tele/pos_8.neko")
-				add_command(NEKO::Tel,      :tel)
+				add_command(NEKO::Tel,      :tel            )
 			end
-			add_command(NEKO::Map,          :map_tel)
-			add_command(Vocab::save,        :save_game)
-			add_command(NEKO::Setting1,     :setting_edit1)
-			add_command(NEKO::Setting2,     :setting_edit2)
-			add_command(NEKO::Fullsize,     :screen_full)
-			add_command(NEKO::Size,         :screen_change)
+			add_command(NEKO::Map,          :map_tel        )
+			add_command(Vocab::save,        :save_game      )
+			add_command(NEKO::Setting1,     :setting_edit1  )
+			add_command(NEKO::Setting2,     :setting_edit2  )
+			add_command(NEKO::Fullsize,     :screen_full    )
+			add_command(NEKO::Size,         :screen_change  )
 		end
 	end
 
@@ -162,18 +163,19 @@
 
 		def create_command_window
 			@cheat_window = Window_CheatCommand.new
-			@cheat_window.set_handler(:getItems,             method(:cheat_items))
-			@cheat_window.set_handler(:getWeapons,           method(:cheat_weapons))
-			@cheat_window.set_handler(:getArmors,            method(:cheat_armors))
-			@cheat_window.set_handler(:tel,                  method(:neko_tel))
-			@cheat_window.set_handler(:map_tel,              method(:neko_map_tel))
-			@cheat_window.set_handler(:parameters_edit,      method(:edit_parameters))
+			@cheat_window.set_handler(:getItems,             method(:cheat_items      ))
+			@cheat_window.set_handler(:getWeapons,           method(:cheat_weapons    ))
+			@cheat_window.set_handler(:getArmors,            method(:cheat_armors     ))
+			@cheat_window.set_handler(:tel,                  method(:neko_tel         ))
+			@cheat_window.set_handler(:map_tel,              method(:neko_map_tel     ))
+			@cheat_window.set_handler(:parameters_edit,      method(:edit_parameters  ))
+			@cheat_window.set_handler(:effects_edit,         method(:edit_effects     ))
 			@cheat_window.set_handler(:save_game,            method(:command_save_game))
-			@cheat_window.set_handler(:setting_edit1,        method(:setting1))
-			@cheat_window.set_handler(:setting_edit2,        method(:setting2))
-			@cheat_window.set_handler(:screen_full,          method(:screen_full))
-			@cheat_window.set_handler(:screen_change,        method(:screen_change))
-			@cheat_window.set_handler(:cancel,               method(:return_scene))
+			@cheat_window.set_handler(:setting_edit1,        method(:setting1         ))
+			@cheat_window.set_handler(:setting_edit2,        method(:setting2         ))
+			@cheat_window.set_handler(:screen_full,          method(:screen_full      ))
+			@cheat_window.set_handler(:screen_change,        method(:screen_change    ))
+			@cheat_window.set_handler(:cancel,               method(:return_scene     ))
 		end
 	
 	def command_save_game
@@ -356,12 +358,12 @@
 				@neko_map_teleport = Window_Cheat_MapTel.new
 				@neko_map_teleport.viewport = @viewport
 				@neko_map_teleport.set_handler(:teleport, method(:map_teleport))
-				@neko_map_teleport.set_handler(:cancel, method(:hide_tel))
+				@neko_map_teleport.set_handler(:cancel,   method(:hide_map_tel))
 			end
 			show_sub_window(@neko_map_teleport)
 		end
 		
-		def hide_tel
+		def hide_map_tel
 			hide_sub_window(@neko_map_teleport)
 		end
 		
@@ -417,22 +419,22 @@
 			else
 				@neko_teleport = Window_CheatTel.new
 				@neko_teleport.set_handler(:save_pos_1, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_1, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_1, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_2, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_2, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_2, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_3, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_3, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_3, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_4, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_4, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_4, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_5, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_5, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_5, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_6, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_6, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_6, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_7, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_7, method(:tel))
+				@neko_teleport.set_handler(:tele_pos_7, method(:tel     ))
 				@neko_teleport.set_handler(:save_pos_8, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_8, method(:tel))
-				@neko_teleport.set_handler(:cancel, method(:hide_tel))
+				@neko_teleport.set_handler(:tele_pos_8, method(:tel     ))
+				@neko_teleport.set_handler(:cancel,     method(:hide_tel))
 			end
 			show_sub_window(@neko_teleport)
 		end
@@ -453,6 +455,99 @@
 			pos_y   = @neko_teleport.current_ext[2]
 			$game_player.reserve_transfer(pos_map.to_i, pos_x.to_i, pos_y.to_i, 0)
 			SceneManager.goto(Scene_Map)
+		end
+	end
+	
+# Effects edit main functions
+	class Window_Cheat_Effects < Window_CheatCommand
+		def initialize
+			init_state_effects
+			super
+		end
+		
+		def window_width
+			return 240
+		end
+		
+		def window_height
+			return fitting_height(10)
+		end
+		
+		def init_state_effects
+			@state_effects = {}
+			$data_states.each do |state|
+				next if state.nil?
+				@state_effects[state.id] = state_default_status(state)
+			end
+		end
+		
+		def state_default_status(state)
+			leader = $game_party.leader
+			return false if leader.nil?
+			return leader.state?(state.id)
+		end
+		
+		def make_command_list
+			return if $data_states.nil?
+			
+			$data_states.each do |state|
+				next if state.nil?
+				next if state.name.empty?
+				status = @state_effects[state.id] ? "[ON]" : "[OFF]"
+				display_name = "#{state.name} #{status}"
+				add_command(display_name, :toggle_state, true, state.id)
+			end
+		end
+		
+		def draw_item(index)
+			rect = item_rect_for_text(index)
+			state_id = @list[index][:ext]
+			state = $data_states[state_id]
+			
+			draw_icon(state.icon_index, rect.x, rect.y) if state.icon_index > 0
+			text_x = rect.x + (state.icon_index > 0 ? 24 : 0)
+			change_color(param_change_color(@state_effects[state_id]))
+			draw_text(text_x, rect.y, rect.width - 60, line_height, state.name)
+			
+			status_text = @state_effects[state_id] ? "ON" : "OFF"
+			draw_text(rect.x, rect.y, rect.width, line_height, status_text, 2)
+		end
+		
+		def toggle_current_state
+			state_id = current_ext
+			@state_effects[state_id] = !@state_effects[state_id]
+			
+			refresh
+			Sound.play_cursor
+		end
+		
+		def state_enabled?(state_id)
+			return @state_effects[state_id] == true
+		end
+		
+		def param_change_color(enabled)
+			enabled ? power_up_color : power_down_color
+		end
+	end
+	
+	class Scene_Cheat < Scene_MenuBase
+		def edit_effects
+			if @edit_effects
+			else
+				@edit_effects = Window_Cheat_Effects.new
+				@edit_effects.set_handler(:toggle_state, method(:on_state_toggle))
+				@edit_effects.set_handler(:cancel,       method(:hide_effects   ))
+			end
+			show_sub_window(@edit_effects)
+		end
+		
+		def hide_effects
+			hide_sub_window(@edit_effects)
+		end
+		
+		def on_state_toggle
+			@edit_effects.toggle_current_state
+			@edit_effects.activate
 		end
 	end
 
@@ -477,16 +572,16 @@
 			if @edit_parameters
 			else
 				@edit_parameters = Window_CheatParameters.new
-				@edit_parameters.set_handler(:gold_edit,      method(:neko_gold))
-				@edit_parameters.set_handler(:lv_edit,        method(:neko_lv))
-				@edit_parameters.set_handler(:mhp_edit,       method(:neko_mhp))
-				@edit_parameters.set_handler(:mmp_edit,       method(:neko_mmp))
-				@edit_parameters.set_handler(:atk_edit,       method(:neko_atk))
-				@edit_parameters.set_handler(:def_edit,       method(:neko_def))
-				@edit_parameters.set_handler(:mat_edit,       method(:neko_mat))
-				@edit_parameters.set_handler(:mdf_edit,       method(:neko_mdf))
-				@edit_parameters.set_handler(:agi_edit,       method(:neko_agi))
-				@edit_parameters.set_handler(:luk_edit,       method(:neko_luk))
+				@edit_parameters.set_handler(:gold_edit,      method(:neko_gold      ))
+				@edit_parameters.set_handler(:lv_edit,        method(:neko_lv        ))
+				@edit_parameters.set_handler(:mhp_edit,       method(:neko_mhp       ))
+				@edit_parameters.set_handler(:mmp_edit,       method(:neko_mmp       ))
+				@edit_parameters.set_handler(:atk_edit,       method(:neko_atk       ))
+				@edit_parameters.set_handler(:def_edit,       method(:neko_def       ))
+				@edit_parameters.set_handler(:mat_edit,       method(:neko_mat       ))
+				@edit_parameters.set_handler(:mdf_edit,       method(:neko_mdf       ))
+				@edit_parameters.set_handler(:agi_edit,       method(:neko_agi       ))
+				@edit_parameters.set_handler(:luk_edit,       method(:neko_luk       ))
 				@edit_parameters.set_handler(:cancel,         method(:hide_parameters))
 			end
 			show_sub_window(@edit_parameters)
@@ -1359,7 +1454,7 @@
 		end
 	end
 
-# Create menu window function
+# Various placeholder, menu choice function
 	class Scene_Cheat < Scene_MenuBase
 
 # Find which menu was chosed from above
