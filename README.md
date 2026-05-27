@@ -13,7 +13,7 @@ Bug report are more than welcomed (dm @hifumi_chan on discord for faster respons
 - Save & Load up to 8 position
 - Map based teleport function
 - Stats (parameters) edit (Change Gold, Level as well as Max HP, Max MP,...)
-- State (effect) edit (ts on todo list lol, pls wait)
+- State (effect) edit
 - God Mode (auto heal HP, MP)
 - Debug mode (switches/variable editor, no clip)
 - Increase movement/dash speed
