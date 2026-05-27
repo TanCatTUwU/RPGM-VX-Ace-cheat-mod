@@ -358,6 +358,7 @@
 				@neko_map_teleport.set_handler(:teleport, method(:map_teleport))
 				@neko_map_teleport.set_handler(:cancel, method(:hide_tel))
 			end
+			show_sub_window(@neko_map_teleport)
 		end
 		
 		def hide_tel
@@ -654,24 +655,24 @@
 # DEF menu main function
 	class Window_CheatDEF < Window_CheatCommand
 		def make_command_list
-			add_command("+1 DEF",              :add_def, true, 1)
-			add_command("+5 DEF",              :add_def, true, 5)
-			add_command("+10 DEF",             :add_def, true, 10)
-			add_command("+50 DEF",             :add_def, true, 50)
-			add_command("+100 DEF",            :add_def, true, 100)
-			add_command("+500 DEF",            :add_def, true, 500)
-			add_command("+1000 DEF",           :add_def, true, 1000)
-			add_command("+5000 DEF",           :add_def, true, 5000)
-			add_command("+10000 DEF",          :add_def, true, 10000)
-			add_command("+999999 DEF",         :add_def, true, 999999)
-			add_command("-1 DEF",              :add_def, true, -1)
-			add_command("-5 DEF",              :add_def, true, -5)
-			add_command("-10 DEF",             :add_def, true, -10)
-			add_command("-50 DEF",             :add_def, true, -50)
-			add_command("-100 DEF",            :add_def, true, -100)
-			add_command("-500 DEF",            :add_def, true, -500)
-			add_command("-1000 DEF",           :add_def, true, -1000)
-			add_command("-5000 DEF",           :add_def, true, -5000)
+			add_command("+1 DEF",              :add_def, true, 1      )
+			add_command("+5 DEF",              :add_def, true, 5      )
+			add_command("+10 DEF",             :add_def, true, 10     )
+			add_command("+50 DEF",             :add_def, true, 50     )
+			add_command("+100 DEF",            :add_def, true, 100    )
+			add_command("+500 DEF",            :add_def, true, 500    )
+			add_command("+1000 DEF",           :add_def, true, 1000   )
+			add_command("+5000 DEF",           :add_def, true, 5000   )
+			add_command("+10000 DEF",          :add_def, true, 10000  )
+			add_command("+999999 DEF",         :add_def, true, 999999 )
+			add_command("-1 DEF",              :add_def, true, -1     )
+			add_command("-5 DEF",              :add_def, true, -5     )
+			add_command("-10 DEF",             :add_def, true, -10    )
+			add_command("-50 DEF",             :add_def, true, -50    )
+			add_command("-100 DEF",            :add_def, true, -100   )
+			add_command("-500 DEF",            :add_def, true, -500   )
+			add_command("-1000 DEF",           :add_def, true, -1000  )
+			add_command("-5000 DEF",           :add_def, true, -5000  )
 			add_command("-999999 DEF",         :add_def, true, -999999)
 		end
 	end
@@ -705,25 +706,25 @@
 # MAT menu main function
 	class Window_CheatMAT < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MAT",              :add_mat, true, 1)
-			add_command("+5 MAT",              :add_mat, true, 5)
-			add_command("+10 MAT",             :add_mat, true, 10)
-			add_command("+50 MAT",             :add_mat, true, 50)
-			add_command("+100 MAT",            :add_mat, true, 100)
-			add_command("+500 MAT",            :add_mat, true, 500)
-			add_command("+1000 MAT",           :add_mat, true, 1000)
-			add_command("+5000 MAT",           :add_mat, true, 5000)
-			add_command("+10000 MAT",          :add_mat, true, 10000)
-			add_command("+999999 MAT",         :add_mat, true, 999999)
-			add_command("-1 MAT",              :add_mat, true, -1)
-			add_command("-5 MAT",              :add_mat, true, -5)
-			add_command("-10 MAT",             :add_mat, true, -10)
-			add_command("-50 MAT",             :add_mat, true, -50)
-			add_command("-100 MAT",            :add_mat, true, -100)
-			add_command("-500 MAT",            :add_mat, true, -500)
-			add_command("-1000 MAT",           :add_mat, true, -1000)
-			add_command("-5000 MAT",           :add_mat, true, -5000)
-			add_command("-10000 MAT",          :add_mat, true, -10000)
+			add_command("+1 MAT",              :add_mat, true, 1      )
+			add_command("+5 MAT",              :add_mat, true, 5      )
+			add_command("+10 MAT",             :add_mat, true, 10     )
+			add_command("+50 MAT",             :add_mat, true, 50     )
+			add_command("+100 MAT",            :add_mat, true, 100    )
+			add_command("+500 MAT",            :add_mat, true, 500    )
+			add_command("+1000 MAT",           :add_mat, true, 1000   )
+			add_command("+5000 MAT",           :add_mat, true, 5000   )
+			add_command("+10000 MAT",          :add_mat, true, 10000  )
+			add_command("+999999 MAT",         :add_mat, true, 999999 )
+			add_command("-1 MAT",              :add_mat, true, -1     )
+			add_command("-5 MAT",              :add_mat, true, -5     )
+			add_command("-10 MAT",             :add_mat, true, -10    )
+			add_command("-50 MAT",             :add_mat, true, -50    )
+			add_command("-100 MAT",            :add_mat, true, -100   )
+			add_command("-500 MAT",            :add_mat, true, -500   )
+			add_command("-1000 MAT",           :add_mat, true, -1000  )
+			add_command("-5000 MAT",           :add_mat, true, -5000  )
+			add_command("-10000 MAT",          :add_mat, true, -10000 )
 			add_command("-999999 MAT",         :add_mat, true, -999999)
 		end
 	end
@@ -757,25 +758,25 @@
 # MDF menu main function
 	class Window_CheatMDF < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MDF",              :add_mdf, true, 1)
-			add_command("+5 MDF",              :add_mdf, true, 5)
-			add_command("+10 MDF",             :add_mdf, true, 10)
-			add_command("+50 MDF",             :add_mdf, true, 50)
-			add_command("+100 MDF",            :add_mdf, true, 100)
-			add_command("+500 MDF",            :add_mdf, true, 500)
-			add_command("+1000 MDF",           :add_mdf, true, 1000)
-			add_command("+5000 MDF",           :add_mdf, true, 5000)
-			add_command("+10000 MDF",          :add_mdf, true, 10000)
-			add_command("+999999 MDF",         :add_mdf, true, 999999)
-			add_command("-1 MDF",              :add_mdf, true, -1)
-			add_command("-5 MDF",              :add_mdf, true, -5)
-			add_command("-10 MDF",             :add_mdf, true, -10)
-			add_command("-50 MDF",             :add_mdf, true, -50)
-			add_command("-100 MDF",            :add_mdf, true, -100)
-			add_command("-500 MDF",            :add_mdf, true, -500)
-			add_command("-1000 MDF",           :add_mdf, true, -1000)
-			add_command("-5000 MDF",           :add_mdf, true, -5000)
-			add_command("-10000 MDF",          :add_mdf, true, -10000)
+			add_command("+1 MDF",              :add_mdf, true, 1      )
+			add_command("+5 MDF",              :add_mdf, true, 5      )
+			add_command("+10 MDF",             :add_mdf, true, 10     )
+			add_command("+50 MDF",             :add_mdf, true, 50     )
+			add_command("+100 MDF",            :add_mdf, true, 100    )
+			add_command("+500 MDF",            :add_mdf, true, 500    )
+			add_command("+1000 MDF",           :add_mdf, true, 1000   )
+			add_command("+5000 MDF",           :add_mdf, true, 5000   )
+			add_command("+10000 MDF",          :add_mdf, true, 10000  )
+			add_command("+999999 MDF",         :add_mdf, true, 999999 )
+			add_command("-1 MDF",              :add_mdf, true, -1     )
+			add_command("-5 MDF",              :add_mdf, true, -5     )
+			add_command("-10 MDF",             :add_mdf, true, -10    )
+			add_command("-50 MDF",             :add_mdf, true, -50    )
+			add_command("-100 MDF",            :add_mdf, true, -100   )
+			add_command("-500 MDF",            :add_mdf, true, -500   )
+			add_command("-1000 MDF",           :add_mdf, true, -1000  )
+			add_command("-5000 MDF",           :add_mdf, true, -5000  )
+			add_command("-10000 MDF",          :add_mdf, true, -10000 )
 			add_command("-999999 MDF",         :add_mdf, true, -999999)
 		end
 	end
@@ -809,24 +810,24 @@
 # AGI menu main function
 	class Window_CheatAGI < Window_CheatCommand
 		def make_command_list
-			add_command("+1 AGI",              :add_agi, true, 1)
-			add_command("+5 AGI",              :add_agi, true, 5)
-			add_command("+10 AGI",             :add_agi, true, 10)
-			add_command("+50 AGI",             :add_agi, true, 50)
-			add_command("+100 AGI",            :add_agi, true, 100)
-			add_command("+500 AGI",            :add_agi, true, 500)
-			add_command("+1000 AGI",           :add_agi, true, 1000)
-			add_command("+5000 AGI",           :add_agi, true, 5000)
-			add_command("+10000 AGI",          :add_agi, true, 10000)
-			add_command("+999999 AGI",         :add_agi, true, 999999)
-			add_command("-1 AGI",              :add_agi, true, -1)
-			add_command("-5 AGI",              :add_agi, true, -5)
-			add_command("-10 AGI",             :add_agi, true, -10)
-			add_command("-50 AGI",             :add_agi, true, -50)
-			add_command("-100 AGI",            :add_agi, true, -100)
-			add_command("-500 AGI",            :add_agi, true, -500)
-			add_command("-1000 AGI",           :add_agi, true, -1000)
-			add_command("-5000 AGI",           :add_agi, true, -5000)
+			add_command("+1 AGI",              :add_agi, true, 1      )
+			add_command("+5 AGI",              :add_agi, true, 5      )
+			add_command("+10 AGI",             :add_agi, true, 10     )
+			add_command("+50 AGI",             :add_agi, true, 50     )
+			add_command("+100 AGI",            :add_agi, true, 100    )
+			add_command("+500 AGI",            :add_agi, true, 500    )
+			add_command("+1000 AGI",           :add_agi, true, 1000   )
+			add_command("+5000 AGI",           :add_agi, true, 5000   )
+			add_command("+10000 AGI",          :add_agi, true, 10000  )
+			add_command("+999999 AGI",         :add_agi, true, 999999 )
+			add_command("-1 AGI",              :add_agi, true, -1     )
+			add_command("-5 AGI",              :add_agi, true, -5     )
+			add_command("-10 AGI",             :add_agi, true, -10    )
+			add_command("-50 AGI",             :add_agi, true, -50    )
+			add_command("-100 AGI",            :add_agi, true, -100   )
+			add_command("-500 AGI",            :add_agi, true, -500   )
+			add_command("-1000 AGI",           :add_agi, true, -1000  )
+			add_command("-5000 AGI",           :add_agi, true, -5000  )
 			add_command("-999999 AGI",         :add_agi, true, -999999)
 		end
 	end
@@ -860,23 +861,23 @@
 # LUK menu main function
 	class Window_CheatLUK < Window_CheatCommand
 		def make_command_list
-			add_command("+1 LUK",              :add_luk, true, 1)
-			add_command("+5 LUK",              :add_luk, true, 5)
-			add_command("+10 LUK",             :add_luk, true, 10)
-			add_command("+50 LUK",             :add_luk, true, 50)
-			add_command("+100 LUK",            :add_luk, true, 100)
-			add_command("+500 LUK",            :add_luk, true, 500)
-			add_command("+1000 LUK",           :add_luk, true, 1000)
-			add_command("+5000 LUK",           :add_luk, true, 5000)
-			add_command("+999999 LUK",         :add_luk, true, 999999)
-			add_command("-1 LUK",              :add_luk, true, -1)
-			add_command("-5 LUK",              :add_luk, true, -5)
-			add_command("-10 LUK",             :add_luk, true, -10)
-			add_command("-50 LUK",             :add_luk, true, -50)
-			add_command("-100 LUK",            :add_luk, true, -100)
-			add_command("-500 LUK",            :add_luk, true, -500)
-			add_command("-1000 LUK",           :add_luk, true, -1000)
-			add_command("-5000 LUK",           :add_luk, true, -5000)
+			add_command("+1 LUK",              :add_luk, true, 1      )
+			add_command("+5 LUK",              :add_luk, true, 5      )
+			add_command("+10 LUK",             :add_luk, true, 10     )
+			add_command("+50 LUK",             :add_luk, true, 50     )
+			add_command("+100 LUK",            :add_luk, true, 100    )
+			add_command("+500 LUK",            :add_luk, true, 500    )
+			add_command("+1000 LUK",           :add_luk, true, 1000   )
+			add_command("+5000 LUK",           :add_luk, true, 5000   )
+			add_command("+999999 LUK",         :add_luk, true, 999999 )
+			add_command("-1 LUK",              :add_luk, true, -1     )
+			add_command("-5 LUK",              :add_luk, true, -5     )
+			add_command("-10 LUK",             :add_luk, true, -10    )
+			add_command("-50 LUK",             :add_luk, true, -50    )
+			add_command("-100 LUK",            :add_luk, true, -100   )
+			add_command("-500 LUK",            :add_luk, true, -500   )
+			add_command("-1000 LUK",           :add_luk, true, -1000  )
+			add_command("-5000 LUK",           :add_luk, true, -5000  )
 			add_command("-999999 LUK",         :add_luk, true, -999999)
 		end
 	end
@@ -910,17 +911,17 @@
 # Level menu main function
 	class Window_CheatLv < Window_CheatCommand
 		def make_command_list
-			add_command("Lv	1",                  :edit_lv, true, 1)
-			add_command("Lv 10",                 :edit_lv, true, 10)
-			add_command("Lv 20",                 :edit_lv, true, 20)
-			add_command("Lv 30",                 :edit_lv, true, 30)
-			add_command("Lv 40",                 :edit_lv, true, 40)
-			add_command("Lv 50",                 :edit_lv, true, 50)
-			add_command("Lv 60",                 :edit_lv, true, 60)
-			add_command("Lv 70",                 :edit_lv, true, 70)
-			add_command("Lv 80",                 :edit_lv, true, 80)
-			add_command("Lv 90",                 :edit_lv, true, 90)
-			add_command("Lv 99",                 :edit_lv, true, 99)
+			add_command("Lv	1",                  :edit_lv, true, 1  )
+			add_command("Lv 10",                 :edit_lv, true, 10 )
+			add_command("Lv 20",                 :edit_lv, true, 20 )
+			add_command("Lv 30",                 :edit_lv, true, 30 )
+			add_command("Lv 40",                 :edit_lv, true, 40 )
+			add_command("Lv 50",                 :edit_lv, true, 50 )
+			add_command("Lv 60",                 :edit_lv, true, 60 )
+			add_command("Lv 70",                 :edit_lv, true, 70 )
+			add_command("Lv 80",                 :edit_lv, true, 80 )
+			add_command("Lv 90",                 :edit_lv, true, 90 )
+			add_command("Lv 99",                 :edit_lv, true, 99 )
 			add_command("Lv 999 (if supported)", :edit_lv, true, 999)
 		end
 	end
@@ -1167,18 +1168,18 @@
 # Random event menu placeholder
 	class Window_Encount < Window_CheatCommand_Setting
 		def make_command_list
-			 imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
-				add_command(NEKO::On + NEKO::Now, :change_type, true, 1)
-				add_command(NEKO::Off,  :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			elsif imsi == 2
-				add_command(NEKO::On,   :change_type, true, 1)
-				add_command(NEKO::Off + NEKO::Now, :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off + NEKO::Now,  :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			else imsi == false || imsi == nil
-				add_command(NEKO::On,  :change_type, true, 1)
-				add_command(NEKO::Off, :change_type, true, 2)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			end
 		end
@@ -1188,15 +1189,14 @@
 	class Window_Encount2 < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
-			
-			add_command(NEKO::Win + NEKO::Now,       :change_type, true, 1) if imsi == 1
-			add_command(NEKO::Win,                   :change_type, true, 1) if imsi != 1
-			add_command(NEKO::Lose + NEKO::Now,      :change_type, true, 2) if imsi == 2
-			add_command(NEKO::Lose,                  :change_type, true, 2) if imsi != 2
-			add_command(NEKO::Escape + NEKO::Now,    :change_type, true, 3) if imsi == 3
-			add_command(NEKO::Escape,                :change_type, true, 3) if imsi != 3
-			add_command(NEKO::Not + NEKO::Now,       :change_type, true, 4) if imsi == 4
-			add_command(NEKO::Not,                   :change_type, true, 4) if imsi != 4
+			add_command(NEKO::Win + NEKO::Now,       :change_type, true, 1    ) if imsi == 1
+			add_command(NEKO::Win,                   :change_type, true, 1    ) if imsi != 1
+			add_command(NEKO::Lose + NEKO::Now,      :change_type, true, 2    ) if imsi == 2
+			add_command(NEKO::Lose,                  :change_type, true, 2    ) if imsi != 2
+			add_command(NEKO::Escape + NEKO::Now,    :change_type, true, 3    ) if imsi == 3
+			add_command(NEKO::Escape,                :change_type, true, 3    ) if imsi != 3
+			add_command(NEKO::Not + NEKO::Now,       :change_type, true, 4    ) if imsi == 4
+			add_command(NEKO::Not,                   :change_type, true, 4    ) if imsi != 4
 			add_command(NEKO::Base + NEKO::Now,      :change_type, true, false) if !imsi
 			add_command(NEKO::Base,                  :change_type, true, false) if imsi
 		end
@@ -1205,18 +1205,18 @@
 # Text speed menu placeholder
 	class Window_TextView < Window_CheatCommand_Setting
 		def make_command_list
-			 imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
-				add_command(NEKO::On + NEKO::Now, :change_type, true, 1)
-				add_command(NEKO::Off,  :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			elsif imsi == 2
-				add_command(NEKO::On,   :change_type, true, 1)
-				add_command(NEKO::Off + NEKO::Now, :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off + NEKO::Now,  :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			else imsi == false || imsi == nil
-				add_command(NEKO::On,  :change_type, true, 1)
-				add_command(NEKO::Off, :change_type, true, 2)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			end
 		end
@@ -1227,16 +1227,16 @@
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
-				add_command(NEKO::On + NEKO::Now, :change_type, true, 1)
-				add_command(NEKO::Off,  :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			elsif imsi == 2
-				add_command(NEKO::On,   :change_type, true, 1)
-				add_command(NEKO::Off + NEKO::Now, :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off + NEKO::Now,  :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			else imsi == false || imsi == nil
-				add_command(NEKO::On,  :change_type, true, 1)
-				add_command(NEKO::Off, :change_type, true, 2)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			end
 		end
@@ -1267,16 +1267,16 @@
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
-				add_command(NEKO::On + NEKO::Now, :change_type, true, 1)
-				add_command(NEKO::Off,  :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			elsif imsi == 2
-				add_command(NEKO::On,   :change_type, true, 1)
-				add_command(NEKO::Off + NEKO::Now, :change_type, true, 2)
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off + NEKO::Now,  :change_type, true, 2    )
+				add_command(NEKO::Base,             :change_type, true, false)
 			else imsi == false || imsi == nil
-				add_command(NEKO::On,  :change_type, true, 1)
-				add_command(NEKO::Off, :change_type, true, 2)
+				add_command(NEKO::On,               :change_type, true, 1    )
+				add_command(NEKO::Off,              :change_type, true, 2    )
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			end
 		end
