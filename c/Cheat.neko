@@ -178,26 +178,26 @@
 			@cheat_window.set_handler(:cancel,               method(:return_scene     ))
 		end
 	
-	def command_save_game
-		return_scene
-		SceneManager.call(Scene_Save)
-	end
+		def command_save_game
+			return_scene
+			SceneManager.call(Scene_Save)
+		end
 	
-	def DataManager.savefile_max
-		return 99        #ts change max save file cuh
-	end
+		def DataManager.savefile_max
+			return 99        #ts change max save file cuh
+		end
 	
 		def cheat_getItem(type)
-				@cheat_window.close
-				@cheat_item_window = Window_GetItem.new(0,0,320,type)
-				@cheat_item_window.set_handler(:ok,		 method(:on_buy_ok))
-				@cheat_item_window.set_handler(:cancel, method(:cheat_buy_cancel))
-				@cheat_item_window.show.activate
-				@number_window = Window_ShopNumber.new(0, 304, 120)
-				@number_window.hide
-				@number_window.set_handler(:ok,		 method(:on_number_ok))
-				@number_window.set_handler(:cancel, method(:on_number_cancel))
-			end
+			@cheat_window.close
+			@cheat_item_window = Window_GetItem.new(0, 0, 320, type)
+			@cheat_item_window.set_handler(:ok,		 method(:on_buy_ok       ))
+			@cheat_item_window.set_handler(:cancel,  method(:cheat_buy_cancel))
+			@cheat_item_window.show.activate
+			@number_window     = Window_ShopNumber.new(0, 304, 120)
+			@number_window.hide
+			@number_window.set_handler(:ok,		     method(:on_number_ok    ))
+			@number_window.set_handler(:cancel,      method(:on_number_cancel))
+		end
 	
 		def cheat_items
 			cheat_getItem(0)
@@ -217,26 +217,32 @@
 			@number_window.set(@cheat_item, max_buy, buying_price, "G")
 			@number_window.show.activate
 		end
+	
 		def cheat_buy_cancel
 			@cheat_item_window.close
 			return_scene
 		end
+	
 		def on_number_ok
 			do_buy(@number_window.number)
 			@number_window.hide
 			@cheat_item_window.show.activate
 		end
+	
 		def on_number_cancel
 			@number_window.hide
 			@cheat_item_window.show.activate
 		end
+	
 		def do_buy(number)
 			$game_party.gain_item(@cheat_item, number)
 		end
+	
 		def max_buy
 			max = $game_party.max_item_number(@cheat_item) - $game_party.item_number(@cheat_item)
 			buying_price == 0 ? max : [max, money / buying_price].min
 		end
+	
 		def buying_price
 			@cheat_item_window.price(@cheat_item)
 		end
@@ -260,35 +266,44 @@
 			refresh
 			select(0)
 		end
+		
 		def window_width
 			return 304
 		end
+		
 		def item_max
 			@cheat_data ? @cheat_data.size : 1
 		end
+		
 		def item
 			@cheat_data[index]
 		end
+		
 		def money=(money)
 			@money = money
 			refresh
 		end
+		
 		def current_item_enabled?
 			enable?(@cheat_data[index])
 		end
+		
 		def price(item)
 			@cheat_price[item]
 		end
+		
 		def enable?(item)
 			item && !$game_party.item_max?(item)
 		end
+		
 		def refresh
 			make_item_list
 			create_contents
 			draw_all_items
 		end
+		
 		def make_item_list
-			@cheat_data = []
+			@cheat_data  = []
 			@cheat_price = {}
 			@shop_goods.each do |good|
 				if good && good.name != ""
@@ -297,6 +312,7 @@
 				end
 			end
 		end
+		
 		def draw_item(index)
 			item = @cheat_data[index]
 			rect = item_rect(index)
@@ -353,8 +369,7 @@
 # Teleport placeholder
 	class Scene_Cheat < Scene_MenuBase
 		def neko_map_tel()
-			if @neko_map_teleport
-			else
+			if @neko_map_teleport.nil? || @neko_map_teleport.disposed?
 				@neko_map_teleport = Window_Cheat_MapTel.new
 				@neko_map_teleport.viewport = @viewport
 				@neko_map_teleport.set_handler(:teleport, method(:map_teleport))
@@ -378,36 +393,36 @@
 	class Window_CheatTel < Window_CheatCommand
 		def make_command_list
 			if FileTest.exist?("tele/pos_1.neko")
-				add_command(NEKO::SavePos + "1", :save_pos_1, true, "tele/pos_1.neko")
-				add_command(NEKO::LoadPos + "1", :tele_pos_1, true, File.read("tele/pos_1.neko").split)
+				add_command(NEKO::SavePos + "1", :save_pos, true, "tele/pos_1.neko")
+				add_command(NEKO::LoadPos + "1", :tele_pos, true, File.read("tele/pos_1.neko").split)
 			end
 			if FileTest.exist?("tele/pos_2.neko")
-				add_command(NEKO::SavePos + "2", :save_pos_2, true, "tele/pos_2.neko")
-				add_command(NEKO::LoadPos + "2", :tele_pos_2, true, File.read("tele/pos_2.neko").split)
+				add_command(NEKO::SavePos + "2", :save_pos, true, "tele/pos_2.neko")
+				add_command(NEKO::LoadPos + "2", :tele_pos, true, File.read("tele/pos_2.neko").split)
 			end
 			if FileTest.exist?("tele/pos_3.neko")
-				add_command(NEKO::SavePos + "3", :save_pos_3, true, "tele/pos_3.neko")
-				add_command(NEKO::LoadPos + "3", :tele_pos_3, true, File.read("tele/pos_3.neko").split)
+				add_command(NEKO::SavePos + "3", :save_pos, true, "tele/pos_3.neko")
+				add_command(NEKO::LoadPos + "3", :tele_pos, true, File.read("tele/pos_3.neko").split)
 			end
 			if FileTest.exist?("tele/pos_4.neko")
-				add_command(NEKO::SavePos + "4", :save_pos_4, true, "tele/pos_4.neko")
-				add_command(NEKO::LoadPos + "4", :tele_pos_4, true, File.read("tele/pos_4.neko").split)
+				add_command(NEKO::SavePos + "4", :save_pos, true, "tele/pos_4.neko")
+				add_command(NEKO::LoadPos + "4", :tele_pos, true, File.read("tele/pos_4.neko").split)
 			end
 			if FileTest.exist?("tele/pos_5.neko")
-				add_command(NEKO::SavePos + "5", :save_pos_5, true, "tele/pos_5.neko")
-				add_command(NEKO::LoadPos + "5", :tele_pos_5, true, File.read("tele/pos_5.neko").split)
+				add_command(NEKO::SavePos + "5", :save_pos, true, "tele/pos_5.neko")
+				add_command(NEKO::LoadPos + "5", :tele_pos, true, File.read("tele/pos_5.neko").split)
 			end
 			if FileTest.exist?("tele/pos_6.neko")
-				add_command(NEKO::SavePos + "6", :save_pos_6, true, "tele/pos_6.neko")
-				add_command(NEKO::LoadPos + "6", :tele_pos_6, true, File.read("tele/pos_6.neko").split)
+				add_command(NEKO::SavePos + "6", :save_pos, true, "tele/pos_6.neko")
+				add_command(NEKO::LoadPos + "6", :tele_pos, true, File.read("tele/pos_6.neko").split)
 			end
 			if FileTest.exist?("tele/pos_7.neko")
-				add_command(NEKO::SavePos + "7", :save_pos_7, true, "tele/pos_7.neko")
-				add_command(NEKO::LoadPos + "7", :tele_pos_7, true, File.read("tele/pos_7.neko").split)
+				add_command(NEKO::SavePos + "7", :save_pos, true, "tele/pos_7.neko")
+				add_command(NEKO::LoadPos + "7", :tele_pos, true, File.read("tele/pos_7.neko").split)
 			end
 			if FileTest.exist?("tele/pos_8.neko")
-				add_command(NEKO::SavePos + "8", :save_pos_8, true, "tele/pos_8.neko")
-				add_command(NEKO::LoadPos + "8", :tele_pos_8, true, File.read("tele/pos_8.neko").split)
+				add_command(NEKO::SavePos + "8", :save_pos, true, "tele/pos_8.neko")
+				add_command(NEKO::LoadPos + "8", :tele_pos, true, File.read("tele/pos_8.neko").split)
 			end
 		end
 	end
@@ -415,26 +430,11 @@
 # Teleport placeholder + main function
 	class Scene_Cheat < Scene_MenuBase
 		def neko_tel()
-			if @neko_teleport
-			else
+			if @neko_teleport.nil? || @neko_teleport.disposed?
 				@neko_teleport = Window_CheatTel.new
-				@neko_teleport.set_handler(:save_pos_1, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_1, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_2, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_2, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_3, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_3, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_4, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_4, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_5, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_5, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_6, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_6, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_7, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_7, method(:tel     ))
-				@neko_teleport.set_handler(:save_pos_8, method(:save_pos))
-				@neko_teleport.set_handler(:tele_pos_8, method(:tel     ))
-				@neko_teleport.set_handler(:cancel,     method(:hide_tel))
+				@neko_teleport.set_handler(:save_pos, method(:save_pos))
+				@neko_teleport.set_handler(:tele_pos, method(:tel     ))
+				@neko_teleport.set_handler(:cancel,   method(:hide_tel))
 			end
 			show_sub_window(@neko_teleport)
 		end
@@ -532,8 +532,7 @@
 	
 	class Scene_Cheat < Scene_MenuBase
 		def edit_effects
-			if @edit_effects
-			else
+			if @edit_effects.nil? || @edit_effects.disposed?
 				@edit_effects = Window_Cheat_Effects.new
 				@edit_effects.set_handler(:toggle_state, method(:on_state_toggle))
 				@edit_effects.set_handler(:cancel,       method(:hide_effects   ))
@@ -554,23 +553,22 @@
 # Parameters menu placeholder
 	class Window_CheatParameters < Window_CheatCommand
 		def make_command_list
-			add_command(NEKO::Gold,                     :gold_edit, true)
-			add_command(NEKO::Lv,                       :lv_edit,   true)
-			add_command(NEKO::Edit_Parameter + "MHP",   :mhp_edit,  true)
-			add_command(NEKO::Edit_Parameter + "MMP",   :mmp_edit,  true)
-			add_command(NEKO::Edit_Parameter + "ATK",   :atk_edit,  true)
-			add_command(NEKO::Edit_Parameter + "DEF",   :def_edit,  true)
-			add_command(NEKO::Edit_Parameter + "MAT",   :mat_edit,  true)
-			add_command(NEKO::Edit_Parameter + "MDF",   :mdf_edit,  true)
-			add_command(NEKO::Edit_Parameter + "AGI",   :agi_edit,  true)
-			add_command(NEKO::Edit_Parameter + "LUK",   :luk_edit,  true)
+			add_command(NEKO::Gold,                         :gold_edit, true)
+			add_command(NEKO::Lv,                           :lv_edit,   true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(0),   :mhp_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(1),   :mmp_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(2),   :atk_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(3),   :def_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(4),   :mat_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(5),   :mdf_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(6),   :agi_edit,  true)
+			add_command(NEKO::Edit_Parameter + Vocab.param(7),   :luk_edit,  true)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def edit_parameters
-			if @edit_parameters
-			else
+			if @edit_parameters.nil? || @edit_parameters.disposed?
 				@edit_parameters = Window_CheatParameters.new
 				@edit_parameters.set_handler(:gold_edit,      method(:neko_gold      ))
 				@edit_parameters.set_handler(:lv_edit,        method(:neko_lv        ))
@@ -591,46 +589,134 @@
 		end
 	end
 
+# Stats displayer function
+	class Window_StatsDisplay < Window_Base
+		def initialize(x, y)
+			w = window_width
+			h = window_height
+			super(x, y, w, h)
+			@actor_index = 0
+			refresh
+		end
+		
+		def window_width
+			return 160
+		end
+		
+		def window_height
+			return 384
+		end
+		
+		def update
+			super
+			update_party_cycling if visible && $game_party.members.size > 1
+		end
+		
+		def update_party_cycling
+			if Input.trigger?(:RIGHT)
+				Sound.play_cursor
+				@actor_index = (@actor_index + 1) % $game_party.members.size
+				refresh
+			elsif Input.trigger?(:LEFT)
+				Sound.play_cursor
+				@actor_index = (@actor_index - 1) % $game_party.members.size
+				refresh
+			end
+		end
+		
+		def actor_index=(index)
+			return if @actor_index == index
+			@actor_index = index % $game_party.members.size
+			refresh
+		end
+		
+		def refresh
+			contents.clear
+			actor = $game_party.members[@actor_index]
+			return unless actor
+			
+			old_font_size = contents.font.size
+			contents.font.size = 20
+			
+			if $game_party.members.size > 1
+				y_ind = line_height * 13.5
+				draw_text(0, y_ind, contents_width, line_height, "#{@actor_index + 1}/#{$game_party.members.size}", 2)
+			end
+			
+			draw_actor_name(actor, 0, 0, contents_width)
+			draw_actor_level(actor, 0, line_height)
+			
+			draw_actor_hp(actor, 0, line_height * 3, contents_width)
+			draw_actor_mp(actor, 0, line_height * 4, contents_width)
+			
+			label_w = 85
+			val_w = contents_width - label_w
+			
+			6.times do |i|
+				param_id = i + 2
+				y = line_height * (5 + i)
+				change_color(system_color)
+				draw_text(0, y, label_w, line_height, Vocab.param(param_id))
+				change_color(normal_color)
+				draw_text(label_w, y, val_w, line_height, actor.param(param_id), 2)
+			end
+			
+			y_hit = line_height * 11
+			draw_text(0, y_hit, label_w, line_height, "HIT")
+			draw_text(label_w, y_hit, val_w, line_height, "#{(actor.hit * 100).to_i}%", 2)
+			
+			y_eva = line_height * 12
+			draw_text(0, y_eva, label_w, line_height, "EVA")
+			draw_text(label_w, y_eva, val_w, line_height, "#{(actor.eva * 100).to_i}%", 2)
+			
+			contents.font.size = old_font_size
+		end
+	end
+
 # MHP menu main function
 	class Window_CheatMHP < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MHP",              :add_mhp, true, 1      )
-			add_command("+5 MHP",              :add_mhp, true, 5      )
-			add_command("+10 MHP",             :add_mhp, true, 10     )
-			add_command("+50 MHP",             :add_mhp, true, 50     )
-			add_command("+100 MHP",            :add_mhp, true, 100    )
-			add_command("+500 MHP",            :add_mhp, true, 500    )
-			add_command("+1000 MHP",           :add_mhp, true, 1000   )
-			add_command("+5000 MHP",           :add_mhp, true, 5000   )
-			add_command("+10000 MHP",          :add_mhp, true, 10000  )
-			add_command("+999999 MHP",         :add_mhp, true, 999999 )
-			add_command("-1 MHP",              :add_mhp, true, -1     )
-			add_command("-5 MHP",              :add_mhp, true, -5     )
-			add_command("-10 MHP",             :add_mhp, true, -10    )
-			add_command("-50 MHP",             :add_mhp, true, -50    )
-			add_command("-100 MHP",            :add_mhp, true, -100   )
-			add_command("-500 MHP",            :add_mhp, true, -500   )
-			add_command("-1000 MHP",           :add_mhp, true, -1000  )
-			add_command("-5000 MHP",           :add_mhp, true, -5000  )
-			add_command("-10000 MHP",          :add_mhp, true, -10000 )
-			add_command("-999999 MHP",         :add_mhp, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(0),        :add_mhp, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(0),        :add_mhp, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(0),        :add_mhp, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(0),        :add_mhp, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(0),        :add_mhp, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(0),        :add_mhp, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(0),        :add_mhp, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(0),        :add_mhp, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(0),        :add_mhp, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(0),        :add_mhp, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(0),        :add_mhp, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(0),        :add_mhp, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(0),        :add_mhp, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(0),        :add_mhp, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(0),        :add_mhp, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(0),        :add_mhp, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(0),        :add_mhp, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(0),        :add_mhp, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(0),        :add_mhp, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(0),        :add_mhp, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mhp()
-			if @neko_mhp
-			else
-				@neko_mhp = Window_CheatMHP.new
-				@neko_mhp.set_handler(:add_mhp, method(:add_mhp))
-				@neko_mhp.set_handler(:cancel, method(:hide_mhp))
+			if @neko_mhp.nil? || @neko_mhp.disposed?
+				@neko_mhp        = Window_CheatMHP.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_mhp.set_handler(:add_mhp, method(:add_mhp ))
+				@neko_mhp.set_handler(:cancel,  method(:hide_mhp))
 			end
 			@now_menu = "mhp"
 			show_parameter_window
+			show_stats_window
 		end
+		
 		def hide_mhp
+			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_mhp
 			mhp = @neko_mhp.current_ext
 			if @add_mhp
@@ -638,51 +724,55 @@
 				@add_mhp = Edit_Interpreter.new()
 			end
 			@add_mhp.parameters_change(mhp, 0)
-			@add_mhp.text(NEKO::Added + mhp.to_s + " MHP" + NEKO::Added_Parameters)
-			return_scene
+			@neko_mhp.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # MMP menu main function
 	class Window_CheatMMP < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MMP",              :add_mmp, true, 1      )
-			add_command("+5 MMP",              :add_mmp, true, 5      )
-			add_command("+10 MMP",             :add_mmp, true, 10     )
-			add_command("+50 MMP",             :add_mmp, true, 50     )
-			add_command("+100 MMP",            :add_mmp, true, 100    )
-			add_command("+500 MMP",            :add_mmp, true, 500    )
-			add_command("+1000 MMP",           :add_mmp, true, 1000   )
-			add_command("+5000 MMP",           :add_mmp, true, 5000   )
-			add_command("+10000 MMP",          :add_mmp, true, 10000  )
-			add_command("+999999 MMP",         :add_mmp, true, 999999 )
-			add_command("-1 MMP",              :add_mmp, true, -1     )
-			add_command("-5 MMP",              :add_mmp, true, -5     )
-			add_command("-10 MMP",             :add_mmp, true, -10    )
-			add_command("-50 MMP",             :add_mmp, true, -50    )
-			add_command("-100 MMP",            :add_mmp, true, -100   )
-			add_command("-500 MMP",            :add_mmp, true, -500   )
-			add_command("-1000 MMP",           :add_mmp, true, -1000  )
-			add_command("-5000 MMP",           :add_mmp, true, -5000  )
-			add_command("-10000 MMP",          :add_mmp, true, -10000 )
-			add_command("-999999 MMP",         :add_mmp, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(1),         :add_mmp, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(1),         :add_mmp, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(1),         :add_mmp, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(1),         :add_mmp, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(1),         :add_mmp, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(1),         :add_mmp, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(1),         :add_mmp, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(1),         :add_mmp, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(1),         :add_mmp, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(1),         :add_mmp, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(1),         :add_mmp, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(1),         :add_mmp, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(1),         :add_mmp, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(1),         :add_mmp, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(1),         :add_mmp, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(1),         :add_mmp, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(1),         :add_mmp, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(1),         :add_mmp, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(1),         :add_mmp, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(1),         :add_mmp, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mmp()
-			if @neko_mmp
-			else
-				@neko_mmp = Window_CheatMMP.new
-				@neko_mmp.set_handler(:add_mmp, method(:add_mmp))
-				@neko_mmp.set_handler(:cancel, method(:hide_mmp))
+			if @neko_mmp.nil? || @neko_mmp.disposed?
+				@neko_mmp        = Window_CheatMMP.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_mmp.set_handler(:add_mmp, method(:add_mmp ))
+				@neko_mmp.set_handler(:cancel,  method(:hide_mmp))
 			end
 			@now_menu = "mmp"
 			show_parameter_window
+			show_stats_window
 		end
+		
 		def hide_mmp
+			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_mmp
 			mmp = @neko_mmp.current_ext
 			if @add_mmp
@@ -690,51 +780,55 @@
 				@add_mmp = Edit_Interpreter.new()
 			end
 			@add_mmp.parameters_change(mmp, 1)
-			@add_mmp.text(NEKO::Added + mmp.to_s + " MMP" + NEKO::Added_Parameters)
-			return_scene
+			@neko_mmp.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # ATK menu main function
 	class Window_CheatATK < Window_CheatCommand
 		def make_command_list
-			add_command("+1 ATK",              :add_atk, true, 1      )
-			add_command("+5 ATK",              :add_atk, true, 5      )
-			add_command("+10 ATK",             :add_atk, true, 10     )
-			add_command("+50 ATK",             :add_atk, true, 50     )
-			add_command("+100 ATK",            :add_atk, true, 100    )
-			add_command("+500 ATK",            :add_atk, true, 500    )
-			add_command("+1000 ATK",           :add_atk, true, 1000   )
-			add_command("+5000 ATK",           :add_atk, true, 5000   )
-			add_command("+10000 ATK",          :add_atk, true, 10000  )
-			add_command("+999999 ATK",         :add_atk, true, 999999 )
-			add_command("-1 ATK",              :add_atk, true, -1     )
-			add_command("-5 ATK",              :add_atk, true, -5     )
-			add_command("-10 ATK",             :add_atk, true, -10    )
-			add_command("-50 ATK",             :add_atk, true, -50    )
-			add_command("-100 ATK",            :add_atk, true, -100   )
-			add_command("-500 ATK",            :add_atk, true, -500   )
-			add_command("-1000 ATK",           :add_atk, true, -1000  )
-			add_command("-5000 ATK",           :add_atk, true, -5000  )
-			add_command("-10000 ATK",          :add_atk, true, -10000 )
-			add_command("-999999 ATK",         :add_atk, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(2),        :add_atk, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(2),        :add_atk, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(2),        :add_atk, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(2),        :add_atk, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(2),        :add_atk, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(2),        :add_atk, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(2),        :add_atk, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(2),        :add_atk, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(2),        :add_atk, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(2),        :add_atk, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(2),        :add_atk, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(2),        :add_atk, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(2),        :add_atk, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(2),        :add_atk, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(2),        :add_atk, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(2),        :add_atk, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(2),        :add_atk, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(2),        :add_atk, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(2),        :add_atk, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(2),        :add_atk, true, -999999)
 		end
 	end
 	
 	class Scene_Cheat < Scene_MenuBase
 		def neko_atk()
-			if @neko_atk
-			else
-				@neko_atk = Window_CheatATK.new
-				@neko_atk.set_handler(:add_atk, method(:add_atk))
-				@neko_atk.set_handler(:cancel, method(:hide_atk))
+			if @neko_atk.nil? || @neko_atk.disposed?
+				@neko_atk        = Window_CheatATK.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_atk.set_handler(:add_atk, method(:add_atk ))
+				@neko_atk.set_handler(:cancel,  method(:hide_atk))
 			end
 			@now_menu = "atk"
 			show_parameter_window
+			show_stats_window
 		end
+		
 		def hide_atk
+			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_atk
 			atk = @neko_atk.current_ext
 			if @add_atk
@@ -742,48 +836,50 @@
 				@add_atk = Edit_Interpreter.new()
 			end
 			@add_atk.parameters_change(atk, 2)
-			@add_atk.text(NEKO::Added + atk.to_s + " ATK" + NEKO::Added_Parameters)
-			return_scene
+			@neko_atk.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # DEF menu main function
 	class Window_CheatDEF < Window_CheatCommand
 		def make_command_list
-			add_command("+1 DEF",              :add_def, true, 1      )
-			add_command("+5 DEF",              :add_def, true, 5      )
-			add_command("+10 DEF",             :add_def, true, 10     )
-			add_command("+50 DEF",             :add_def, true, 50     )
-			add_command("+100 DEF",            :add_def, true, 100    )
-			add_command("+500 DEF",            :add_def, true, 500    )
-			add_command("+1000 DEF",           :add_def, true, 1000   )
-			add_command("+5000 DEF",           :add_def, true, 5000   )
-			add_command("+10000 DEF",          :add_def, true, 10000  )
-			add_command("+999999 DEF",         :add_def, true, 999999 )
-			add_command("-1 DEF",              :add_def, true, -1     )
-			add_command("-5 DEF",              :add_def, true, -5     )
-			add_command("-10 DEF",             :add_def, true, -10    )
-			add_command("-50 DEF",             :add_def, true, -50    )
-			add_command("-100 DEF",            :add_def, true, -100   )
-			add_command("-500 DEF",            :add_def, true, -500   )
-			add_command("-1000 DEF",           :add_def, true, -1000  )
-			add_command("-5000 DEF",           :add_def, true, -5000  )
-			add_command("-999999 DEF",         :add_def, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(3),        :add_def, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(3),        :add_def, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(3),        :add_def, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(3),        :add_def, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(3),        :add_def, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(3),        :add_def, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(3),        :add_def, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(3),        :add_def, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(3),        :add_def, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(3),        :add_def, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(3),        :add_def, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(3),        :add_def, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(3),        :add_def, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(3),        :add_def, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(3),        :add_def, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(3),        :add_def, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(3),        :add_def, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(3),        :add_def, true, -5000  )
+			add_command(NEKO::Minus_999999 + Vocab.param(3),        :add_def, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_def()
-			if @neko_def
-			else
-				@neko_def = Window_CheatDEF.new
-				@neko_def.set_handler(:add_def, method(:add_def))
-				@neko_def.set_handler(:cancel, method(:hide_def))
+			if @neko_def.nil? || @neko_def.disposed?
+				@neko_def        = Window_CheatDEF.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_def.set_handler(:add_def, method(:add_def ))
+				@neko_def.set_handler(:cancel,  method(:hide_def))
 			end
 			@now_menu = "def"
 			show_parameter_window
+			show_stats_window
 		end
 		def hide_def
+			hide_stats_window
 			hide_parameter_window
 		end
 		def add_def
@@ -793,49 +889,51 @@
 				@add_def = Edit_Interpreter.new()
 			end
 			@add_def.parameters_change(mdef, 3)
-			@add_def.text(NEKO::Added + mdef.to_s + " DEF" + NEKO::Added_Parameters)
-			return_scene
+			@neko_def.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # MAT menu main function
 	class Window_CheatMAT < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MAT",              :add_mat, true, 1      )
-			add_command("+5 MAT",              :add_mat, true, 5      )
-			add_command("+10 MAT",             :add_mat, true, 10     )
-			add_command("+50 MAT",             :add_mat, true, 50     )
-			add_command("+100 MAT",            :add_mat, true, 100    )
-			add_command("+500 MAT",            :add_mat, true, 500    )
-			add_command("+1000 MAT",           :add_mat, true, 1000   )
-			add_command("+5000 MAT",           :add_mat, true, 5000   )
-			add_command("+10000 MAT",          :add_mat, true, 10000  )
-			add_command("+999999 MAT",         :add_mat, true, 999999 )
-			add_command("-1 MAT",              :add_mat, true, -1     )
-			add_command("-5 MAT",              :add_mat, true, -5     )
-			add_command("-10 MAT",             :add_mat, true, -10    )
-			add_command("-50 MAT",             :add_mat, true, -50    )
-			add_command("-100 MAT",            :add_mat, true, -100   )
-			add_command("-500 MAT",            :add_mat, true, -500   )
-			add_command("-1000 MAT",           :add_mat, true, -1000  )
-			add_command("-5000 MAT",           :add_mat, true, -5000  )
-			add_command("-10000 MAT",          :add_mat, true, -10000 )
-			add_command("-999999 MAT",         :add_mat, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(4),        :add_mat, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(4),        :add_mat, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(4),        :add_mat, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(4),        :add_mat, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(4),        :add_mat, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(4),        :add_mat, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(4),        :add_mat, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(4),        :add_mat, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(4),        :add_mat, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(4),        :add_mat, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(4),        :add_mat, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(4),        :add_mat, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(4),        :add_mat, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(4),        :add_mat, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(4),        :add_mat, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(4),        :add_mat, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(4),        :add_mat, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(4),        :add_mat, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(4),        :add_mat, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(4),        :add_mat, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mat()
-			if @neko_mat
-			else
-				@neko_mat = Window_CheatMAT.new
-				@neko_mat.set_handler(:add_mat, method(:add_mat))
-				@neko_mat.set_handler(:cancel, method(:hide_mat))
+			if @neko_mat.nil? || @neko_mat.disposed?
+				@neko_mat        = Window_CheatMAT.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_mat.set_handler(:add_mat, method(:add_mat ))
+				@neko_mat.set_handler(:cancel,  method(:hide_mat))
 			end
 			@now_menu = "mat"
 			show_parameter_window
+			show_stats_window
 		end
 		def hide_mat
+			hide_stats_window
 			hide_parameter_window
 		end
 		def add_mat
@@ -845,49 +943,51 @@
 				@add_mat = Edit_Interpreter.new()
 			end
 			@add_mat.parameters_change(mat, 4)
-			@add_mat.text(NEKO::Added + mat.to_s + " MAT" + NEKO::Added_Parameters)
-			return_scene
+			@neko_mat.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # MDF menu main function
 	class Window_CheatMDF < Window_CheatCommand
 		def make_command_list
-			add_command("+1 MDF",              :add_mdf, true, 1      )
-			add_command("+5 MDF",              :add_mdf, true, 5      )
-			add_command("+10 MDF",             :add_mdf, true, 10     )
-			add_command("+50 MDF",             :add_mdf, true, 50     )
-			add_command("+100 MDF",            :add_mdf, true, 100    )
-			add_command("+500 MDF",            :add_mdf, true, 500    )
-			add_command("+1000 MDF",           :add_mdf, true, 1000   )
-			add_command("+5000 MDF",           :add_mdf, true, 5000   )
-			add_command("+10000 MDF",          :add_mdf, true, 10000  )
-			add_command("+999999 MDF",         :add_mdf, true, 999999 )
-			add_command("-1 MDF",              :add_mdf, true, -1     )
-			add_command("-5 MDF",              :add_mdf, true, -5     )
-			add_command("-10 MDF",             :add_mdf, true, -10    )
-			add_command("-50 MDF",             :add_mdf, true, -50    )
-			add_command("-100 MDF",            :add_mdf, true, -100   )
-			add_command("-500 MDF",            :add_mdf, true, -500   )
-			add_command("-1000 MDF",           :add_mdf, true, -1000  )
-			add_command("-5000 MDF",           :add_mdf, true, -5000  )
-			add_command("-10000 MDF",          :add_mdf, true, -10000 )
-			add_command("-999999 MDF",         :add_mdf, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(5),        :add_mdf, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(5),        :add_mdf, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(5),        :add_mdf, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(5),        :add_mdf, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(5),        :add_mdf, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(5),        :add_mdf, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(5),        :add_mdf, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(5),        :add_mdf, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(5),        :add_mdf, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(5),        :add_mdf, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(5),        :add_mdf, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(5),        :add_mdf, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(5),        :add_mdf, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(5),        :add_mdf, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(5),        :add_mdf, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(5),        :add_mdf, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(5),        :add_mdf, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(5),        :add_mdf, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(5),        :add_mdf, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(5),        :add_mdf, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_mdf()
-			if @neko_mdf
-			else
-				@neko_mdf = Window_CheatMDF.new
-				@neko_mdf.set_handler(:add_mdf, method(:add_mdf))
-				@neko_mdf.set_handler(:cancel, method(:hide_mdf))
+			if @neko_mdf.nil? || @neko_mdf.disposed?
+				@neko_mdf        = Window_CheatMDF.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_mdf.set_handler(:add_mdf, method(:add_mdf ))
+				@neko_mdf.set_handler(:cancel,  method(:hide_mdf))
 			end
 			@now_menu = "mdf"
 			show_parameter_window
+			show_stats_window
 		end
 		def hide_mdf
+			hide_stats_window
 			hide_parameter_window
 		end
 		def add_mdf
@@ -897,48 +997,51 @@
 				@add_mdf = Edit_Interpreter.new()
 			end
 			@add_mdf.parameters_change(mdf, 5)
-			@add_mdf.text(NEKO::Added + mdf.to_s + " MDF" + NEKO::Added_Parameters)
-			return_scene
+			@neko_mdf.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # AGI menu main function
 	class Window_CheatAGI < Window_CheatCommand
 		def make_command_list
-			add_command("+1 AGI",              :add_agi, true, 1      )
-			add_command("+5 AGI",              :add_agi, true, 5      )
-			add_command("+10 AGI",             :add_agi, true, 10     )
-			add_command("+50 AGI",             :add_agi, true, 50     )
-			add_command("+100 AGI",            :add_agi, true, 100    )
-			add_command("+500 AGI",            :add_agi, true, 500    )
-			add_command("+1000 AGI",           :add_agi, true, 1000   )
-			add_command("+5000 AGI",           :add_agi, true, 5000   )
-			add_command("+10000 AGI",          :add_agi, true, 10000  )
-			add_command("+999999 AGI",         :add_agi, true, 999999 )
-			add_command("-1 AGI",              :add_agi, true, -1     )
-			add_command("-5 AGI",              :add_agi, true, -5     )
-			add_command("-10 AGI",             :add_agi, true, -10    )
-			add_command("-50 AGI",             :add_agi, true, -50    )
-			add_command("-100 AGI",            :add_agi, true, -100   )
-			add_command("-500 AGI",            :add_agi, true, -500   )
-			add_command("-1000 AGI",           :add_agi, true, -1000  )
-			add_command("-5000 AGI",           :add_agi, true, -5000  )
-			add_command("-999999 AGI",         :add_agi, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(6),        :add_agi, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(6),        :add_agi, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(6),        :add_agi, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(6),        :add_agi, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(6),        :add_agi, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(6),        :add_agi, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(6),        :add_agi, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(6),        :add_agi, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(6),        :add_agi, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(6),        :add_agi, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(6),        :add_agi, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(6),        :add_agi, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(6),        :add_agi, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(6),        :add_agi, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(6),        :add_agi, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(6),        :add_agi, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(6),        :add_agi, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(6),        :add_agi, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(6),        :add_agi, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(6),        :add_agi, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_agi()
-			if @neko_agi
-			else
-				@neko_agi = Window_CheatAGI.new
-				@neko_agi.set_handler(:add_agi, method(:add_agi))
-				@neko_agi.set_handler(:cancel, method(:hide_agi))
+			if @neko_agi.nil? || @neko_agi.disposed?
+				@neko_agi        = Window_CheatAGI.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
+				@neko_agi.set_handler(:add_agi, method(:add_agi ))
+				@neko_agi.set_handler(:cancel,  method(:hide_agi))
 			end
 			@now_menu = "agi"
 			show_parameter_window
+			show_stats_window
 		end
 		def hide_agi
+			hide_stats_window
 			hide_parameter_window
 		end
 		def add_agi
@@ -948,47 +1051,51 @@
 				@add_agi = Edit_Interpreter.new()
 			end
 			@add_agi.parameters_change(agi, 6)
-			@add_agi.text(NEKO::Added + agi.to_s + " AGI" + NEKO::Added_Parameters)
-			return_scene
+			@neko_agi.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # LUK menu main function
 	class Window_CheatLUK < Window_CheatCommand
 		def make_command_list
-			add_command("+1 LUK",              :add_luk, true, 1      )
-			add_command("+5 LUK",              :add_luk, true, 5      )
-			add_command("+10 LUK",             :add_luk, true, 10     )
-			add_command("+50 LUK",             :add_luk, true, 50     )
-			add_command("+100 LUK",            :add_luk, true, 100    )
-			add_command("+500 LUK",            :add_luk, true, 500    )
-			add_command("+1000 LUK",           :add_luk, true, 1000   )
-			add_command("+5000 LUK",           :add_luk, true, 5000   )
-			add_command("+999999 LUK",         :add_luk, true, 999999 )
-			add_command("-1 LUK",              :add_luk, true, -1     )
-			add_command("-5 LUK",              :add_luk, true, -5     )
-			add_command("-10 LUK",             :add_luk, true, -10    )
-			add_command("-50 LUK",             :add_luk, true, -50    )
-			add_command("-100 LUK",            :add_luk, true, -100   )
-			add_command("-500 LUK",            :add_luk, true, -500   )
-			add_command("-1000 LUK",           :add_luk, true, -1000  )
-			add_command("-5000 LUK",           :add_luk, true, -5000  )
-			add_command("-999999 LUK",         :add_luk, true, -999999)
+			add_command(NEKO::Plus_1       + Vocab.param(7),        :add_luk, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab.param(7),        :add_luk, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab.param(7),        :add_luk, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab.param(7),        :add_luk, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab.param(7),        :add_luk, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab.param(7),        :add_luk, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab.param(7),        :add_luk, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab.param(7),        :add_luk, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab.param(7),        :add_luk, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab.param(7),        :add_luk, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab.param(7),        :add_luk, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab.param(7),        :add_luk, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab.param(7),        :add_luk, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab.param(7),        :add_luk, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab.param(7),        :add_luk, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab.param(7),        :add_luk, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab.param(7),        :add_luk, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab.param(7),        :add_luk, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab.param(7),        :add_luk, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab.param(7),        :add_luk, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_luk()
-			if @neko_luk
-			else
-				@neko_luk = Window_CheatLUK.new
+			if @neko_luk.nil? || @neko_luk.disposed?
+				@neko_luk        = Window_CheatLUK.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
 				@neko_luk.set_handler(:add_luk, method(:add_luk))
 				@neko_luk.set_handler(:cancel, method(:hide_luk))
 			end
 			@now_menu = "luk"
 			show_parameter_window
+			show_stats_window
 		end
 		def hide_luk
+			hide_stats_window
 			hide_parameter_window
 		end
 		def add_luk
@@ -998,41 +1105,51 @@
 				@add_luk = Edit_Interpreter.new()
 			end
 			@add_luk.parameters_change(luk, 7)
-			@add_luk.text(NEKO::Added + luk.to_s + " LUK" + NEKO::Added_Parameters)
-			return_scene
+			@neko_luk.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # Level menu main function
 	class Window_CheatLv < Window_CheatCommand
 		def make_command_list
-			add_command("Lv	1",                  :edit_lv, true, 1  )
-			add_command("Lv 10",                 :edit_lv, true, 10 )
-			add_command("Lv 20",                 :edit_lv, true, 20 )
-			add_command("Lv 30",                 :edit_lv, true, 30 )
-			add_command("Lv 40",                 :edit_lv, true, 40 )
-			add_command("Lv 50",                 :edit_lv, true, 50 )
-			add_command("Lv 60",                 :edit_lv, true, 60 )
-			add_command("Lv 70",                 :edit_lv, true, 70 )
-			add_command("Lv 80",                 :edit_lv, true, 80 )
-			add_command("Lv 90",                 :edit_lv, true, 90 )
-			add_command("Lv 99",                 :edit_lv, true, 99 )
-			add_command("Lv 999 (if supported)", :edit_lv, true, 999)
+			add_command(NEKO::Plus_1       + Vocab::level_a,        :edit_lv, true, 1      )
+			add_command(NEKO::Plus_5       + Vocab::level_a,        :edit_lv, true, 5      )
+			add_command(NEKO::Plus_10      + Vocab::level_a,        :edit_lv, true, 10     )
+			add_command(NEKO::Plus_50      + Vocab::level_a,        :edit_lv, true, 50     )
+			add_command(NEKO::Plus_100     + Vocab::level_a,        :edit_lv, true, 100    )
+			add_command(NEKO::Plus_500     + Vocab::level_a,        :edit_lv, true, 500    )
+			add_command(NEKO::Plus_1000    + Vocab::level_a,        :edit_lv, true, 1000   )
+			add_command(NEKO::Plus_5000    + Vocab::level_a,        :edit_lv, true, 5000   )
+			add_command(NEKO::Plus_10000   + Vocab::level_a,        :edit_lv, true, 10000  )
+			add_command(NEKO::Plus_999999  + Vocab::level_a,        :edit_lv, true, 999999 )
+			add_command(NEKO::Minus_1      + Vocab::level_a,        :edit_lv, true, -1     )
+			add_command(NEKO::Minus_5      + Vocab::level_a,        :edit_lv, true, -5     )
+			add_command(NEKO::Minus_10     + Vocab::level_a,        :edit_lv, true, -10    )
+			add_command(NEKO::Minus_50     + Vocab::level_a,        :edit_lv, true, -50    )
+			add_command(NEKO::Minus_100    + Vocab::level_a,        :edit_lv, true, -100   )
+			add_command(NEKO::Minus_500    + Vocab::level_a,        :edit_lv, true, -500   )
+			add_command(NEKO::Minus_1000   + Vocab::level_a,        :edit_lv, true, -1000  )
+			add_command(NEKO::Minus_5000   + Vocab::level_a,        :edit_lv, true, -5000  )
+			add_command(NEKO::Minus_10000  + Vocab::level_a,        :edit_lv, true, -10000 )
+			add_command(NEKO::Minus_999999 + Vocab::level_a,        :edit_lv, true, -999999)
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_lv()
-			if @neko_lv
-			else
-				@neko_lv = Window_CheatLv.new
+			if @neko_lv.nil? || @neko_lv.disposed?
+				@neko_lv         = Window_CheatLv.new
+				@stats_displayer = Window_StatsDisplay.new(0, 0)
 				@neko_lv.set_handler(:edit_lv, method(:edit_lv))
-				@neko_lv.set_handler(:cancel, method(:hide_lv))
+				@neko_lv.set_handler(:cancel,  method(:hide_lv))
 			end
 			@now_menu = "lv"
 			show_parameter_window
+			show_stats_window
 		end
 		def hide_lv
+			hide_stats_window
 			hide_parameter_window
 		end
 		def edit_lv
@@ -1042,35 +1159,34 @@
 				@edit_lv = Edit_Interpreter.new()
 			end
 			@edit_lv.lv_change(lv)
-			@edit_lv.text(NEKO::LV_Text_1 + lv.to_s + NEKO::LV_Text_2)
-			return_scene
+			@neko_lv.activate
+			@stats_displayer.refresh
 		end
 	end
 
 # Gold menu main function
 	class Window_CheatGold < Window_CheatCommand
 		def make_command_list
-			add_command("+1000 G",      :edit_gold, true, 1000     )
-			add_command("+5000 G",      :edit_gold, true, 5000     )
-			add_command("+10000 G",     :edit_gold, true, 10000    )
-			add_command("+50000 G",     :edit_gold, true, 50000    )
-			add_command("+100000 G",    :edit_gold, true, 100000   )
-			add_command("+500000 G",    :edit_gold, true, 500000   )
-			add_command("+1000000 G",   :edit_gold, true, 1000000  )
-			add_command("+5000000 G",   :edit_gold, true, 5000000  )
-			add_command("+10000000 G",  :edit_gold, true, 10000000 )
-			add_command("+50000000 G",  :edit_gold, true, 10000000 )
-			add_command("+99999999 G",  :edit_gold, true, 99999999 )
+			add_command(NEKO::Plus_1000      + Vocab::currency_unit,     :edit_gold, true, 1000     )
+			add_command(NEKO::Plus_5000      + Vocab::currency_unit,     :edit_gold, true, 5000     )
+			add_command(NEKO::Plus_10000     + Vocab::currency_unit,     :edit_gold, true, 10000    )
+			add_command(NEKO::Plus_50000     + Vocab::currency_unit,     :edit_gold, true, 50000    )
+			add_command(NEKO::Plus_100000    + Vocab::currency_unit,     :edit_gold, true, 100000   )
+			add_command(NEKO::Plus_500000    + Vocab::currency_unit,     :edit_gold, true, 500000   )
+			add_command(NEKO::Plus_1000000   + Vocab::currency_unit,     :edit_gold, true, 1000000  )
+			add_command(NEKO::Plus_5000000   + Vocab::currency_unit,     :edit_gold, true, 5000000  )
+			add_command(NEKO::Plus_10000000  + Vocab::currency_unit,     :edit_gold, true, 10000000 )
+			add_command(NEKO::Plus_50000000  + Vocab::currency_unit,     :edit_gold, true, 10000000 )
+			add_command(NEKO::Plus_99999999  + Vocab::currency_unit,     :edit_gold, true, 99999999 )
 		end
 	end
 
 	class Scene_Cheat < Scene_MenuBase
 		def neko_gold()
-			if @neko_gold
-			else
+			if @neko_gold.nil? || @neko_gold.disposed?
 				@neko_gold = Window_CheatGold.new
 				@neko_gold.set_handler(:edit_gold, method(:edit_gold))
-				@neko_gold.set_handler(:cancel, method(:hide_gold))
+				@neko_gold.set_handler(:cancel,    method(:hide_gold))
 			end
 			@now_menu = "gold"
 			show_parameter_window
@@ -1085,7 +1201,7 @@
 				@edit_gold = Edit_Interpreter.new()
 			end
 			@edit_gold.gold_change(gold_value)
-			@edit_gold.text(NEKO::Added + gold_value.to_s + NEKO::Gold_Text)
+			@edit_gold.text(NEKO::Added + gold_value.to_s + Vocab::currency_unit)
 			return_scene
 		end
 	end
@@ -1211,13 +1327,13 @@
 				if i == imsi
 					add_command(i.to_s + NEKO::Now, :change_type, true, i)
 				else
-					add_command(i.to_s, :change_type, true, i)
+					add_command(i.to_s,             :change_type, true, i)
 				end
 			end
 			if imsi == false || imsi == nil
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			else
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::Base,             :change_type, true, false)
 			end
 		end
 	end
@@ -1230,13 +1346,13 @@
 				if i == imsi
 					add_command(i.to_s + "x" + NEKO::Now, :change_type, true, i)
 				else
-					add_command(i.to_s + "x" , :change_type, true, i)
+					add_command(i.to_s + "x" ,            :change_type, true, i)
 				end
 			end
 			if imsi == false || imsi == nil
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			else
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::Base,             :change_type, true, false)
 			end
 		end
 	end	
@@ -1249,13 +1365,13 @@
 				if imsi == i
 					add_command(i.to_s + "x" + NEKO::Now, :change_type, true, i)
 				else
-					add_command(i.to_s + "x", :change_type, true, i)
+					add_command(i.to_s + "x",             :change_type, true, i)
 				end
 			end
 			if imsi == false || imsi == nil
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			else
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::Base,             :change_type, true, false)
 			end
 		end
 	end
@@ -1346,13 +1462,13 @@
 				if imsi == i2
 					add_command(i2.to_s + "%" + NEKO::Now, :change_type, true, i2)
 				else
-					add_command(i2.to_s + "%", :change_type, true, i2)
+					add_command(i2.to_s + "%",             :change_type, true, i2)
 				end
 			end
 			if imsi == false || imsi == nil
 				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
 			else
-				add_command(NEKO::Base, :change_type, true, false)
+				add_command(NEKO::Base,             :change_type, true, false)
 			end
 		end
 	end
@@ -1361,19 +1477,22 @@
 	class Window_Godmode < Window_CheatCommand_Setting
 		def make_command_list
 			imsi = @now_setting.checking(menu_name)
-			if imsi == 1
-				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
-				add_command(NEKO::Off,              :change_type, true, 2    )
-				add_command(NEKO::Base,             :change_type, true, false)
-			elsif imsi == 2
-				add_command(NEKO::On,               :change_type, true, 1    )
-				add_command(NEKO::Off + NEKO::Now,  :change_type, true, 2    )
-				add_command(NEKO::Base,             :change_type, true, false)
-			else imsi == false || imsi == nil
-				add_command(NEKO::On,               :change_type, true, 1    )
-				add_command(NEKO::Off,              :change_type, true, 2    )
-				add_command(NEKO::Base + NEKO::Now, :change_type, true, false)
-			end
+			add_command(NEKO::All   + NEKO::Now,       :change_type, true, 1    ) if imsi == 1
+			add_command(NEKO::All,                     :change_type, true, 1    ) if imsi != 1
+			add_command(NEKO::HP_MP + NEKO::Now,       :change_type, true, 2    ) if imsi == 2
+			add_command(NEKO::HP_MP,                   :change_type, true, 2    ) if imsi != 2
+			add_command(NEKO::HP_TP + NEKO::Now,       :change_type, true, 3    ) if imsi == 3
+			add_command(NEKO::HP_TP,                   :change_type, true, 3    ) if imsi != 3
+			add_command(NEKO::MP_TP + NEKO::Now,       :change_type, true, 4    ) if imsi == 4
+			add_command(NEKO::MP_TP,                   :change_type, true, 4    ) if imsi != 4
+			add_command(NEKO::HPO   + NEKO::Now,       :change_type, true, 5    ) if imsi == 5
+			add_command(NEKO::HPO,                     :change_type, true, 5    ) if imsi != 5
+			add_command(NEKO::MPO   + NEKO::Now,       :change_type, true, 6    ) if imsi == 6
+			add_command(NEKO::MPO,                     :change_type, true, 6    ) if imsi != 6
+			add_command(NEKO::TPO   + NEKO::Now,       :change_type, true, 7    ) if imsi == 7
+			add_command(NEKO::TPO,                     :change_type, true, 7    ) if imsi != 7
+			add_command(NEKO::Base  + NEKO::Now,       :change_type, true, false) if !imsi
+			add_command(NEKO::Base,                    :change_type, true, false) if imsi
 		end
 	end
 
@@ -1382,73 +1501,73 @@
 	
 # Another placeholder
 		def neko_battle
-			@neko_battle = Window_CheatBattle.new(@now_setting,@setting.current_ext)
-			@neko_battle.set_handler(:change_type, method(:change_type))
-			@neko_battle.set_handler(:cancel, method(:hide_setting_window))
+			@neko_battle = Window_CheatBattle.new(@now_setting, @setting.current_ext)
+			@neko_battle.set_handler(:change_type, method(:change_type        ))
+			@neko_battle.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "battle"
 			show_setting_window
 		end
 	
 		def neko_speed
 			@neko_speed = Window_CheatMove.new(@now_setting,@setting.current_ext)
-			@neko_speed.set_handler(:change_type, method(:change_type))
-			@neko_speed.set_handler(:cancel, method(:hide_setting_window))
+			@neko_speed.set_handler(:change_type, method(:change_type        ))
+			@neko_speed.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "speed"
 			show_setting_window
 		end
 	
 		def neko_exp
 			@neko_exp = Window_Exp.new(@now_setting,@setting.current_ext)
-			@neko_exp.set_handler(:change_type, method(:change_type))
-			@neko_exp.set_handler(:cancel, method(:hide_setting_window))
+			@neko_exp.set_handler(:change_type, method(:change_type        ))
+			@neko_exp.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "exp"
 			show_setting_window
 		end
 
 		def neko_encount
 			@neko_encount = Window_Encount.new(@now_setting,@setting.current_ext)
-			@neko_encount.set_handler(:change_type, method(:change_type))
-			@neko_encount.set_handler(:cancel, method(:hide_setting_window))
+			@neko_encount.set_handler(:change_type, method(:change_type        ))
+			@neko_encount.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "encount"
 			show_setting_window
 		end
 
 		def neko_encount2
 			@neko_encount2 = Window_Encount2.new(@now_setting,@setting.current_ext)
-			@neko_encount2.set_handler(:change_type, method(:change_type))
-			@neko_encount2.set_handler(:cancel, method(:hide_setting_window))
+			@neko_encount2.set_handler(:change_type, method(:change_type        ))
+			@neko_encount2.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "encount2"
 			show_setting_window
 		end
 		
 		def neko_text
 			@neko_text = Window_TextView.new(@now_setting,@setting.current_ext)
-			@neko_text.set_handler(:change_type, method(:change_type))
-			@neko_text.set_handler(:cancel, method(:hide_setting_window))
+			@neko_text.set_handler(:change_type, method(:change_type        ))
+			@neko_text.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "txt"
 			show_setting_window
 		end
 
 		def neko_debug
 			@neko_debug = Window_Debug_Neko.new(@now_setting,@setting.current_ext)
-			@neko_debug.set_handler(:change_type, method(:change_type))
-			@neko_debug.set_handler(:cancel, method(:hide_setting_window))
+			@neko_debug.set_handler(:change_type, method(:change_type        ))
+			@neko_debug.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "debug"
 			show_setting_window
 		end
 
 		def neko_sound
 			@neko_sound = Window_Volume.new(@now_setting,@setting.current_ext)
-			@neko_sound.set_handler(:change_type, method(:change_type))
-			@neko_sound.set_handler(:cancel, method(:hide_setting_window))
+			@neko_sound.set_handler(:change_type, method(:change_type        ))
+			@neko_sound.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "sound"
 			show_setting_window
 		end
 		
 		def neko_godmode
 			@neko_godmode = Window_Godmode.new(@now_setting, @setting.current_ext)
-			@neko_godmode.set_handler(:change_type, method(:change_type))
-			@neko_godmode.set_handler(:cancel, method(:hide_setting_window))
+			@neko_godmode.set_handler(:change_type, method(:change_type        ))
+			@neko_godmode.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "godmode"
 			show_setting_window
 		end
@@ -1553,9 +1672,25 @@
 			@viewport.rect.x = @viewport.ox = 0
 			@viewport.rect.width = Graphics.width
 			now_menu.hide.deactivate
-			now_menu.close
 			@edit_parameters.refresh
 			@edit_parameters.activate
+		end
+		
+# Create fourth window (stats displayer)
+		def show_stats_window
+			now_menu = find_menu
+			width_remain = Graphics.width - @stats_displayer.width
+			@stats_displayer.x = @cheat_window.width + @edit_parameters.width + now_menu.width
+			@viewport.rect.x = 0
+			@viewport.rect.width = width_remain
+			@stats_displayer.show.activate
+		end
+		
+# Close fourth window (stats displayer)
+		def hide_stats_window
+			@viewport.rect.x = @viewport.ox = 0
+			@viewport.rect.width = Graphics.width
+			@stats_displayer.hide.deactivate
 		end
 	end
 	
@@ -1994,17 +2129,71 @@
 		alias gm_scene_update update
 		def update
 			gm_scene_update
-			if $game_player.opening("godmode") == 1
-				$game_party.heal_entire_party
+			case $game_player.opening("godmode")
+				when 1
+					$game_party.heal_everything
+				when 2
+					$game_party.heal_hp_mp
+				when 3
+					$game_party.heal_hp_tp
+				when 4
+					$game_party.heal_mp_tp
+				when 5
+					$game_party.heal_hp_only
+				when 6
+					$game_party.heal_mp_only
+				when 7
+					$game_party.heal_tp_only
+				else
 			end
 		end
 	end
 	
 	class Game_Party < Game_Unit
-		def heal_entire_party
+		def heal_everything
 			all_members.each do |actor|
-				actor.hp = actor.mhp if actor.hp < actor.mhp
-				actor.mp = actor.mmp if actor.mp < actor.mmp
+				actor.hp = actor.mhp    if actor.hp < actor.mhp
+				actor.mp = actor.mmp    if actor.mp < actor.mmp
+				actor.tp = actor.max_tp if actor.tp < actor.max_tp
+			end
+		end
+		
+		def heal_hp_mp
+			all_members.each do |actor|
+				actor.hp = actor.mhp    if actor.hp < actor.mhp
+				actor.mp = actor.mmp    if actor.mp < actor.mmp
+			end
+		end
+		
+		def heal_hp_tp
+			all_members.each do |actor|
+				actor.hp = actor.mhp    if actor.hp < actor.mhp
+				actor.tp = actor.max_tp if actor.tp < actor.max_tp
+			end
+		end
+		
+		def heal_mp_tp
+			all_members.each do |actor|
+				actor.mp = actor.mmp    if actor.mp < actor.mmp
+				actor.tp = actor.max_tp if actor.tp < actor.max_tp
+			end
+		end
+		
+		def heal_hp_only
+			all_members.each do |actor|
+				actor.hp = actor.mhp    if actor.hp < actor.mhp
+			end
+		end
+		
+		def heal_mp_only
+			all_members.each do |actor|
+				actor.mp = actor.mmp    if actor.mp < actor.mmp
+			end
+		end
+		
+		def heal_tp_only
+			all_members.each do |actor|
+				actor.tp = actor.max_tp if actor.tp < actor.max_tp
 			end
 		end
 	end
