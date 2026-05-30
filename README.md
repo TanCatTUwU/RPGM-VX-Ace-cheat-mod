@@ -3,7 +3,7 @@ Bug report are more than welcomed (dm @hifumi_chan on discord for faster respons
 ## This mod does not work on other RPGM engine like XP, VX, MV, MZ,... only VX Ace. Please remember
 ## Credits
 - Originally from dldb.info/blog/506 (shutdown somewhere at 2020)
-- Joiplay mkxp (i took those get items code from there since ~~the UI are better~~ im lazy to code)
+- [Joiplay mkxp](https://github.com/joiplay/mkxp/blob/master/binding-mri/cheat_rpgmvxace.rb) (for Get Items, Armors, Weapons code)
 - Me
 ## Feature
 - Get Items
