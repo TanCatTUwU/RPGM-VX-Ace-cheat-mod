@@ -600,7 +600,7 @@
 		end
 		
 		def window_width
-			return 160
+			return 128
 		end
 		
 		def window_height
@@ -878,10 +878,12 @@
 			show_parameter_window
 			show_stats_window
 		end
+		
 		def hide_def
 			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_def
 			mdef = @neko_def.current_ext
 			if @add_def
@@ -932,10 +934,12 @@
 			show_parameter_window
 			show_stats_window
 		end
+		
 		def hide_mat
 			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_mat
 			mat = @neko_mat.current_ext
 			if @add_mat
@@ -986,10 +990,12 @@
 			show_parameter_window
 			show_stats_window
 		end
+		
 		def hide_mdf
 			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_mdf
 			mdf = @neko_mdf.current_ext
 			if @add_mdf
@@ -1040,10 +1046,12 @@
 			show_parameter_window
 			show_stats_window
 		end
+		
 		def hide_agi
 			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_agi
 			agi = @neko_agi.current_ext
 			if @add_agi
@@ -1094,10 +1102,12 @@
 			show_parameter_window
 			show_stats_window
 		end
+		
 		def hide_luk
 			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def add_luk
 			luk = @neko_luk.current_ext
 			if @add_luk
@@ -1148,10 +1158,12 @@
 			show_parameter_window
 			show_stats_window
 		end
+		
 		def hide_lv
 			hide_stats_window
 			hide_parameter_window
 		end
+		
 		def edit_lv
 			lv = @neko_lv.current_ext
 			if @edit_lv
@@ -1191,9 +1203,11 @@
 			@now_menu = "gold"
 			show_parameter_window
 		end
+		
 		def hide_gold
 			hide_parameter_window
 		end
+		
 		def edit_gold
 			gold_value = @neko_gold.current_ext
 			if @edit_gold
@@ -1210,7 +1224,7 @@
 	class Edit_Interpreter < Game_Interpreter
 		def lv_change(i)
 			iterate_actor_var(0, 0) do |actor|
-				actor.change_level(i, false)
+				actor.change_level(actor.level + i, false)
 			end
 		end
 		
@@ -1234,15 +1248,31 @@
 		def self.init_command_position
 			@@last_command_symbol = nil
 		end
+		
 		def initialize
 			super(0, 0)
 		end
+		
+		def window_width
+			return 140
+		end
+		
+		def window_height
+			if item_max > 12
+				return fitting_height(12)
+			else
+				return fitting_height(visible_line_number)
+			end
+		end
+		
 		def visible_line_number
 			item_max
 		end
+		
 		def menu_name
 			return @select_cheat
 		end
+		
 		def process_ok
 			@@last_command_symbol = current_symbol
 			super
@@ -1820,7 +1850,7 @@
 			end
 			set_option.call('Fullscreen'     , @fullscreen ? '1' : '0')
 			set_option.call('FullscreenRatio', @fullscreen_ratio)
-			set_option.call('WindowedRatio'	, @windowed_ratio)
+			set_option.call('WindowedRatio'	 , @windowed_ratio)
 		end
 		def fullscreen?
 			@fullscreen or vx_fullscreen?
