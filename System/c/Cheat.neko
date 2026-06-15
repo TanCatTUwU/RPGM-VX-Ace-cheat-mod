@@ -630,13 +630,6 @@
 			refresh
 		end
 		
-		def draw_actor_level(actor, x, y)
-			change_color(system_color)
-			draw_text(x, y, 32, line_height, Vocab::level_a)
-			change_color(normal_color)
-			draw_text(x + 32, y, 24, line_height, actor.level, 2)
-		end
-		
 		def refresh
 			contents.clear
 			actor = $game_party.members[@actor_index]

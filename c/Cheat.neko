@@ -3,51 +3,51 @@
 
 # Save cheat config function
 	class Do_Not_Edit_This_File
-		def checking(type)
+		def neko_check(type)
 			case type
-				when "move";     @move
-				when "dash";     @dash
-				when "bgm";      @bgm
-				when "bgs";      @bgs
-				when "me";       @me
-				when "se";       @se
-				when "txt";      @text
+				when "move";     @neko_move
+				when "dash";     @neko_dash
+				when "bgm";      @neko_bgm
+				when "bgs";      @neko_bgs
+				when "me";       @neko_me
+				when "se";       @neko_se
+				when "txt";      @neko_text_speed
 				when "exp";      @neko_exp
-				when "encount";  @encount
-				when "encount2"; @encount2
-				when "cheat";    @cheat
-				when "debug";    @debug 
-				when "type";     @type
-				when "battle";   @battle
-				when "nobattle"; @nobattle
-				when "godmode";  @godmode
+				when "encount";  @neko_encount
+				when "encount2"; @neko_encount2
+				when "cheat";    @neko_cheat
+				when "debug";    @neko_debug 
+				when "type";     @neko_type
+				when "battle";   @neko_battle
+				when "nobattle"; @neko_nobattle
+				when "godmode";  @neko_godmode
 			end
 		end
-		def changing(type,text)
+		def neko_change(type,text)
 			case type
-				when "move";     @move     = text
-				when "dash";     @dash     = text
-				when "bgm";      @bgm      = text
-				when "bgs";      @bgs      = text
-				when "me";       @me       = text
-				when "se";       @se       = text
-				when "txt";      @text     = text
-				when "exp";      @neko_exp = text
-				when "encount";  @encount  = text
-				when "encount2"; @encount2 = text
-				when "debug" ;   @debug    = text
-				when "battle";   @battle   = text
-				when "nobattle"; @nobattle = text
-				when "godmode";  @godmode  = text
-				when "cheat";    @cheat    = text
+				when "move";     @neko_move           = text
+				when "dash";     @neko_dash           = text
+				when "bgm";      @neko_bgm            = text
+				when "bgs";      @neko_bgs            = text
+				when "me";       @neko_me             = text
+				when "se";       @neko_se             = text
+				when "txt";      @neko_text_speed     = text
+				when "exp";      @neko_exp            = text
+				when "encount";  @neko_encount        = text
+				when "encount2"; @neko_encount2       = text
+				when "debug" ;   @neko_debug          = text
+				when "battle";   @neko_battle         = text
+				when "nobattle"; @neko_nobattle       = text
+				when "godmode";  @neko_godmode        = text
+				when "cheat";    @neko_cheat          = text
 			end
 		end
-		def opening(type)
-			if checking(type) == nil
-				changing(type,false) 
+		def neko_open(type)
+			if neko_check(type) == nil
+				neko_change(type,false) 
 				return false
 			else
-				return checking(type)
+				return neko_check(type)
 			end
 		end
 		
@@ -58,54 +58,54 @@
 	
 # Main config handler
 	class Game_Player < Game_Character	
-		def checking(type)
+		def neko_check(type)
 			case type
-				when "move";     @move
-				when "dash";     @dash
-				when "bgm";      @bgm
-				when "bgs";      @bgs
-				when "me";       @me
-				when "se";       @se
-				when "txt";      @text
+				when "move";     @neko_move
+				when "dash";     @neko_dash
+				when "bgm";      @neko_bgm
+				when "bgs";      @neko_bgs
+				when "me";       @neko_me
+				when "se";       @neko_se
+				when "txt";      @neko_text_speed
 				when "exp";      @neko_exp
-				when "battle";   @battle
-				when "nobattle"; @nobattle
-				when "encount";  @encount
-				when "encount2"; @encount2
-				when "godmode";  @godmode
-				when "cheat";    @cheat
-				when "debug" ;   @debug 
-				when "type";     @type
+				when "battle";   @neko_battle
+				when "nobattle"; @neko_nobattle
+				when "encount";  @neko_encount
+				when "encount2"; @neko_encount2
+				when "godmode";  @neko_godmode
+				when "cheat";    @neko_cheat
+				when "debug" ;   @neko_debug 
+				when "type";     @neko_type
 			end
 		end
 		
-		def changing(type,text)
+		def neko_change(type,text)
 			case type
-				when "move";     @move     = text
-				when "dash";     @dash     = text
-				when "bgm";      @bgm      = text
-				when "bgs";      @bgs      = text
-				when "me";       @me       = text
-				when "se";       @se       = text
-				when "txt";      @text     = text
-				when "exp";      @neko_exp = text
-				when "battle";   @battle   = text
-				when "nobattle"; @nobattle = text
-				when "encount";  @encount  = text
-				when "encount2"; @encount2 = text
-				when "godmode";  @godmode  = text
-				when "debug" ;   @debug    = text
-				when "cheat";    @cheat    = text
+				when "move";     @neko_move           = text
+				when "dash";     @neko_dash           = text
+				when "bgm";      @neko_bgm            = text
+				when "bgs";      @neko_bgs            = text
+				when "me";       @neko_me             = text
+				when "se";       @neko_se             = text
+				when "txt";      @neko_text_speed     = text
+				when "exp";      @neko_exp            = text
+				when "battle";   @neko_battle         = text
+				when "nobattle"; @neko_nobattle       = text
+				when "encount";  @neko_encount        = text
+				when "encount2"; @neko_encount2       = text
+				when "godmode";  @neko_godmode        = text
+				when "debug" ;   @neko_debug          = text
+				when "cheat";    @neko_cheat          = text
 			end
 		end
 		
-		def opening(type)
-			if checking(type) == nil
-				changing(type,false)
-				return $setting.opening(type)
+		def neko_open(type)
+			if neko_check(type) == nil
+				neko_change(type,false)
+				return $setting.neko_open(type)
 			else
-				return checking(type) if checking(type)
-				return $setting.opening(type)
+				return neko_check(type) if neko_check(type)
+				return $setting.neko_open(type)
 			end
 		end
 		
@@ -122,12 +122,12 @@
 		end
 	
 		def update_opening
-			opening if Input.trigger?(:F8) && !$game_player.moving?
-			SceneManager.call(Scene_Debug) if Input.press?(:F9) && $game_player.opening("debug") == 1 && !$game_player.moving? && !$TEST
+			neko_open if Input.trigger?(:F8) && !$game_player.moving?
+			SceneManager.call(Scene_Debug) if Input.press?(:F9) && $game_player.neko_open("debug") == 1 && !$game_player.moving? && !$TEST
 			@opened = false
 		end
 		
-		def opening
+		def neko_open
 			Sound.play_ok
 			SceneManager.call(Scene_Cheat)
 			Window_CheatCommand::init_command_position
@@ -162,20 +162,20 @@
 		end
 
 		def create_command_window
-			@cheat_window = Window_CheatCommand.new
-			@cheat_window.set_handler(:getItems,             method(:cheat_items      ))
-			@cheat_window.set_handler(:getWeapons,           method(:cheat_weapons    ))
-			@cheat_window.set_handler(:getArmors,            method(:cheat_armors     ))
-			@cheat_window.set_handler(:tel,                  method(:neko_tel         ))
-			@cheat_window.set_handler(:map_tel,              method(:neko_map_tel     ))
-			@cheat_window.set_handler(:parameters_edit,      method(:edit_parameters  ))
-			@cheat_window.set_handler(:effects_edit,         method(:edit_effects     ))
-			@cheat_window.set_handler(:save_game,            method(:command_save_game))
-			@cheat_window.set_handler(:setting_edit1,        method(:setting1         ))
-			@cheat_window.set_handler(:setting_edit2,        method(:setting2         ))
-			@cheat_window.set_handler(:screen_full,          method(:screen_full      ))
-			@cheat_window.set_handler(:screen_change,        method(:screen_change    ))
-			@cheat_window.set_handler(:cancel,               method(:return_scene     ))
+			@neko_cheat_window = Window_CheatCommand.new
+			@neko_cheat_window.set_handler(:getItems,             method(:cheat_items      ))
+			@neko_cheat_window.set_handler(:getWeapons,           method(:cheat_weapons    ))
+			@neko_cheat_window.set_handler(:getArmors,            method(:cheat_armors     ))
+			@neko_cheat_window.set_handler(:tel,                  method(:neko_tel         ))
+			@neko_cheat_window.set_handler(:map_tel,              method(:neko_map_tel     ))
+			@neko_cheat_window.set_handler(:parameters_edit,      method(:edit_parameters  ))
+			@neko_cheat_window.set_handler(:effects_edit,         method(:edit_effects     ))
+			@neko_cheat_window.set_handler(:save_game,            method(:command_save_game))
+			@neko_cheat_window.set_handler(:setting_edit1,        method(:setting1         ))
+			@neko_cheat_window.set_handler(:setting_edit2,        method(:setting2         ))
+			@neko_cheat_window.set_handler(:screen_full,          method(:screen_full      ))
+			@neko_cheat_window.set_handler(:screen_change,        method(:screen_change    ))
+			@neko_cheat_window.set_handler(:cancel,               method(:return_scene     ))
 		end
 	
 		def command_save_game
@@ -188,11 +188,11 @@
 		end
 	
 		def cheat_getItem(type)
-			@cheat_window.close
-			@cheat_item_window = Window_GetItem.new(0, 0, 320, type)
-			@cheat_item_window.set_handler(:ok,		 method(:on_buy_ok       ))
-			@cheat_item_window.set_handler(:cancel,  method(:cheat_buy_cancel))
-			@cheat_item_window.show.activate
+			@neko_cheat_window.close
+			@neko_cheat_item_window = Window_GetItem.new(0, 0, 320, type)
+			@neko_cheat_item_window.set_handler(:ok,		 method(:on_buy_ok       ))
+			@neko_cheat_item_window.set_handler(:cancel,  method(:cheat_buy_cancel))
+			@neko_cheat_item_window.show.activate
 			@number_window     = Window_ShopNumber.new(0, 304, 120)
 			@number_window.hide
 			@number_window.set_handler(:ok,		     method(:on_number_ok    ))
@@ -212,39 +212,39 @@
 		end
 
 		def on_buy_ok
-			@cheat_item = @cheat_item_window.item
-			@cheat_item_window.hide
-			@number_window.set(@cheat_item, max_buy, buying_price, "G")
+			@neko_cheat_item = @neko_cheat_item_window.item
+			@neko_cheat_item_window.hide
+			@number_window.set(@neko_cheat_item, max_buy, buying_price, "G")
 			@number_window.show.activate
 		end
 	
 		def cheat_buy_cancel
-			@cheat_item_window.close
+			@neko_cheat_item_window.close
 			return_scene
 		end
 	
 		def on_number_ok
 			do_buy(@number_window.number)
 			@number_window.hide
-			@cheat_item_window.show.activate
+			@neko_cheat_item_window.show.activate
 		end
 	
 		def on_number_cancel
 			@number_window.hide
-			@cheat_item_window.show.activate
+			@neko_cheat_item_window.show.activate
 		end
 	
 		def do_buy(number)
-			$game_party.gain_item(@cheat_item, number)
+			$game_party.gain_item(@neko_cheat_item, number)
 		end
 	
 		def max_buy
-			max = $game_party.max_item_number(@cheat_item) - $game_party.item_number(@cheat_item)
+			max = $game_party.max_item_number(@neko_cheat_item) - $game_party.item_number(@neko_cheat_item)
 			buying_price == 0 ? max : [max, money / buying_price].min
 		end
 	
 		def buying_price
-			@cheat_item_window.price(@cheat_item)
+			@neko_cheat_item_window.price(@neko_cheat_item)
 		end
 	end
 
@@ -272,11 +272,11 @@
 		end
 		
 		def item_max
-			@cheat_data ? @cheat_data.size : 1
+			@neko_cheat_data ? @neko_cheat_data.size : 1
 		end
 		
 		def item
-			@cheat_data[index]
+			@neko_cheat_data[index]
 		end
 		
 		def money=(money)
@@ -285,11 +285,11 @@
 		end
 		
 		def current_item_enabled?
-			enable?(@cheat_data[index])
+			enable?(@neko_cheat_data[index])
 		end
 		
 		def price(item)
-			@cheat_price[item]
+			@neko_cheat_price[item]
 		end
 		
 		def enable?(item)
@@ -303,18 +303,18 @@
 		end
 		
 		def make_item_list
-			@cheat_data  = []
-			@cheat_price = {}
+			@neko_cheat_data  = []
+			@neko_cheat_price = {}
 			@shop_goods.each do |good|
 				if good && good.name != ""
-					@cheat_data.push(good)
-					@cheat_price[good] = 0
+					@neko_cheat_data.push(good)
+					@neko_cheat_price[good] = 0
 				end
 			end
 		end
 		
 		def draw_item(index)
-			item = @cheat_data[index]
+			item = @neko_cheat_data[index]
 			rect = item_rect(index)
 			draw_item_name(item, rect.x, rect.y, enable?(item))
 			rect.width -= 4
@@ -1277,7 +1277,7 @@
 		end
 		
 		def menu_name
-			return @select_cheat
+			return @neko_select_cheat
 		end
 		
 		def process_ok
@@ -1322,23 +1322,23 @@
 	
 # Config menu placeholder
 		def setting
-			@setting = Window_CheatSetting.new
-			@setting.set_handler(:edit_godmode,    method(:neko_godmode   ))
-			@setting.set_handler(:edit_move,       method(:neko_speed     ))
-			@setting.set_handler(:edit_dash,       method(:neko_speed     ))
-			@setting.set_handler(:edit_exp,        method(:neko_exp       ))
-			@setting.set_handler(:edit_text,       method(:neko_text      ))
-			@setting.set_handler(:edit_debug,      method(:neko_debug     ))
-			@setting.set_handler(:edit_encount,    method(:neko_encount   ))
-			@setting.set_handler(:edit_encount2,   method(:neko_encount2  ))
-			@setting.set_handler(:edit_battle,     method(:neko_battle    ))
-			@setting.set_handler(:edit_nobattle,   method(:neko_battle    ))
-			@setting.set_handler(:edit_bgm,        method(:neko_sound     ))
-			@setting.set_handler(:edit_bgs,        method(:neko_sound     ))
-			@setting.set_handler(:edit_me,         method(:neko_sound     ))
-			@setting.set_handler(:edit_se,         method(:neko_sound     ))
-			@setting.set_handler(:cancel,          method(:setting_cancel ))
-			show_sub_window(@setting)
+			@neko_setting = Window_CheatSetting.new
+			@neko_setting.set_handler(:edit_godmode,    method(:neko_godmode   ))
+			@neko_setting.set_handler(:edit_move,       method(:neko_speed     ))
+			@neko_setting.set_handler(:edit_dash,       method(:neko_speed     ))
+			@neko_setting.set_handler(:edit_exp,        method(:neko_exp       ))
+			@neko_setting.set_handler(:edit_text,       method(:neko_text      ))
+			@neko_setting.set_handler(:edit_debug,      method(:neko_debug     ))
+			@neko_setting.set_handler(:edit_encount,    method(:neko_encount   ))
+			@neko_setting.set_handler(:edit_encount2,   method(:neko_encount2  ))
+			@neko_setting.set_handler(:edit_battle,     method(:neko_battle    ))
+			@neko_setting.set_handler(:edit_nobattle,   method(:neko_battle    ))
+			@neko_setting.set_handler(:edit_bgm,        method(:neko_sound     ))
+			@neko_setting.set_handler(:edit_bgs,        method(:neko_sound     ))
+			@neko_setting.set_handler(:edit_me,         method(:neko_sound     ))
+			@neko_setting.set_handler(:edit_se,         method(:neko_sound     ))
+			@neko_setting.set_handler(:cancel,          method(:setting_cancel ))
+			show_sub_window(@neko_setting)
 		end
 	end
 
@@ -1347,19 +1347,19 @@
 		alias neko_initialize initialize if !$setting
 		def initialize(type,text)
 			@now_setting = type
-			@select_cheat = text
+			@neko_select_cheat = text
 			neko_initialize
 		end
 		def close
 			@now_setting = false
-			@select_cheat = false
+			@neko_select_cheat = false
 		end
 	end
 
 # Movement speed menu placeholder
 	class Window_CheatMove < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			for i in 4...10
 				if i == imsi
 					add_command(i.to_s + NEKO::Now, :change_type, true, i)
@@ -1378,7 +1378,7 @@
 # Battle speed menu placeholder
 	class Window_CheatBattle < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			for i in 1...11
 				if i == imsi
 					add_command(i.to_s + "x" + NEKO::Now, :change_type, true, i)
@@ -1397,7 +1397,7 @@
 # Exp multiply menu placeholder
 	class Window_Exp < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			for i in 0...11
 				if imsi == i
 					add_command(i.to_s + "x" + NEKO::Now, :change_type, true, i)
@@ -1416,7 +1416,7 @@
 # Random event menu placeholder
 	class Window_Encount < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
 				add_command(NEKO::Off,              :change_type, true, 2    )
@@ -1436,7 +1436,7 @@
 # Battle skip menu placeholder
 	class Window_Encount2 < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			add_command(NEKO::Win + NEKO::Now,       :change_type, true, 1    ) if imsi == 1
 			add_command(NEKO::Win,                   :change_type, true, 1    ) if imsi != 1
 			add_command(NEKO::Lose + NEKO::Now,      :change_type, true, 2    ) if imsi == 2
@@ -1453,7 +1453,7 @@
 # Text speed menu placeholder
 	class Window_TextView < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
 				add_command(NEKO::Off,              :change_type, true, 2    )
@@ -1473,7 +1473,7 @@
 # Enable default debug mode placeholder
 	class Window_Debug_Neko < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
 				add_command(NEKO::Off,              :change_type, true, 2    )
@@ -1493,7 +1493,7 @@
 # Volume menu placeholder
 	class Window_Volume < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			for i in 0...11
 				i2 = i * 10
 				if imsi == i2
@@ -1513,7 +1513,7 @@
 # Godmode menu placeholder
 	class Window_Godmode < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.checking(menu_name)
+			imsi = @now_setting.neko_check(menu_name)
 			add_command(NEKO::All   + NEKO::Now,       :change_type, true, 1    ) if imsi == 1
 			add_command(NEKO::All,                     :change_type, true, 1    ) if imsi != 1
 			add_command(NEKO::HP_MP + NEKO::Now,       :change_type, true, 2    ) if imsi == 2
@@ -1538,7 +1538,7 @@
 	
 # Another placeholder
 		def neko_battle
-			@neko_battle = Window_CheatBattle.new(@now_setting, @setting.current_ext)
+			@neko_battle = Window_CheatBattle.new(@now_setting, @neko_setting.current_ext)
 			@neko_battle.set_handler(:change_type, method(:change_type        ))
 			@neko_battle.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "battle"
@@ -1546,7 +1546,7 @@
 		end
 	
 		def neko_speed
-			@neko_speed = Window_CheatMove.new(@now_setting,@setting.current_ext)
+			@neko_speed = Window_CheatMove.new(@now_setting,@neko_setting.current_ext)
 			@neko_speed.set_handler(:change_type, method(:change_type        ))
 			@neko_speed.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "speed"
@@ -1554,7 +1554,7 @@
 		end
 	
 		def neko_exp
-			@neko_exp = Window_Exp.new(@now_setting,@setting.current_ext)
+			@neko_exp = Window_Exp.new(@now_setting,@neko_setting.current_ext)
 			@neko_exp.set_handler(:change_type, method(:change_type        ))
 			@neko_exp.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "exp"
@@ -1562,7 +1562,7 @@
 		end
 
 		def neko_encount
-			@neko_encount = Window_Encount.new(@now_setting,@setting.current_ext)
+			@neko_encount = Window_Encount.new(@now_setting,@neko_setting.current_ext)
 			@neko_encount.set_handler(:change_type, method(:change_type        ))
 			@neko_encount.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "encount"
@@ -1570,7 +1570,7 @@
 		end
 
 		def neko_encount2
-			@neko_encount2 = Window_Encount2.new(@now_setting,@setting.current_ext)
+			@neko_encount2 = Window_Encount2.new(@now_setting,@neko_setting.current_ext)
 			@neko_encount2.set_handler(:change_type, method(:change_type        ))
 			@neko_encount2.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "encount2"
@@ -1578,7 +1578,7 @@
 		end
 		
 		def neko_text
-			@neko_text = Window_TextView.new(@now_setting,@setting.current_ext)
+			@neko_text = Window_TextView.new(@now_setting,@neko_setting.current_ext)
 			@neko_text.set_handler(:change_type, method(:change_type        ))
 			@neko_text.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "txt"
@@ -1586,7 +1586,7 @@
 		end
 
 		def neko_debug
-			@neko_debug = Window_Debug_Neko.new(@now_setting,@setting.current_ext)
+			@neko_debug = Window_Debug_Neko.new(@now_setting,@neko_setting.current_ext)
 			@neko_debug.set_handler(:change_type, method(:change_type        ))
 			@neko_debug.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "debug"
@@ -1594,7 +1594,7 @@
 		end
 
 		def neko_sound
-			@neko_sound = Window_Volume.new(@now_setting,@setting.current_ext)
+			@neko_sound = Window_Volume.new(@now_setting,@neko_setting.current_ext)
 			@neko_sound.set_handler(:change_type, method(:change_type        ))
 			@neko_sound.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "sound"
@@ -1602,7 +1602,7 @@
 		end
 		
 		def neko_godmode
-			@neko_godmode = Window_Godmode.new(@now_setting, @setting.current_ext)
+			@neko_godmode = Window_Godmode.new(@now_setting, @neko_setting.current_ext)
 			@neko_godmode.set_handler(:change_type, method(:change_type        ))
 			@neko_godmode.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "godmode"
@@ -1641,23 +1641,23 @@
 # Handle close config
 		def setting_cancel
 			@now_setting = false
-			hide_sub_window(@setting)
+			hide_sub_window(@neko_setting)
 		end
 
 # Handle changing, closing, saving, finding config menu
 		def change_type
 			now_menu = find_menu
-			@now_setting.changing(@setting.current_ext,now_menu.current_ext)
+			@now_setting.neko_change(@neko_setting.current_ext,now_menu.current_ext)
 			@now_setting.cheat_save
 			now_menu.close
-			@setting.close
+			@neko_setting.close
 			return_scene
 		end
 		
 # Second window creating handler
 		def show_sub_window(window)
 			width_remain = Graphics.width - window.width
-			window.x = @cheat_window.width
+			window.x = @neko_cheat_window.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			window.show.activate
@@ -1668,15 +1668,15 @@
 			@viewport.rect.x = @viewport.ox = 0
 			@viewport.rect.width = Graphics.width
 			window.hide.deactivate
-			@cheat_window.refresh
-			@cheat_window.activate
+			@neko_cheat_window.refresh
+			@neko_cheat_window.activate
 		end
 		
 # Create third window for config function
 		def show_setting_window	 
 			now_menu = find_menu
 			width_remain = Graphics.width - now_menu.width
-			now_menu.x = @cheat_window.width + @setting.width
+			now_menu.x = @neko_cheat_window.width + @neko_setting.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			now_menu.show.activate
@@ -1689,15 +1689,15 @@
 			@viewport.rect.width = Graphics.width
 			now_menu.hide.deactivate
 			now_menu.close
-			@setting.refresh
-			@setting.activate
+			@neko_setting.refresh
+			@neko_setting.activate
 		end
 
 # Create third window for parameters edit function
 		def show_parameter_window
 			now_menu = find_menu
 			width_remain = Graphics.width - now_menu.width
-			now_menu.x = @cheat_window.width + @edit_parameters.width
+			now_menu.x = @neko_cheat_window.width + @edit_parameters.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			now_menu.show.activate
@@ -1717,7 +1717,7 @@
 		def show_stats_window
 			now_menu = find_menu
 			width_remain = Graphics.width - @stats_displayer.width
-			@stats_displayer.x = @cheat_window.width + @edit_parameters.width + now_menu.width
+			@stats_displayer.x = @neko_cheat_window.width + @edit_parameters.width + now_menu.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			@stats_displayer.show.activate
@@ -1735,13 +1735,13 @@
 	class Scene_Cheat < Scene_MenuBase
 		def screen_full
 			Graphics.toggle_fullscreen
-			@cheat_window.refresh
-			@cheat_window.activate
+			@neko_cheat_window.refresh
+			@neko_cheat_window.activate
 		end
 		def screen_change
 			Graphics.toggle_ratio 
-			@cheat_window.refresh
-			@cheat_window.activate
+			@neko_cheat_window.refresh
+			@neko_cheat_window.activate
 		end
 	end
 	
@@ -1964,7 +1964,7 @@
 # Battle skip function
 		alias neko_update_encounter update_encounter if !$setting
 		def update_encounter
-			if opening("encount") == 1
+			if neko_open("encount") == 1
 				return
 			else
 				neko_update_encounter
@@ -1974,7 +1974,7 @@
 # No clip function
 		alias neko_debug_through? debug_through? if !$setting
 		def debug_through?
-			if opening("debug") == 1 && Input.press?(:CTRL)
+			if neko_open("debug") == 1 && Input.press?(:CTRL)
 				return true 
 			end
 			if $TEST && Input.press?(:CTRL)
@@ -1991,28 +1991,28 @@
 		alias neko_command_602 command_602 if !$setting
 		alias neko_command_603 command_603 if !$setting
 		def command_301
-			return if $game_player.opening("encount2")
+			return if $game_player.neko_open("encount2")
 			neko_command_301
 		end
 		def command_601
-			return if $game_player.opening("encount2") == 1
-			if $game_player.opening("encount2")
+			return if $game_player.neko_open("encount2") == 1
+			if $game_player.neko_open("encount2")
 				command_skip
 			else
 				neko_command_601
 			end
 		end
 		def command_602
-			return if $game_player.opening("encount2") == 3
-			if $game_player.opening("encount2")
+			return if $game_player.neko_open("encount2") == 3
+			if $game_player.neko_open("encount2")
 				command_skip
 			else
 				neko_command_602
 			end
 		end
 		def command_603
-			return if $game_player.opening("encount2") == 2
-			if $game_player.opening("encount2")
+			return if $game_player.neko_open("encount2") == 2
+			if $game_player.neko_open("encount2")
 				command_skip
 			else
 				neko_command_603
@@ -2032,16 +2032,16 @@
 		end
 		
 		def neko_dash
-			if $game_player.opening("dash")
-				return $game_player.opening("dash")
+			if $game_player.neko_open("dash")
+				return $game_player.neko_open("dash")
 			else
 				return neko_move + 1
 			end
 		end
 		
 		def neko_move
-			if $game_player.opening("move")
-				return $game_player.opening("move")
+			if $game_player.neko_open("move")
+				return $game_player.neko_open("move")
 			else
 				return @move_speed
 			end
@@ -2053,7 +2053,7 @@
 		alias neko_clear_flags clear_flags if !$setting
 		def clear_flags
 			neko_clear_flags
-			if $game_player.opening("txt") == 1 && $game_message.choices.size == 0
+			if $game_player.neko_open("txt") == 1 && $game_message.choices.size == 0
 				@show_fast = true 
 			end
 		end
@@ -2063,10 +2063,10 @@
 	class Game_Troop < Game_Unit
 		alias neko_exp_total exp_total if !$setting
 		def exp_total
-			if $game_player.opening("exp") == false
+			if $game_player.neko_open("exp") == false
 				neko_exp_total
 			else
-				neko_exp_total * $game_player.opening("exp")
+				neko_exp_total * $game_player.neko_open("exp")
 			end
 		end
 	end
@@ -2075,8 +2075,8 @@
 	class RPG::BGM < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play(pos = 0)
-			if $game_player.opening('bgm')
-				@volume = $game_player.opening('bgm') 
+			if $game_player.neko_open('bgm')
+				@volume = $game_player.neko_open('bgm') 
 			end
 			neko_play(pos)
 		end
@@ -2084,8 +2084,8 @@
 	class RPG::BGS < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play(pos = 0)
-			if $game_player.opening('bgs')
-				@volume = $game_player.opening('bgs') 
+			if $game_player.neko_open('bgs')
+				@volume = $game_player.neko_open('bgs') 
 			end
 			neko_play(pos)
 		end
@@ -2093,8 +2093,8 @@
 	class RPG::ME < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play
-			if $game_player.opening('me')
-				@volume = $game_player.opening('me') 
+			if $game_player.neko_open('me')
+				@volume = $game_player.neko_open('me') 
 			end
 			neko_play
 		end
@@ -2102,8 +2102,8 @@
 	class RPG::SE < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play
-			if $game_player.opening('se')
-				@volume = $game_player.opening('se') 
+			if $game_player.neko_open('se')
+				@volume = $game_player.neko_open('se') 
 			end
 			neko_play
 		end
@@ -2113,12 +2113,12 @@
 	class << Graphics
 		def neko_get_speed
 			if SceneManager.scene_is?(Scene_Battle)
-				if $game_player.opening("battle")
-					return $game_player.opening("battle") 
+				if $game_player.neko_open("battle")
+					return $game_player.neko_open("battle") 
 				end
 			else
-				if $game_player.opening("nobattle")
-					return $game_player.opening("nobattle") 
+				if $game_player.neko_open("nobattle")
+					return $game_player.neko_open("nobattle") 
 				end
 			end
 			return 1
@@ -2166,7 +2166,7 @@
 		alias gm_scene_update update
 		def update
 			gm_scene_update
-			case $game_player.opening("godmode")
+			case $game_player.neko_open("godmode")
 				when 1
 					$game_party.heal_everything
 				when 2
