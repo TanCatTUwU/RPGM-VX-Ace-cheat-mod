@@ -1,0 +1,6 @@
+{
+  "postloadScript": [
+    "c/Cheat.neko",
+    "c/Text.neko"
+  ]
+}
