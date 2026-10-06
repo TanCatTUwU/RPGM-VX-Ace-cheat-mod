@@ -3,51 +3,51 @@
 
 # Save cheat config function
 	class Do_Not_Edit_This_File
-		def neko_check(type)
+		def checking(type)
 			case type
-				when "move";     @neko_move
-				when "dash";     @neko_dash
-				when "bgm";      @neko_bgm
-				when "bgs";      @neko_bgs
-				when "me";       @neko_me
-				when "se";       @neko_se
-				when "txt";      @neko_text_speed
+				when "move";     @move
+				when "dash";     @dash
+				when "bgm";      @bgm
+				when "bgs";      @bgs
+				when "me";       @me
+				when "se";       @se
+				when "txt";      @text
 				when "exp";      @neko_exp
-				when "encount";  @neko_encount
-				when "encount2"; @neko_encount2
-				when "cheat";    @neko_cheat
-				when "debug";    @neko_debug 
-				when "type";     @neko_type
-				when "battle";   @neko_battle
-				when "nobattle"; @neko_nobattle
-				when "godmode";  @neko_godmode
+				when "encount";  @encount
+				when "encount2"; @encount2
+				when "cheat";    @cheat
+				when "debug";    @debug 
+				when "type";     @type
+				when "battle";   @battle
+				when "nobattle"; @nobattle
+				when "godmode";  @godmode
 			end
 		end
-		def neko_change(type,text)
+		def changing(type,text)
 			case type
-				when "move";     @neko_move           = text
-				when "dash";     @neko_dash           = text
-				when "bgm";      @neko_bgm            = text
-				when "bgs";      @neko_bgs            = text
-				when "me";       @neko_me             = text
-				when "se";       @neko_se             = text
-				when "txt";      @neko_text_speed     = text
-				when "exp";      @neko_exp            = text
-				when "encount";  @neko_encount        = text
-				when "encount2"; @neko_encount2       = text
-				when "debug" ;   @neko_debug          = text
-				when "battle";   @neko_battle         = text
-				when "nobattle"; @neko_nobattle       = text
-				when "godmode";  @neko_godmode        = text
-				when "cheat";    @neko_cheat          = text
+				when "move";     @move     = text
+				when "dash";     @dash     = text
+				when "bgm";      @bgm      = text
+				when "bgs";      @bgs      = text
+				when "me";       @me       = text
+				when "se";       @se       = text
+				when "txt";      @text     = text
+				when "exp";      @neko_exp = text
+				when "encount";  @encount  = text
+				when "encount2"; @encount2 = text
+				when "debug" ;   @debug    = text
+				when "battle";   @battle   = text
+				when "nobattle"; @nobattle = text
+				when "godmode";  @godmode  = text
+				when "cheat";    @cheat    = text
 			end
 		end
-		def neko_open(type)
-			if neko_check(type) == nil
-				neko_change(type,false) 
+		def opening(type)
+			if checking(type) == nil
+				changing(type,false) 
 				return false
 			else
-				return neko_check(type)
+				return checking(type)
 			end
 		end
 		
@@ -58,54 +58,54 @@
 	
 # Main config handler
 	class Game_Player < Game_Character	
-		def neko_check(type)
+		def checking(type)
 			case type
-				when "move";     @neko_move
-				when "dash";     @neko_dash
-				when "bgm";      @neko_bgm
-				when "bgs";      @neko_bgs
-				when "me";       @neko_me
-				when "se";       @neko_se
-				when "txt";      @neko_text_speed
+				when "move";     @move
+				when "dash";     @dash
+				when "bgm";      @bgm
+				when "bgs";      @bgs
+				when "me";       @me
+				when "se";       @se
+				when "txt";      @text
 				when "exp";      @neko_exp
-				when "battle";   @neko_battle
-				when "nobattle"; @neko_nobattle
-				when "encount";  @neko_encount
-				when "encount2"; @neko_encount2
-				when "godmode";  @neko_godmode
-				when "cheat";    @neko_cheat
-				when "debug" ;   @neko_debug 
-				when "type";     @neko_type
+				when "battle";   @battle
+				when "nobattle"; @nobattle
+				when "encount";  @encount
+				when "encount2"; @encount2
+				when "godmode";  @godmode
+				when "cheat";    @cheat
+				when "debug" ;   @debug 
+				when "type";     @type
 			end
 		end
 		
-		def neko_change(type,text)
+		def changing(type,text)
 			case type
-				when "move";     @neko_move           = text
-				when "dash";     @neko_dash           = text
-				when "bgm";      @neko_bgm            = text
-				when "bgs";      @neko_bgs            = text
-				when "me";       @neko_me             = text
-				when "se";       @neko_se             = text
-				when "txt";      @neko_text_speed     = text
-				when "exp";      @neko_exp            = text
-				when "battle";   @neko_battle         = text
-				when "nobattle"; @neko_nobattle       = text
-				when "encount";  @neko_encount        = text
-				when "encount2"; @neko_encount2       = text
-				when "godmode";  @neko_godmode        = text
-				when "debug" ;   @neko_debug          = text
-				when "cheat";    @neko_cheat          = text
+				when "move";     @move     = text
+				when "dash";     @dash     = text
+				when "bgm";      @bgm      = text
+				when "bgs";      @bgs      = text
+				when "me";       @me       = text
+				when "se";       @se       = text
+				when "txt";      @text     = text
+				when "exp";      @neko_exp = text
+				when "battle";   @battle   = text
+				when "nobattle"; @nobattle = text
+				when "encount";  @encount  = text
+				when "encount2"; @encount2 = text
+				when "godmode";  @godmode  = text
+				when "debug" ;   @debug    = text
+				when "cheat";    @cheat    = text
 			end
 		end
 		
-		def neko_open(type)
-			if neko_check(type) == nil
-				neko_change(type,false)
-				return $setting.neko_open(type)
+		def opening(type)
+			if checking(type) == nil
+				changing(type,false)
+				return $setting.opening(type)
 			else
-				return neko_check(type) if neko_check(type)
-				return $setting.neko_open(type)
+				return checking(type) if checking(type)
+				return $setting.opening(type)
 			end
 		end
 		
@@ -122,12 +122,12 @@
 		end
 	
 		def update_opening
-			neko_open if Input.trigger?(:F8) && !$game_player.moving?
-			SceneManager.call(Scene_Debug) if Input.press?(:F9) && $game_player.neko_open("debug") == 1 && !$game_player.moving? && !$TEST
+			opening if Input.trigger?(:F8) && !$game_player.moving?
+			SceneManager.call(Scene_Debug) if Input.press?(:F9) && $game_player.opening("debug") == 1 && !$game_player.moving? && !$TEST
 			@opened = false
 		end
 		
-		def neko_open
+		def opening
 			Sound.play_ok
 			SceneManager.call(Scene_Cheat)
 			Window_CheatCommand::init_command_position
@@ -162,20 +162,20 @@
 		end
 
 		def create_command_window
-			@neko_cheat_window = Window_CheatCommand.new
-			@neko_cheat_window.set_handler(:getItems,             method(:cheat_items      ))
-			@neko_cheat_window.set_handler(:getWeapons,           method(:cheat_weapons    ))
-			@neko_cheat_window.set_handler(:getArmors,            method(:cheat_armors     ))
-			@neko_cheat_window.set_handler(:tel,                  method(:neko_tel         ))
-			@neko_cheat_window.set_handler(:map_tel,              method(:neko_map_tel     ))
-			@neko_cheat_window.set_handler(:parameters_edit,      method(:edit_parameters  ))
-			@neko_cheat_window.set_handler(:effects_edit,         method(:edit_effects     ))
-			@neko_cheat_window.set_handler(:save_game,            method(:command_save_game))
-			@neko_cheat_window.set_handler(:setting_edit1,        method(:setting1         ))
-			@neko_cheat_window.set_handler(:setting_edit2,        method(:setting2         ))
-			@neko_cheat_window.set_handler(:screen_full,          method(:screen_full      ))
-			@neko_cheat_window.set_handler(:screen_change,        method(:screen_change    ))
-			@neko_cheat_window.set_handler(:cancel,               method(:return_scene     ))
+			@cheat_window = Window_CheatCommand.new
+			@cheat_window.set_handler(:getItems,             method(:cheat_items      ))
+			@cheat_window.set_handler(:getWeapons,           method(:cheat_weapons    ))
+			@cheat_window.set_handler(:getArmors,            method(:cheat_armors     ))
+			@cheat_window.set_handler(:tel,                  method(:neko_tel         ))
+			@cheat_window.set_handler(:map_tel,              method(:neko_map_tel     ))
+			@cheat_window.set_handler(:parameters_edit,      method(:edit_parameters  ))
+			@cheat_window.set_handler(:effects_edit,         method(:edit_effects     ))
+			@cheat_window.set_handler(:save_game,            method(:command_save_game))
+			@cheat_window.set_handler(:setting_edit1,        method(:setting1         ))
+			@cheat_window.set_handler(:setting_edit2,        method(:setting2         ))
+			@cheat_window.set_handler(:screen_full,          method(:screen_full      ))
+			@cheat_window.set_handler(:screen_change,        method(:screen_change    ))
+			@cheat_window.set_handler(:cancel,               method(:return_scene     ))
 		end
 	
 		def command_save_game
@@ -188,11 +188,11 @@
 		end
 	
 		def cheat_getItem(type)
-			@neko_cheat_window.close
-			@neko_cheat_item_window = Window_GetItem.new(0, 0, 320, type)
-			@neko_cheat_item_window.set_handler(:ok,		 method(:on_buy_ok       ))
-			@neko_cheat_item_window.set_handler(:cancel,  method(:cheat_buy_cancel))
-			@neko_cheat_item_window.show.activate
+			@cheat_window.close
+			@cheat_item_window = Window_GetItem.new(0, 0, 320, type)
+			@cheat_item_window.set_handler(:ok,		 method(:on_buy_ok       ))
+			@cheat_item_window.set_handler(:cancel,  method(:cheat_buy_cancel))
+			@cheat_item_window.show.activate
 			@number_window     = Window_ShopNumber.new(0, 304, 120)
 			@number_window.hide
 			@number_window.set_handler(:ok,		     method(:on_number_ok    ))
@@ -212,39 +212,39 @@
 		end
 
 		def on_buy_ok
-			@neko_cheat_item = @neko_cheat_item_window.item
-			@neko_cheat_item_window.hide
-			@number_window.set(@neko_cheat_item, max_buy, buying_price, "G")
+			@cheat_item = @cheat_item_window.item
+			@cheat_item_window.hide
+			@number_window.set(@cheat_item, max_buy, buying_price, "G")
 			@number_window.show.activate
 		end
 	
 		def cheat_buy_cancel
-			@neko_cheat_item_window.close
+			@cheat_item_window.close
 			return_scene
 		end
 	
 		def on_number_ok
 			do_buy(@number_window.number)
 			@number_window.hide
-			@neko_cheat_item_window.show.activate
+			@cheat_item_window.show.activate
 		end
 	
 		def on_number_cancel
 			@number_window.hide
-			@neko_cheat_item_window.show.activate
+			@cheat_item_window.show.activate
 		end
 	
 		def do_buy(number)
-			$game_party.gain_item(@neko_cheat_item, number)
+			$game_party.gain_item(@cheat_item, number)
 		end
 	
 		def max_buy
-			max = $game_party.max_item_number(@neko_cheat_item) - $game_party.item_number(@neko_cheat_item)
+			max = $game_party.max_item_number(@cheat_item) - $game_party.item_number(@cheat_item)
 			buying_price == 0 ? max : [max, money / buying_price].min
 		end
 	
 		def buying_price
-			@neko_cheat_item_window.price(@neko_cheat_item)
+			@cheat_item_window.price(@cheat_item)
 		end
 	end
 
@@ -272,11 +272,11 @@
 		end
 		
 		def item_max
-			@neko_cheat_data ? @neko_cheat_data.size : 1
+			@cheat_data ? @cheat_data.size : 1
 		end
 		
 		def item
-			@neko_cheat_data[index]
+			@cheat_data[index]
 		end
 		
 		def money=(money)
@@ -285,11 +285,11 @@
 		end
 		
 		def current_item_enabled?
-			enable?(@neko_cheat_data[index])
+			enable?(@cheat_data[index])
 		end
 		
 		def price(item)
-			@neko_cheat_price[item]
+			@cheat_price[item]
 		end
 		
 		def enable?(item)
@@ -303,18 +303,18 @@
 		end
 		
 		def make_item_list
-			@neko_cheat_data  = []
-			@neko_cheat_price = {}
+			@cheat_data  = []
+			@cheat_price = {}
 			@shop_goods.each do |good|
 				if good && good.name != ""
-					@neko_cheat_data.push(good)
-					@neko_cheat_price[good] = 0
+					@cheat_data.push(good)
+					@cheat_price[good] = 0
 				end
 			end
 		end
 		
 		def draw_item(index)
-			item = @neko_cheat_data[index]
+			item = @cheat_data[index]
 			rect = item_rect(index)
 			draw_item_name(item, rect.x, rect.y, enable?(item))
 			rect.width -= 4
@@ -628,13 +628,6 @@
 			return if @actor_index == index
 			@actor_index = index % $game_party.members.size
 			refresh
-		end
-		
-		def draw_actor_level(actor, x, y)
-			change_color(system_color)
-			draw_text(x, y, 32, line_height, Vocab::level_a)
-			change_color(normal_color)
-			draw_text(x + 32, y, 24, line_height, actor.level, 2)
 		end
 		
 		def refresh
@@ -1277,7 +1270,7 @@
 		end
 		
 		def menu_name
-			return @neko_select_cheat
+			return @select_cheat
 		end
 		
 		def process_ok
@@ -1322,23 +1315,23 @@
 	
 # Config menu placeholder
 		def setting
-			@neko_setting = Window_CheatSetting.new
-			@neko_setting.set_handler(:edit_godmode,    method(:neko_godmode   ))
-			@neko_setting.set_handler(:edit_move,       method(:neko_speed     ))
-			@neko_setting.set_handler(:edit_dash,       method(:neko_speed     ))
-			@neko_setting.set_handler(:edit_exp,        method(:neko_exp       ))
-			@neko_setting.set_handler(:edit_text,       method(:neko_text      ))
-			@neko_setting.set_handler(:edit_debug,      method(:neko_debug     ))
-			@neko_setting.set_handler(:edit_encount,    method(:neko_encount   ))
-			@neko_setting.set_handler(:edit_encount2,   method(:neko_encount2  ))
-			@neko_setting.set_handler(:edit_battle,     method(:neko_battle    ))
-			@neko_setting.set_handler(:edit_nobattle,   method(:neko_battle    ))
-			@neko_setting.set_handler(:edit_bgm,        method(:neko_sound     ))
-			@neko_setting.set_handler(:edit_bgs,        method(:neko_sound     ))
-			@neko_setting.set_handler(:edit_me,         method(:neko_sound     ))
-			@neko_setting.set_handler(:edit_se,         method(:neko_sound     ))
-			@neko_setting.set_handler(:cancel,          method(:setting_cancel ))
-			show_sub_window(@neko_setting)
+			@setting = Window_CheatSetting.new
+			@setting.set_handler(:edit_godmode,    method(:neko_godmode   ))
+			@setting.set_handler(:edit_move,       method(:neko_speed     ))
+			@setting.set_handler(:edit_dash,       method(:neko_speed     ))
+			@setting.set_handler(:edit_exp,        method(:neko_exp       ))
+			@setting.set_handler(:edit_text,       method(:neko_text      ))
+			@setting.set_handler(:edit_debug,      method(:neko_debug     ))
+			@setting.set_handler(:edit_encount,    method(:neko_encount   ))
+			@setting.set_handler(:edit_encount2,   method(:neko_encount2  ))
+			@setting.set_handler(:edit_battle,     method(:neko_battle    ))
+			@setting.set_handler(:edit_nobattle,   method(:neko_battle    ))
+			@setting.set_handler(:edit_bgm,        method(:neko_sound     ))
+			@setting.set_handler(:edit_bgs,        method(:neko_sound     ))
+			@setting.set_handler(:edit_me,         method(:neko_sound     ))
+			@setting.set_handler(:edit_se,         method(:neko_sound     ))
+			@setting.set_handler(:cancel,          method(:setting_cancel ))
+			show_sub_window(@setting)
 		end
 	end
 
@@ -1347,19 +1340,19 @@
 		alias neko_initialize initialize if !$setting
 		def initialize(type,text)
 			@now_setting = type
-			@neko_select_cheat = text
+			@select_cheat = text
 			neko_initialize
 		end
 		def close
 			@now_setting = false
-			@neko_select_cheat = false
+			@select_cheat = false
 		end
 	end
 
 # Movement speed menu placeholder
 	class Window_CheatMove < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			for i in 4...10
 				if i == imsi
 					add_command(i.to_s + NEKO::Now, :change_type, true, i)
@@ -1378,7 +1371,7 @@
 # Battle speed menu placeholder
 	class Window_CheatBattle < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			for i in 1...11
 				if i == imsi
 					add_command(i.to_s + "x" + NEKO::Now, :change_type, true, i)
@@ -1397,7 +1390,7 @@
 # Exp multiply menu placeholder
 	class Window_Exp < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			for i in 0...11
 				if imsi == i
 					add_command(i.to_s + "x" + NEKO::Now, :change_type, true, i)
@@ -1416,7 +1409,7 @@
 # Random event menu placeholder
 	class Window_Encount < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
 				add_command(NEKO::Off,              :change_type, true, 2    )
@@ -1436,7 +1429,7 @@
 # Battle skip menu placeholder
 	class Window_Encount2 < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			add_command(NEKO::Win + NEKO::Now,       :change_type, true, 1    ) if imsi == 1
 			add_command(NEKO::Win,                   :change_type, true, 1    ) if imsi != 1
 			add_command(NEKO::Lose + NEKO::Now,      :change_type, true, 2    ) if imsi == 2
@@ -1453,7 +1446,7 @@
 # Text speed menu placeholder
 	class Window_TextView < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
 				add_command(NEKO::Off,              :change_type, true, 2    )
@@ -1473,7 +1466,7 @@
 # Enable default debug mode placeholder
 	class Window_Debug_Neko < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			if imsi == 1
 				add_command(NEKO::On + NEKO::Now,   :change_type, true, 1    )
 				add_command(NEKO::Off,              :change_type, true, 2    )
@@ -1493,7 +1486,7 @@
 # Volume menu placeholder
 	class Window_Volume < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			for i in 0...11
 				i2 = i * 10
 				if imsi == i2
@@ -1513,7 +1506,7 @@
 # Godmode menu placeholder
 	class Window_Godmode < Window_CheatCommand_Setting
 		def make_command_list
-			imsi = @now_setting.neko_check(menu_name)
+			imsi = @now_setting.checking(menu_name)
 			add_command(NEKO::All   + NEKO::Now,       :change_type, true, 1    ) if imsi == 1
 			add_command(NEKO::All,                     :change_type, true, 1    ) if imsi != 1
 			add_command(NEKO::HP_MP + NEKO::Now,       :change_type, true, 2    ) if imsi == 2
@@ -1538,7 +1531,7 @@
 	
 # Another placeholder
 		def neko_battle
-			@neko_battle = Window_CheatBattle.new(@now_setting, @neko_setting.current_ext)
+			@neko_battle = Window_CheatBattle.new(@now_setting, @setting.current_ext)
 			@neko_battle.set_handler(:change_type, method(:change_type        ))
 			@neko_battle.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "battle"
@@ -1546,7 +1539,7 @@
 		end
 	
 		def neko_speed
-			@neko_speed = Window_CheatMove.new(@now_setting,@neko_setting.current_ext)
+			@neko_speed = Window_CheatMove.new(@now_setting,@setting.current_ext)
 			@neko_speed.set_handler(:change_type, method(:change_type        ))
 			@neko_speed.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "speed"
@@ -1554,7 +1547,7 @@
 		end
 	
 		def neko_exp
-			@neko_exp = Window_Exp.new(@now_setting,@neko_setting.current_ext)
+			@neko_exp = Window_Exp.new(@now_setting,@setting.current_ext)
 			@neko_exp.set_handler(:change_type, method(:change_type        ))
 			@neko_exp.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "exp"
@@ -1562,7 +1555,7 @@
 		end
 
 		def neko_encount
-			@neko_encount = Window_Encount.new(@now_setting,@neko_setting.current_ext)
+			@neko_encount = Window_Encount.new(@now_setting,@setting.current_ext)
 			@neko_encount.set_handler(:change_type, method(:change_type        ))
 			@neko_encount.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "encount"
@@ -1570,7 +1563,7 @@
 		end
 
 		def neko_encount2
-			@neko_encount2 = Window_Encount2.new(@now_setting,@neko_setting.current_ext)
+			@neko_encount2 = Window_Encount2.new(@now_setting,@setting.current_ext)
 			@neko_encount2.set_handler(:change_type, method(:change_type        ))
 			@neko_encount2.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "encount2"
@@ -1578,7 +1571,7 @@
 		end
 		
 		def neko_text
-			@neko_text = Window_TextView.new(@now_setting,@neko_setting.current_ext)
+			@neko_text = Window_TextView.new(@now_setting,@setting.current_ext)
 			@neko_text.set_handler(:change_type, method(:change_type        ))
 			@neko_text.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "txt"
@@ -1586,7 +1579,7 @@
 		end
 
 		def neko_debug
-			@neko_debug = Window_Debug_Neko.new(@now_setting,@neko_setting.current_ext)
+			@neko_debug = Window_Debug_Neko.new(@now_setting,@setting.current_ext)
 			@neko_debug.set_handler(:change_type, method(:change_type        ))
 			@neko_debug.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "debug"
@@ -1594,7 +1587,7 @@
 		end
 
 		def neko_sound
-			@neko_sound = Window_Volume.new(@now_setting,@neko_setting.current_ext)
+			@neko_sound = Window_Volume.new(@now_setting,@setting.current_ext)
 			@neko_sound.set_handler(:change_type, method(:change_type        ))
 			@neko_sound.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "sound"
@@ -1602,7 +1595,7 @@
 		end
 		
 		def neko_godmode
-			@neko_godmode = Window_Godmode.new(@now_setting, @neko_setting.current_ext)
+			@neko_godmode = Window_Godmode.new(@now_setting, @setting.current_ext)
 			@neko_godmode.set_handler(:change_type, method(:change_type        ))
 			@neko_godmode.set_handler(:cancel,      method(:hide_setting_window))
 			@now_menu = "godmode"
@@ -1641,23 +1634,23 @@
 # Handle close config
 		def setting_cancel
 			@now_setting = false
-			hide_sub_window(@neko_setting)
+			hide_sub_window(@setting)
 		end
 
 # Handle changing, closing, saving, finding config menu
 		def change_type
 			now_menu = find_menu
-			@now_setting.neko_change(@neko_setting.current_ext,now_menu.current_ext)
+			@now_setting.changing(@setting.current_ext,now_menu.current_ext)
 			@now_setting.cheat_save
 			now_menu.close
-			@neko_setting.close
+			@setting.close
 			return_scene
 		end
 		
 # Second window creating handler
 		def show_sub_window(window)
 			width_remain = Graphics.width - window.width
-			window.x = @neko_cheat_window.width
+			window.x = @cheat_window.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			window.show.activate
@@ -1668,15 +1661,15 @@
 			@viewport.rect.x = @viewport.ox = 0
 			@viewport.rect.width = Graphics.width
 			window.hide.deactivate
-			@neko_cheat_window.refresh
-			@neko_cheat_window.activate
+			@cheat_window.refresh
+			@cheat_window.activate
 		end
 		
 # Create third window for config function
 		def show_setting_window	 
 			now_menu = find_menu
 			width_remain = Graphics.width - now_menu.width
-			now_menu.x = @neko_cheat_window.width + @neko_setting.width
+			now_menu.x = @cheat_window.width + @setting.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			now_menu.show.activate
@@ -1689,15 +1682,15 @@
 			@viewport.rect.width = Graphics.width
 			now_menu.hide.deactivate
 			now_menu.close
-			@neko_setting.refresh
-			@neko_setting.activate
+			@setting.refresh
+			@setting.activate
 		end
 
 # Create third window for parameters edit function
 		def show_parameter_window
 			now_menu = find_menu
 			width_remain = Graphics.width - now_menu.width
-			now_menu.x = @neko_cheat_window.width + @edit_parameters.width
+			now_menu.x = @cheat_window.width + @edit_parameters.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			now_menu.show.activate
@@ -1717,7 +1710,7 @@
 		def show_stats_window
 			now_menu = find_menu
 			width_remain = Graphics.width - @stats_displayer.width
-			@stats_displayer.x = @neko_cheat_window.width + @edit_parameters.width + now_menu.width
+			@stats_displayer.x = @cheat_window.width + @edit_parameters.width + now_menu.width
 			@viewport.rect.x = 0
 			@viewport.rect.width = width_remain
 			@stats_displayer.show.activate
@@ -1735,13 +1728,13 @@
 	class Scene_Cheat < Scene_MenuBase
 		def screen_full
 			Graphics.toggle_fullscreen
-			@neko_cheat_window.refresh
-			@neko_cheat_window.activate
+			@cheat_window.refresh
+			@cheat_window.activate
 		end
 		def screen_change
 			Graphics.toggle_ratio 
-			@neko_cheat_window.refresh
-			@neko_cheat_window.activate
+			@cheat_window.refresh
+			@cheat_window.activate
 		end
 	end
 	
@@ -1753,208 +1746,296 @@
 	# Contact : zeusex81@gmail.com
 	# (fr) Manuel d'utilisation : http://pastebin.com/raw.php?i=1TQfMnVJ
 	# (en) User Guide           : http://pastebin.com/raw.php?i=EgnWt9ur
-	 
-	$imported ||= {}
-	$imported[:Zeus_Fullscreen] = __FILE__
+	
+	#==============================================================================
+	# Fullscreen compatibility layer
+	#==============================================================================
+	
+	NEKO_MKXP = (
+		Graphics.respond_to?(:fullscreen) &&
+		Graphics.respond_to?(:fullscreen=)
+	)
+	
+	if NEKO_MKXP
+		class << Graphics
+		
+			#----------------------------------------------------------------------
+			# Fullscreen++
+			# mkxp/mkxp-z backend
+			#----------------------------------------------------------------------
+		
+			def fullscreen?
+				!!self.fullscreen
+			end
+		
+			def toggle_fullscreen
+				self.fullscreen = !self.fullscreen
+			end
+		
+			def fullscreen_mode
+				self.fullscreen = true
+			end
+		
+			def windowed_mode
+				self.fullscreen = false
+			end
+		
+			#----------------------------------------------------------------------
+			# Window scale
+			#
+			# Cycles:
+			#   1x -> 2x -> 3x -> ... -> largest size -> 1x
+			#
+			# Only used in windowed mode. mkxp itself handles scaling in fullscreen.
+			#----------------------------------------------------------------------
+		
+			def toggle_ratio
+				return if fullscreen?
+				return unless respond_to?(:resize_window)
+				@neko_window_ratio ||= 1
+			
+				if respond_to?(:display_width) && respond_to?(:display_height)
+					max_x = display_width  / width
+					max_y = display_height / height
+					max_ratio = [max_x, max_y].min
+					max_ratio = 1 if max_ratio < 1
+				else
+					max_ratio = 4
+				end
+			
+				@neko_window_ratio += 1
+				@neko_window_ratio = 1 if @neko_window_ratio > max_ratio
+			
+				resize_window(
+					width  * @neko_window_ratio,
+					height * @neko_window_ratio,
+					true
+				)
+			end
+		
+			def ratio
+				@neko_window_ratio ||= 1
+			end
+		
+			def ratio=(value)
+				return if fullscreen?
+				return unless respond_to?(:resize_window)
+				value = value.to_i
+				value = 1 if value < 1
+				@neko_window_ratio = value
+			
+				resize_window(
+				width  * value,
+				height * value,
+				true
+				)
+			end
+		end
+	end
+	
+	unless NEKO_MKXP
+		$imported ||= {}
+		$imported[:Zeus_Fullscreen] = __FILE__
 
-	class << Graphics
-		Disable_VX_Fullscreen = false
+		class << Graphics
+			Disable_VX_Fullscreen = false
 	 
-		CreateWindowEx            = Win32API.new('user32'  , 'CreateWindowEx'           , 'ippiiiiiiiii', 'i')
-		GetClientRect             = Win32API.new('user32'  , 'GetClientRect'            , 'ip'          , 'i')
-		GetDC                     = Win32API.new('user32'  , 'GetDC'                    , 'i'           , 'i')
-		GetSystemMetrics          = Win32API.new('user32'  , 'GetSystemMetrics'         , 'i'           , 'i')
-		GetWindowRect             = Win32API.new('user32'  , 'GetWindowRect'            , 'ip'          , 'i')
-		FillRect                  = Win32API.new('user32'  , 'FillRect'                 , 'ipi'         , 'i')
-		FindWindow                = Win32API.new('user32'  , 'FindWindow'               , 'pp'          , 'i')
-		ReleaseDC                 = Win32API.new('user32'  , 'ReleaseDC'                , 'ii'          , 'i')
-		SendInput                 = Win32API.new('user32'  , 'SendInput'                , 'ipi'         , 'i')
-		SetWindowLong             = Win32API.new('user32'  , 'SetWindowLong'            , 'iii'         , 'i')
-		SetWindowPos              = Win32API.new('user32'  , 'SetWindowPos'             , 'iiiiiii'     , 'i')
-		ShowWindow                = Win32API.new('user32'  , 'ShowWindow'               , 'ii'          , 'i')
-		SystemParametersInfo      = Win32API.new('user32'  , 'SystemParametersInfo'     , 'iipi'        , 'i')
-		UpdateWindow              = Win32API.new('user32'  , 'UpdateWindow'             , 'i'           , 'i')
-		GetPrivateProfileString   = Win32API.new('kernel32', 'GetPrivateProfileString'  , 'ppppip'      , 'i')
-		WritePrivateProfileString = Win32API.new('kernel32', 'WritePrivateProfileString', 'pppp'        , 'i')
-		CreateSolidBrush          = Win32API.new('gdi32'   , 'CreateSolidBrush'         , 'i'           , 'i')
-		DeleteObject              = Win32API.new('gdi32'   , 'DeleteObject'             , 'i'           , 'i')
+			CreateWindowEx            = Win32API.new('user32'  , 'CreateWindowEx'           , 'ippiiiiiiiii', 'i')
+			GetClientRect             = Win32API.new('user32'  , 'GetClientRect'            , 'ip'          , 'i')
+			GetDC                     = Win32API.new('user32'  , 'GetDC'                    , 'i'           , 'i')
+			GetSystemMetrics          = Win32API.new('user32'  , 'GetSystemMetrics'         , 'i'           , 'i')
+			GetWindowRect             = Win32API.new('user32'  , 'GetWindowRect'            , 'ip'          , 'i')
+			FillRect                  = Win32API.new('user32'  , 'FillRect'                 , 'ipi'         , 'i')
+			FindWindow                = Win32API.new('user32'  , 'FindWindow'               , 'pp'          , 'i')
+			ReleaseDC                 = Win32API.new('user32'  , 'ReleaseDC'                , 'ii'          , 'i')
+			SendInput                 = Win32API.new('user32'  , 'SendInput'                , 'ipi'         , 'i')
+			SetWindowLong             = Win32API.new('user32'  , 'SetWindowLong'            , 'iii'         , 'i')
+			SetWindowPos              = Win32API.new('user32'  , 'SetWindowPos'             , 'iiiiiii'     , 'i')
+			ShowWindow                = Win32API.new('user32'  , 'ShowWindow'               , 'ii'          , 'i')
+			SystemParametersInfo      = Win32API.new('user32'  , 'SystemParametersInfo'     , 'iipi'        , 'i')
+			UpdateWindow              = Win32API.new('user32'  , 'UpdateWindow'             , 'i'           , 'i')
+			GetPrivateProfileString   = Win32API.new('kernel32', 'GetPrivateProfileString'  , 'ppppip'      , 'i')
+			WritePrivateProfileString = Win32API.new('kernel32', 'WritePrivateProfileString', 'pppp'        , 'i')
+			CreateSolidBrush          = Win32API.new('gdi32'   , 'CreateSolidBrush'         , 'i'           , 'i')
+			DeleteObject              = Win32API.new('gdi32'   , 'DeleteObject'             , 'i'           , 'i')
 	 
-		unless method_defined?(:zeus_fullscreen_update)
-			HWND     = FindWindow.call('RGSS Player', 0)
-			BackHWND = CreateWindowEx.call(0x08000008, 'Static', '', 0x80000000, 0, 0, 0, 0, 0, 0, 0, 0)
-			alias zeus_fullscreen_resize_screen resize_screen if !$setting
-			alias zeus_fullscreen_update        update if !$setting
-		end
-	private
-		def initialize_fullscreen_rects
-			@borders_size    ||= borders_size
-			@fullscreen_rect ||= screen_rect
-			@workarea_rect   ||= workarea_rect
-		end
-		def borders_size
-			GetWindowRect.call(HWND, wrect = [0, 0, 0, 0].pack('l4'))
-			GetClientRect.call(HWND, crect = [0, 0, 0, 0].pack('l4'))
-			wrect, crect = wrect.unpack('l4'), crect.unpack('l4')
-			Rect.new(0, 0, wrect[2]-wrect[0]-crect[2], wrect[3]-wrect[1]-crect[3])
-		end
-		def screen_rect
-			Rect.new(0, 0, GetSystemMetrics.call(0), GetSystemMetrics.call(1))
-		end
-		def workarea_rect
-			SystemParametersInfo.call(0x30, 0, rect = [0, 0, 0, 0].pack('l4'), 0)
-			rect = rect.unpack('l4')
-			Rect.new(rect[0], rect[1], rect[2]-rect[0], rect[3]-rect[1])
-		end
-		def hide_borders() SetWindowLong.call(HWND, -16, 0x14000000) end
-		def show_borders() SetWindowLong.call(HWND, -16, 0x14CA0000) end
-		def hide_back()    ShowWindow.call(BackHWND, 0)              end
-		def show_back
-			ShowWindow.call(BackHWND, 3)
-			UpdateWindow.call(BackHWND)
-			dc    = GetDC.call(BackHWND)
-			rect  = [0, 0, @fullscreen_rect.width, @fullscreen_rect.height].pack('l4')
-			brush = CreateSolidBrush.call(0)
-			FillRect.call(dc, rect, brush)
-			ReleaseDC.call(BackHWND, dc)
-			DeleteObject.call(brush)
-		end
-		def resize_window(w, h)
-			if @fullscreen
-				x, y, z = (@fullscreen_rect.width-w)/2, (@fullscreen_rect.height-h)/2, -1
-			else
-				w += @borders_size.width
-				h += @borders_size.height
-				x = @workarea_rect.x + (@workarea_rect.width	- w) / 2
-				y = @workarea_rect.y + (@workarea_rect.height - h) / 2
-				z = -2
+			unless method_defined?(:zeus_fullscreen_update)
+				HWND     = FindWindow.call('RGSS Player', 0)
+				BackHWND = CreateWindowEx.call(0x08000008, 'Static', '', 0x80000000, 0, 0, 0, 0, 0, 0, 0, 0)
+				alias zeus_fullscreen_resize_screen resize_screen if !$setting
+				alias zeus_fullscreen_update        update if !$setting
 			end
-			SetWindowPos.call(HWND, z, x, y, w, h, 0)
-		end
-		def release_alt
-			inputs = [1,18,2, 1,164,2, 1,165,2].pack('LSx2Lx16'*3)
-			SendInput.call(3, inputs, 28)
-		end
-	public
-		def load_fullscreen_settings
-			buffer = [].pack('x256')
-			section = 'Fullscreen++'
-			filename = './Game_Cheat.ini'
-			get_option = Proc.new do |key, default_value|
-				l = GetPrivateProfileString.call(section, key, default_value, buffer, buffer.size, filename)
-				buffer[0, l]
+		private
+			def initialize_fullscreen_rects
+				@borders_size    ||= borders_size
+				@fullscreen_rect ||= screen_rect
+				@workarea_rect   ||= workarea_rect
 			end
-			@fullscreen       = get_option.call('Fullscreen'     , '0') == '1'
-			@fullscreen_ratio = get_option.call('FullscreenRatio', '0').to_i
-			@windowed_ratio   = get_option.call('WindowedRatio'  , '1').to_i
-			toggle_vx_fullscreen if Disable_VX_Fullscreen and vx_fullscreen?
-			fullscreen? ? fullscreen_mode : windowed_mode
-		end
-		def save_fullscreen_settings
-			section = 'Fullscreen++'
-			filename = './Game_Cheat.ini'
-			set_option = Proc.new do |key, value|
-				WritePrivateProfileString.call(section, key, value.to_s, filename)
+			def borders_size
+				GetWindowRect.call(HWND, wrect = [0, 0, 0, 0].pack('l4'))
+				GetClientRect.call(HWND, crect = [0, 0, 0, 0].pack('l4'))
+				wrect, crect = wrect.unpack('l4'), crect.unpack('l4')
+				Rect.new(0, 0, wrect[2]-wrect[0]-crect[2], wrect[3]-wrect[1]-crect[3])
 			end
-			set_option.call('Fullscreen'     , @fullscreen ? '1' : '0')
-			set_option.call('FullscreenRatio', @fullscreen_ratio)
-			set_option.call('WindowedRatio'	 , @windowed_ratio)
-		end
-		def fullscreen?
-			@fullscreen or vx_fullscreen?
-		end
-		def vx_fullscreen?
-			rect = screen_rect
-			rect.width == 640 and rect.height == 480
-		end
-		def toggle_fullscreen
-			fullscreen? ? windowed_mode : fullscreen_mode
-		end
-	  def toggle_vx_fullscreen
-			windowed_mode if @fullscreen and !vx_fullscreen?
-			inputs = [1,18,0, 1,13,0, 1,13,2, 1,18,2].pack('LSx2Lx16'*4)
-			SendInput.call(4, inputs, 28)
-			zeus_fullscreen_update
-			self.ratio += 0 # refresh window size
-		end
-		def vx_fullscreen_mode
-			return if vx_fullscreen?
-			toggle_vx_fullscreen
-		end
-		def fullscreen_mode
-			return if vx_fullscreen?
-			initialize_fullscreen_rects
-			show_back
-			hide_borders
-			@fullscreen = true
-			self.ratio += 0 # refresh window size
-		end
-		def windowed_mode
-			toggle_vx_fullscreen if vx_fullscreen?
-			initialize_fullscreen_rects
-			hide_back
-			show_borders
-			@fullscreen = false
-			self.ratio += 0 # refresh window size
-		end
-		def toggle_ratio
-			return if vx_fullscreen?
-			self.ratio += 1
-		end
-		def ratio
-			return 1 if vx_fullscreen?
-			@fullscreen ? @fullscreen_ratio : @windowed_ratio
-		end
-		def ratio=(r)
-			return if vx_fullscreen?
-			initialize_fullscreen_rects
-			r = 0 if r < 0
-			if @fullscreen
-				@fullscreen_ratio = r
-				w_max, h_max = @fullscreen_rect.width, @fullscreen_rect.height
-			else
-				@windowed_ratio = r
-				w_max = @workarea_rect.width  - @borders_size.width
-				h_max = @workarea_rect.height - @borders_size.height
+			def screen_rect
+				Rect.new(0, 0, GetSystemMetrics.call(0), GetSystemMetrics.call(1))
 			end
-			if r == 0
-				w, h = w_max, w_max * height / width
-				h, w = h_max, h_max * width / height if h > h_max
-			else
-				w, h = width * r, height * r
+			def workarea_rect
+				SystemParametersInfo.call(0x30, 0, rect = [0, 0, 0, 0].pack('l4'), 0)
+				rect = rect.unpack('l4')
+				Rect.new(rect[0], rect[1], rect[2]-rect[0], rect[3]-rect[1])
+			end
+			def hide_borders() SetWindowLong.call(HWND, -16, 0x14000000) end
+			def show_borders() SetWindowLong.call(HWND, -16, 0x14CA0000) end
+			def hide_back()    ShowWindow.call(BackHWND, 0)              end
+			def show_back
+				ShowWindow.call(BackHWND, 3)
+				UpdateWindow.call(BackHWND)
+				dc    = GetDC.call(BackHWND)
+				rect  = [0, 0, @fullscreen_rect.width, @fullscreen_rect.height].pack('l4')
+				brush = CreateSolidBrush.call(0)
+				FillRect.call(dc, rect, brush)
+				ReleaseDC.call(BackHWND, dc)
+				DeleteObject.call(brush)
+			end
+			def resize_window(w, h)
+				if @fullscreen
+					x, y, z = (@fullscreen_rect.width-w)/2, (@fullscreen_rect.height-h)/2, -1
+				else
+					w += @borders_size.width
+					h += @borders_size.height
+					x = @workarea_rect.x + (@workarea_rect.width	- w) / 2
+					y = @workarea_rect.y + (@workarea_rect.height - h) / 2
+					z = -2
+				end
+				SetWindowPos.call(HWND, z, x, y, w, h, 0)
+			end
+			def release_alt
+				inputs = [1,18,2, 1,164,2, 1,165,2].pack('LSx2Lx16'*3)
+				SendInput.call(3, inputs, 28)
+			end
+		public
+			def load_fullscreen_settings
+				buffer = [].pack('x256')
+				section = 'Fullscreen++'
+				filename = './Game_Cheat.ini'
+				get_option = Proc.new do |key, default_value|
+					l = GetPrivateProfileString.call(section, key, default_value, buffer, buffer.size, filename)
+					buffer[0, l]
+				end
+				@fullscreen       = get_option.call('Fullscreen'     , '0') == '1'
+				@fullscreen_ratio = get_option.call('FullscreenRatio', '0').to_i
+				@windowed_ratio   = get_option.call('WindowedRatio'  , '1').to_i
+				toggle_vx_fullscreen if Disable_VX_Fullscreen and vx_fullscreen?
+				fullscreen? ? fullscreen_mode : windowed_mode
+			end
+			def save_fullscreen_settings
+				section = 'Fullscreen++'
+				filename = './Game_Cheat.ini'
+				set_option = Proc.new do |key, value|
+					WritePrivateProfileString.call(section, key, value.to_s, filename)
+				end
+				set_option.call('Fullscreen'     , @fullscreen ? '1' : '0')
+				set_option.call('FullscreenRatio', @fullscreen_ratio)
+				set_option.call('WindowedRatio'	 , @windowed_ratio)
+			end
+			def fullscreen?
+				@fullscreen or vx_fullscreen?
+			end
+			def vx_fullscreen?
+				rect = screen_rect
+				rect.width == 640 and rect.height == 480
+			end
+			def toggle_fullscreen
+				fullscreen? ? windowed_mode : fullscreen_mode
+			end
+			def toggle_vx_fullscreen
+				windowed_mode if @fullscreen and !vx_fullscreen?
+				inputs = [1,18,0, 1,13,0, 1,13,2, 1,18,2].pack('LSx2Lx16'*4)
+				SendInput.call(4, inputs, 28)
+				zeus_fullscreen_update
+				self.ratio += 0 # refresh window size
+			end
+			def vx_fullscreen_mode
+				return if vx_fullscreen?
+				toggle_vx_fullscreen
+			end
+			def fullscreen_mode
+				return if vx_fullscreen?
+				initialize_fullscreen_rects
+				show_back
+				hide_borders
+				@fullscreen = true
+				self.ratio += 0 # refresh window size
+			end
+			def windowed_mode
+				toggle_vx_fullscreen if vx_fullscreen?
+				initialize_fullscreen_rects
+				hide_back
+				show_borders
+				@fullscreen = false
+				self.ratio += 0 # refresh window size
+			end
+			def toggle_ratio
+				return if vx_fullscreen?
+				self.ratio += 1
+			end
+			def ratio
+				return 1 if vx_fullscreen?
+				@fullscreen ? @fullscreen_ratio : @windowed_ratio
+			end
+			def ratio=(r)
+				return if vx_fullscreen?
+				initialize_fullscreen_rects
+				r = 0 if r < 0
+				if @fullscreen
+					@fullscreen_ratio = r
+					w_max, h_max = @fullscreen_rect.width, @fullscreen_rect.height
+				else
+					@windowed_ratio = r
+					w_max = @workarea_rect.width  - @borders_size.width
+					h_max = @workarea_rect.height - @borders_size.height
+				end
+				if r == 0
+					w, h = w_max, w_max * height / width
+					h, w = h_max, h_max * width / height if h > h_max
+				else
+					w, h = width * r, height * r
+					return self.ratio = 0 if w > w_max or h > h_max
+				end
+				resize_window(w, h)
+				save_fullscreen_settings
+			end
+			def ratio_r(r)
+				return if vx_fullscreen?
+				initialize_fullscreen_rects
+				r = 0 if r < 0
+				if @fullscreen
+					@fullscreen_ratio = r
+					w_max, h_max = @fullscreen_rect.width, @fullscreen_rect.height
+				else
+					@windowed_ratio = r
+					w_max = @workarea_rect.width  - @borders_size.width
+					h_max = @workarea_rect.height - @borders_size.height
+				end
+				if r == 0
+					w, h = w_max, w_max * height / width
+					h, w = h_max, h_max * width / height if h > h_max
+				else
+					w, h = width * r, height * r
 				return self.ratio = 0 if w > w_max or h > h_max
+				end
+				resize_window(w, h)
+				save_fullscreen_settings
 			end
-			resize_window(w, h)
-			save_fullscreen_settings
-		end
-		def ratio_r(r)
-			return if vx_fullscreen?
-			initialize_fullscreen_rects
-			r = 0 if r < 0
-			if @fullscreen
-				@fullscreen_ratio = r
-				w_max, h_max = @fullscreen_rect.width, @fullscreen_rect.height
-			else
-				@windowed_ratio = r
-				w_max = @workarea_rect.width  - @borders_size.width
-				h_max = @workarea_rect.height - @borders_size.height
+			def update
+				release_alt if Disable_VX_Fullscreen and Input.trigger?(Input::ALT)
+				zeus_fullscreen_update
 			end
-			if r == 0
-				w, h = w_max, w_max * height / width
-				h, w = h_max, h_max * width / height if h > h_max
-			else
-				w, h = width * r, height * r
-				return self.ratio = 0 if w > w_max or h > h_max
+			def resize_screen(width, height)
+				zeus_fullscreen_resize_screen(width, height)
+				self.ratio += 0 # refresh window size
 			end
-			resize_window(w, h)
-			save_fullscreen_settings
-		end
-		def update
-			release_alt if Disable_VX_Fullscreen and Input.trigger?(Input::ALT)
-			zeus_fullscreen_update
-		end
-		def resize_screen(width, height)
-			zeus_fullscreen_resize_screen(width, height)
-			self.ratio += 0 # refresh window size
 		end
 	end
 
@@ -1964,7 +2045,7 @@
 # Battle skip function
 		alias neko_update_encounter update_encounter if !$setting
 		def update_encounter
-			if neko_open("encount") == 1
+			if opening("encount") == 1
 				return
 			else
 				neko_update_encounter
@@ -1974,7 +2055,7 @@
 # No clip function
 		alias neko_debug_through? debug_through? if !$setting
 		def debug_through?
-			if neko_open("debug") == 1 && Input.press?(:CTRL)
+			if opening("debug") == 1 && Input.press?(:CTRL)
 				return true 
 			end
 			if $TEST && Input.press?(:CTRL)
@@ -1991,28 +2072,28 @@
 		alias neko_command_602 command_602 if !$setting
 		alias neko_command_603 command_603 if !$setting
 		def command_301
-			return if $game_player.neko_open("encount2")
+			return if $game_player.opening("encount2")
 			neko_command_301
 		end
 		def command_601
-			return if $game_player.neko_open("encount2") == 1
-			if $game_player.neko_open("encount2")
+			return if $game_player.opening("encount2") == 1
+			if $game_player.opening("encount2")
 				command_skip
 			else
 				neko_command_601
 			end
 		end
 		def command_602
-			return if $game_player.neko_open("encount2") == 3
-			if $game_player.neko_open("encount2")
+			return if $game_player.opening("encount2") == 3
+			if $game_player.opening("encount2")
 				command_skip
 			else
 				neko_command_602
 			end
 		end
 		def command_603
-			return if $game_player.neko_open("encount2") == 2
-			if $game_player.neko_open("encount2")
+			return if $game_player.opening("encount2") == 2
+			if $game_player.opening("encount2")
 				command_skip
 			else
 				neko_command_603
@@ -2032,16 +2113,16 @@
 		end
 		
 		def neko_dash
-			if $game_player.neko_open("dash")
-				return $game_player.neko_open("dash")
+			if $game_player.opening("dash")
+				return $game_player.opening("dash")
 			else
 				return neko_move + 1
 			end
 		end
 		
 		def neko_move
-			if $game_player.neko_open("move")
-				return $game_player.neko_open("move")
+			if $game_player.opening("move")
+				return $game_player.opening("move")
 			else
 				return @move_speed
 			end
@@ -2053,7 +2134,7 @@
 		alias neko_clear_flags clear_flags if !$setting
 		def clear_flags
 			neko_clear_flags
-			if $game_player.neko_open("txt") == 1 && $game_message.choices.size == 0
+			if $game_player.opening("txt") == 1 && $game_message.choices.size == 0
 				@show_fast = true 
 			end
 		end
@@ -2063,10 +2144,10 @@
 	class Game_Troop < Game_Unit
 		alias neko_exp_total exp_total if !$setting
 		def exp_total
-			if $game_player.neko_open("exp") == false
+			if $game_player.opening("exp") == false
 				neko_exp_total
 			else
-				neko_exp_total * $game_player.neko_open("exp")
+				neko_exp_total * $game_player.opening("exp")
 			end
 		end
 	end
@@ -2075,8 +2156,8 @@
 	class RPG::BGM < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play(pos = 0)
-			if $game_player.neko_open('bgm')
-				@volume = $game_player.neko_open('bgm') 
+			if $game_player.opening('bgm')
+				@volume = $game_player.opening('bgm') 
 			end
 			neko_play(pos)
 		end
@@ -2084,8 +2165,8 @@
 	class RPG::BGS < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play(pos = 0)
-			if $game_player.neko_open('bgs')
-				@volume = $game_player.neko_open('bgs') 
+			if $game_player.opening('bgs')
+				@volume = $game_player.opening('bgs') 
 			end
 			neko_play(pos)
 		end
@@ -2093,8 +2174,8 @@
 	class RPG::ME < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play
-			if $game_player.neko_open('me')
-				@volume = $game_player.neko_open('me') 
+			if $game_player.opening('me')
+				@volume = $game_player.opening('me') 
 			end
 			neko_play
 		end
@@ -2102,8 +2183,8 @@
 	class RPG::SE < RPG::AudioFile
 		alias neko_play play if !$setting
 		def play
-			if $game_player.neko_open('se')
-				@volume = $game_player.neko_open('se') 
+			if $game_player.opening('se')
+				@volume = $game_player.opening('se') 
 			end
 			neko_play
 		end
@@ -2113,12 +2194,12 @@
 	class << Graphics
 		def neko_get_speed
 			if SceneManager.scene_is?(Scene_Battle)
-				if $game_player.neko_open("battle")
-					return $game_player.neko_open("battle") 
+				if $game_player.opening("battle")
+					return $game_player.opening("battle") 
 				end
 			else
-				if $game_player.neko_open("nobattle")
-					return $game_player.neko_open("nobattle") 
+				if $game_player.opening("nobattle")
+					return $game_player.opening("nobattle") 
 				end
 			end
 			return 1
@@ -2166,7 +2247,7 @@
 		alias gm_scene_update update
 		def update
 			gm_scene_update
-			case $game_player.neko_open("godmode")
+			case $game_player.opening("godmode")
 				when 1
 					$game_party.heal_everything
 				when 2
