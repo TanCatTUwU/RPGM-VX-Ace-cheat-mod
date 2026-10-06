@@ -4,7 +4,7 @@
   "anyAltSource": false,
   "gameExe": "Game_Cheat.exe",
   "RTP": [
-    "C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce" // replace this with your rm vx ace rtp directory if got any error related to it
+    "C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce"
   ],
   "fontSub": {},
   "audioRampInMS": 5,
