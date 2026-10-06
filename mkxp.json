@@ -4,7 +4,7 @@
   "anyAltSource": false,
   "gameExe": "Game_Cheat.exe",
   "RTP": [
-    "C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce"
+    "C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce" // replace with ur rm vx ace rtp dir if needed
   ],
   "fontSub": {},
   "audioRampInMS": 5,
@@ -12,7 +12,7 @@
   "allowF1": true,
   "enableReset": true,
 
-  "windowTitle": "cheat mod smth idk insert ur game title here im too lazy",
+  // "windowTitle": "cheat mod smth idk insert ur game title here im too lazy",
   "defScreenW": 640,
   "defScreenH": 480,
   "fullscreen": false,
