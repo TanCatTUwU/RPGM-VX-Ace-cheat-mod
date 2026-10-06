@@ -1,6 +1,63 @@
 {
+  "rgssVersion": 0,
+  "gameFolder": "",
+  "anyAltSource": false,
+  "gameExe": "Game_Cheat.exe",
+  "RTP": [
+    "C:/Program Files (x86)/Common Files/Enterbrain/RGSS3/RPGVXAce" // replace this with your rm vx ace rtp directory if got any error related to it
+  ],
+  "fontSub": {},
+  "audioRampInMS": 5,
+
+  "allowF1": true,
+  "enableReset": true,
+
+  "windowTitle": "cheat mod smth idk insert ur game title here im too lazy",
+  "defScreenW": 640,
+  "defScreenH": 480,
+  "fullscreen": false,
+  "fixedFramerate": 0,
+  "frameSkip": false,
+  "vsync": false,
+  "syncToRefreshrate": false,
+
+  "smoothScaling": true,
+  "useHardwareCursor": false,
+  "winResizable": true,
+
+  "dataPathOrg": "",
+  "dataPathApp": "",
+
+  "iconPath": "",
+
+  "midiSoundFont": "",
+  "midiAbstTime": false,
+
+  "SEChannelCount": 32,
+
+  "customScript": "",
   "postloadScript": [
     "c/Cheat.neko",
     "c/Text.neko"
-  ]
+  ],
+  "clbCoreOnly": false,
+  "pathCache": true,
+  "encryptedFallback": true,
+
+  "openGLContext": {
+    "major": 3,
+    "minor": 3,
+    "core": true
+  },
+
+  "binding": {
+    "a": "SPACE",
+    "b": "ESCAPE",
+    "c": "C",
+    "x": "X",
+    "y": "Y",
+    "z": "Z",
+    "l": "L",
+    "r": "R"
+  }
 }
